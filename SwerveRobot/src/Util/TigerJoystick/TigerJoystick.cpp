@@ -51,46 +51,6 @@ bool TigerJoystick::GetRightTriggerPressed() {
 	return rightTrigger->Get();
 }
 
-bool TigerJoystick::GetAButton() {
-	return joystick->GetRawButton(1);
-}
-
-bool TigerJoystick::GetBButton() {
-	return joystick->GetRawButton(2);
-}
-
-bool TigerJoystick::GetXButton() {
-	return joystick->GetRawButton(3);
-}
-
-bool TigerJoystick::GetYButton() {
-	return joystick->GetRawButton(4);
-}
-
-bool TigerJoystick::GetLeftBumper() {
-	return joystick->GetRawButton(5);
-}
-
-bool TigerJoystick::GetRightBumper() {
-	return joystick->GetRawButton(6);
-}
-
-bool TigerJoystick::GetBackButton() {
-	return joystick->GetRawButton(7);
-}
-
-bool TigerJoystick::GetStartButton() {
-	return joystick->GetRawButton(8);
-}
-
-bool TigerJoystick::GetLeftStickButton() {
-	return joystick->GetRawButton(9);
-}
-
-bool TigerJoystick::GetRightStickButton() {
-	return joystick->GetRawButton(10);
-}
-
 TigerLeftTrigger* TigerJoystick::GetLeftTrigger() {
 	return leftTrigger.get();
 }

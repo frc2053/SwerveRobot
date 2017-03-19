@@ -18,16 +18,6 @@ public:
 	double GetRightTriggerValue();
 	bool GetLeftTriggerPressed();
 	bool GetRightTriggerPressed();
-	bool GetAButton();
-	bool GetBButton();
-	bool GetXButton();
-	bool GetYButton();
-	bool GetLeftBumper();
-	bool GetRightBumper();
-	bool GetBackButton();
-	bool GetStartButton();
-	bool GetLeftStickButton();
-	bool GetRightStickButton();
 	TigerLeftTrigger* GetLeftTrigger();
 	TigerRightTrigger* GetRightTrigger();
 	std::unique_ptr<frc::Joystick> joystick;
