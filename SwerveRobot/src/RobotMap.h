@@ -5,6 +5,7 @@
 #include "CANTalon.h"
 #include "AHRS.h"
 #include "Util/TigerDrive/TigerDrive.h"
+#include "Util/TigerSwerve/TigerSwerve.h"
 
 class RobotMap {
 public:
@@ -23,5 +24,6 @@ public:
 	static std::shared_ptr<AHRS> robotIMU;
 	static std::shared_ptr<TigerDrive> tigerDrive;
 	static std::shared_ptr<PowerDistributionPanel> pdp;
+	static std::shared_ptr<TigerSwerve> tigerSwerve;
 };
 #endif

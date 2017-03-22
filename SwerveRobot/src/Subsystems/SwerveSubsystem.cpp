@@ -12,6 +12,7 @@ SwerveSubsystem::SwerveSubsystem() : Subsystem("SwerveSubsystem") {
 	backRightRotationTalon = RobotMap::swerveSubsystemFrontLeftRotationTalon;
 
 	tigerDrive = RobotMap::tigerDrive;
+	tigerSwerve = RobotMap::tigerSwerve;
 }
 
 void SwerveSubsystem::InitDefaultCommand() {

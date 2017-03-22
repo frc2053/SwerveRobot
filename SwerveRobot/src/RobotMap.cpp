@@ -13,6 +13,7 @@ std::shared_ptr<CANTalon> RobotMap::swerveSubsystemBackRightRotationTalon;
 std::shared_ptr<AHRS> RobotMap::robotIMU;
 std::shared_ptr<PowerDistributionPanel> RobotMap::pdp;
 std::shared_ptr<TigerDrive> RobotMap::tigerDrive;
+std::shared_ptr<TigerSwerve> RobotMap::tigerSwerve;
 
 void RobotMap::init() {
 	swerveSubsystemFrontLeftDriveTalon.reset(new CANTalon(1));
@@ -29,4 +30,5 @@ void RobotMap::init() {
 
     pdp.reset(new frc::PowerDistributionPanel());
     tigerDrive.reset(new TigerDrive(robotIMU.get()));
+    tigerSwerve.reset(new TigerSwerve());
 }

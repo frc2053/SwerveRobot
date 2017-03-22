@@ -30,6 +30,7 @@ private:
 	std::shared_ptr<CANTalon> backLeftRotationTalon;
 
 	std::shared_ptr<TigerDrive> tigerDrive;
+	std::shared_ptr<TigerSwerve> tigerSwerve;
 };
 
 #endif
