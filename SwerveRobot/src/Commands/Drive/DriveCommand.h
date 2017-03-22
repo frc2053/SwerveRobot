@@ -12,14 +12,23 @@ public:
 	void End();
 	void Interrupted();
 	void GetInputs();
+	void SetAngleFromInput();
+	void RotateCommand();
+	void CallToSwerveDrive();
+	void CheckRotateOverride();
 private:
 	double xAxis;
 	double yAxis;
 	double rotAxis;
+	double currentYaw;
+	double setAngle;
+	double finalRotVal;
 	bool isAPressed;
 	bool isBPressed;
 	bool isXPressed;
 	bool isYPressed;
+	bool isLeftStickPressed;
+	bool isRotDone;
 };
 
 #endif

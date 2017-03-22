@@ -17,20 +17,18 @@ private:
 	bool tooFarCW;
 	bool tooFarCCW;
 	double rotateToAngleRate;
+	double yawOffset;
 	int timesThroughLoop;
 	bool isRotDone;
 	bool controllerOverride;
-
-	std::shared_ptr<AHRS> imu;
-	std::shared_ptr<frc::PIDController> rotateController;
 public:
 	TigerDrive(AHRS* imuP);
-	~TigerDrive();
+	virtual ~TigerDrive();
 	double CalculateRotationValue(double angleToRotateTo, double speedMultiplier);
 	double CalculateSpinDirection(double targetAngle, double imuAngle);
 	double CalculateSpeedAndOvershoot(int spinDir, double speedMulti);
-	float GetAdjYaw();
-	void SetAdjYaw(float offset);
+	double GetAdjYaw();
+	void SetAdjYaw(double offset);
 	float GetImuYaw();
 	bool GetIsRotDone();
 	void SetIsRotDone(bool isDone);
@@ -38,6 +36,8 @@ public:
 	void SetTimesThroughLoop(int timeLoop);
 	bool GetIsRotDoneOverride();
 
+	std::shared_ptr<frc::PIDController> rotateController;
+	std::shared_ptr<AHRS> imu;
 
 	void PIDWrite(double output) {
 	    rotateToAngleRate = output;

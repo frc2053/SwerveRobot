@@ -8,6 +8,16 @@ class SwerveSubsystem : public Subsystem {
 public:
 	SwerveSubsystem();
 	void InitDefaultCommand();
+	double CalculateRotValue(double setAngle, double speedMulti);
+	bool GetIsRotDone();
+	double GetAdjYaw();
+	void SetAdjYaw(double yaw);
+	void SwerveDrive(double xAxis, double yAxis, double rotAxis, double currentYaw);
+	void SetIsRotDone(bool isDone);
+	void SetIsRotDoneOverride(bool isDone);
+	void SetTimesThroughLoop(int timeLoop);
+	bool GetIsRotDoneOverride();
+	void ZeroYaw();
 private:
 	std::shared_ptr<CANTalon> frontRightDriveTalon;
 	std::shared_ptr<CANTalon> frontLeftDriveTalon;
@@ -18,6 +28,8 @@ private:
 	std::shared_ptr<CANTalon> frontLeftRotationTalon;
 	std::shared_ptr<CANTalon> backRightRotationTalon;
 	std::shared_ptr<CANTalon> backLeftRotationTalon;
+
+	std::shared_ptr<TigerDrive> tigerDrive;
 };
 
 #endif

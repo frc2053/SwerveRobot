@@ -8,7 +8,13 @@ TigerDrive::TigerDrive(AHRS* imuP)
 	timesThroughLoop = 0;
 	imu.reset(imuP);
 	rotateController.reset(new frc::PIDController(K_P, K_I, K_D, K_F, imu.get(), this));
+	rotateController->SetInputRange(-180.0, 180.0);
+	rotateController->SetOutputRange(-1.0, 1.0);
+	rotateController->SetAbsoluteTolerance(ANGLE_TOLERANCE);
+	rotateController->SetContinuous(true);
 	rotateToAngleRate = 0;
+	controllerOverride = false;
+	yawOffset = 0;
 }
 
 TigerDrive::~TigerDrive() {
@@ -17,8 +23,9 @@ TigerDrive::~TigerDrive() {
 
 double TigerDrive::CalculateRotationValue(double angleToRotateTo, double speedMultiplier) {
 	int spinDir = CalculateSpinDirection(angleToRotateTo, imu->GetYaw());
+	double speed = 0;
 	if(!controllerOverride) {
-		double speed = CalculateSpeedAndOvershoot(spinDir, speedMultiplier);
+		speed = CalculateSpeedAndOvershoot(spinDir, speedMultiplier);
 	}
 	else {
 		speed = 0;
@@ -73,7 +80,17 @@ double TigerDrive::CalculateSpeedAndOvershoot(int spinDir, double speedMulti) {
 	return calculatedRotate;
 }
 
-void TigerDrive::SetAdjYaw(float offset)
+double TigerDrive::GetAdjYaw() {
+	double imuRaw = imu->GetYaw();
+	double calculatedOffset = imuRaw + yawOffset;
+	if(calculatedOffset >= 180)
+	{
+		calculatedOffset = calculatedOffset - 360;
+	}
+	return calculatedOffset;
+}
+
+void TigerDrive::SetAdjYaw(double offset)
 {
 	yawOffset = offset;
 }
@@ -85,7 +102,7 @@ void TigerDrive::SetIsRotDone(bool isDone)
 
 void TigerDrive::SetIsRotDoneOverride(bool isDone)
 {
-	isRotDoneOverride = isDone;
+	controllerOverride = isDone;
 }
 
 void TigerDrive::SetTimesThroughLoop(int timeLoop)
@@ -95,7 +112,7 @@ void TigerDrive::SetTimesThroughLoop(int timeLoop)
 
 float TigerDrive::GetImuYaw()
 {
-	return imuYaw;
+	return imu->GetYaw();
 }
 
 bool TigerDrive::GetIsRotDone()
@@ -105,5 +122,5 @@ bool TigerDrive::GetIsRotDone()
 
 bool TigerDrive::GetIsRotDoneOverride()
 {
-	return isRotDoneOverride;
+	return controllerOverride;
 }

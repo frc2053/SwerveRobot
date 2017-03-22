@@ -4,6 +4,7 @@
 #include "WPILib.h"
 #include "CANTalon.h"
 #include "AHRS.h"
+#include "Util/TigerDrive/TigerDrive.h"
 
 class RobotMap {
 public:
@@ -20,6 +21,7 @@ public:
 	static std::shared_ptr<CANTalon> swerveSubsystemBackRightRotationTalon;
 
 	static std::shared_ptr<AHRS> robotIMU;
+	static std::shared_ptr<TigerDrive> tigerDrive;
 	static std::shared_ptr<PowerDistributionPanel> pdp;
 };
 #endif

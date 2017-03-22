@@ -7,6 +7,9 @@ void Robot::RobotInit() {
 	RobotMap::init();
 	oi.reset(new OI());
 	swerveSubsystem.reset(new SwerveSubsystem());
+
+	Robot::swerveSubsystem->ZeroYaw();
+	Robot::swerveSubsystem->SetAdjYaw(0);
 }
 
 void Robot::DisabledInit(){
