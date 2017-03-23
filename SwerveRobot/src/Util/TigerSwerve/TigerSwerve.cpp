@@ -107,3 +107,14 @@ void TigerSwerve::RunDriveMotors(double bL, double bR, double fL, double fR) {
 	backLeftDrive->Set(bL);
 	backRightDrive->Set(bR);
 }
+
+void TigerSwerve::RunRotationMotors(double bL, double bR, double fL, double fR) {
+	frontLeftRot->Set(fL);
+	frontRightRot->Set(fR);
+	backLeftRot->Set(bL);
+	backRightRot->Set(bR);
+}
+
+TigerSwerve::speedAndAngle TigerSwerve::CalculateAngleAdjustments(TigerSwerve::speedAndAngle currentAngleAndSpeed) {
+	//double angleDiffABS = fabs(frontLeftRot->GetPosition() - currentAngleAndSpeed.angle);
+}

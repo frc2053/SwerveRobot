@@ -26,10 +26,26 @@ void RobotMap::init() {
 	swerveSubsystemBackLeftRotationTalon.reset(new CANTalon(7));
 	swerveSubsystemBackRightRotationTalon.reset(new CANTalon(8));
 
+	swerveSubsystemFrontLeftRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
+	swerveSubsystemFrontRightRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
+	swerveSubsystemBackLeftRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
+	swerveSubsystemBackRightRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
+
+	swerveSubsystemFrontLeftRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
+	swerveSubsystemFrontRightRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
+	swerveSubsystemBackLeftRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
+	swerveSubsystemBackRightRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
+
+	swerveSubsystemFrontLeftRotationTalon->SetEncPosition(0);
+	swerveSubsystemFrontRightRotationTalon->SetEncPosition(0);
+	swerveSubsystemBackLeftRotationTalon->SetEncPosition(0);
+	swerveSubsystemBackRightRotationTalon->SetEncPosition(0);
+
     robotIMU.reset(new AHRS(frc::SPI::Port::kMXP));
 
     pdp.reset(new frc::PowerDistributionPanel());
     tigerDrive.reset(new TigerDrive(robotIMU.get()));
+
     std::vector<std::shared_ptr<CANTalon>> talons;
 
     talons.push_back(swerveSubsystemFrontLeftDriveTalon);

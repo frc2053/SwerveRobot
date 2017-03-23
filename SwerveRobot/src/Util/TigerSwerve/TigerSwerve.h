@@ -31,6 +31,8 @@ public:
 	TigerSwerve::speedAndAngle CalculateMotorSpeed(bool isRight, bool isFront);
 	double Normalize(double input, double max);
 	void RunDriveMotors(double bL, double bR, double fL, double fR);
+	void RunRotationMotors(double bL, double bR, double fL, double fR);
+	TigerSwerve::speedAndAngle CalculateAngleAdjustments(TigerSwerve::speedAndAngle currentAngleAndSpeed);
 };
 
 #endif
