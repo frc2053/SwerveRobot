@@ -30,5 +30,17 @@ void RobotMap::init() {
 
     pdp.reset(new frc::PowerDistributionPanel());
     tigerDrive.reset(new TigerDrive(robotIMU.get()));
-    tigerSwerve.reset(new TigerSwerve());
+    std::vector<std::shared_ptr<CANTalon>> talons;
+
+    talons.push_back(swerveSubsystemFrontLeftDriveTalon);
+    talons.push_back(swerveSubsystemFrontRightDriveTalon);
+    talons.push_back(swerveSubsystemBackLeftDriveTalon);
+    talons.push_back(swerveSubsystemBackRightDriveTalon);
+
+    talons.push_back(swerveSubsystemFrontLeftRotationTalon);
+    talons.push_back(swerveSubsystemFrontRightRotationTalon);
+    talons.push_back(swerveSubsystemBackLeftRotationTalon);
+    talons.push_back(swerveSubsystemBackRightRotationTalon);
+
+    tigerSwerve.reset(new TigerSwerve(talons));
 }
