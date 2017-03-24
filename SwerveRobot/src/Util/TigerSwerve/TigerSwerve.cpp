@@ -38,15 +38,19 @@ void TigerSwerve::CalculateSpeedAndAngleOfWheels(double _xAxis, double _yAxis, d
 	toNormalize.push_back(frontRight.speed);
 	double maxSpeed = *std::max_element(toNormalize.begin(), toNormalize.end());
 
-	double speedBackLeft = Normalize(backLeft.speed, maxSpeed);   //Normalize because math might create values greater than 1
-	double speedBackRight = Normalize(backRight.speed, maxSpeed); //and you cant send a greater than 1 value to motor
-	double speedFrontLeft = Normalize(frontLeft.speed, maxSpeed); //scales between -1 and 1
-	double speedFrontRight = Normalize(frontRight.speed, maxSpeed);
+	backLeft.speed = Normalize(backLeft.speed, maxSpeed);   //Normalize because math might create values greater than 1
+	backRight.speed = Normalize(backRight.speed, maxSpeed); //and you cant send a greater than 1 value to motor
+	frontLeft.speed = Normalize(frontLeft.speed, maxSpeed); //scales between -1 and 1
+	frontRight.speed = Normalize(frontRight.speed, maxSpeed);
 	toNormalize.clear(); //clears because we run in big loop and need to make sure this is empty every time
 
-	//NOW WE NEED TO MAKE WHEELS ACTUALLY TURN TOWARDS TARGET ANGLE
-	TigerSwerve::RunDriveMotors(speedBackLeft, speedBackRight, speedFrontLeft, speedFrontRight);
-	//DONT FORGET WE NEVER HAVE TO GO MORE THAN 90 DEGREES BECAUSE WE CAN SWITCH DIR OF MOTOR
+	TigerSwerve::CalculateAngleAdjustments(backLeft);
+	TigerSwerve::CalculateAngleAdjustments(backRight);
+	TigerSwerve::CalculateAngleAdjustments(frontLeft);
+	TigerSwerve::CalculateAngleAdjustments(frontRight);
+
+	TigerSwerve::RunDriveMotors(backLeft.speed, backRight.speed, frontLeft.speed, frontRight.speed);
+	TigerSwerve::RunRotationMotors(backLeft.angle, backRight.angle, frontLeft.angle, frontRight.angle);
 }
 
 TigerSwerve::speedAndAngle TigerSwerve::CalculateMotorSpeed(bool isRight, bool isFront) {
@@ -115,6 +119,11 @@ void TigerSwerve::RunRotationMotors(double bL, double bR, double fL, double fR) 
 	backRightRot->Set(bR);
 }
 
-TigerSwerve::speedAndAngle TigerSwerve::CalculateAngleAdjustments(TigerSwerve::speedAndAngle currentAngleAndSpeed) {
-	//double angleDiffABS = fabs(frontLeftRot->GetPosition() - currentAngleAndSpeed.angle);
+void TigerSwerve::CalculateAngleAdjustments(TigerSwerve::speedAndAngle &currentAngleAndSpeed) {
+	double angleToTarget = fabs(frontLeftRot->GetPosition() - currentAngleAndSpeed.angle);
+	double angleToOpposite = fabs(frontLeftRot->GetPosition() - (currentAngleAndSpeed.angle + 180));
+	if(angleToOpposite > angleToTarget) {
+		currentAngleAndSpeed.speed = currentAngleAndSpeed.speed * -1;
+		currentAngleAndSpeed.angle = currentAngleAndSpeed.angle + 180;
+	}
 }
