@@ -1,6 +1,8 @@
 #ifndef SRC_UTIL_MATH_VECTOR_H_
 #define SRC_UTIL_MATH_VECTOR_H_
 
+#include <math.h>
+
 class Vector {
 public:
 	Vector(double x, double y);

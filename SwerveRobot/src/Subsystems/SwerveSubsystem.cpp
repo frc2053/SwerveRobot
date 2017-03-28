@@ -61,5 +61,5 @@ void SwerveSubsystem::ZeroYaw() {
 }
 
 void SwerveSubsystem::SwerveDrive(double xAxis, double yAxis, double rotAxis, double currentYaw) {
-	tigerSwerve->CalculateSpeedAndAngleOfWheels(xAxis, yAxis, rotAxis, currentYaw);
+	tigerSwerve->DriveFieldOriented(xAxis, yAxis, rotAxis, currentYaw);
 }

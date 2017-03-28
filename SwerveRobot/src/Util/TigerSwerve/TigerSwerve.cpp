@@ -1,7 +1,6 @@
 #include "TigerSwerve.h"
 
 TigerSwerve::TigerSwerve(std::vector<std::shared_ptr<CANTalon>>& talons) {
-	toNormalize = std::vector<double>();
 	xAxis = 0;
 	yAxis = 0;
 	rotAxis = 0;
@@ -16,114 +15,76 @@ TigerSwerve::TigerSwerve(std::vector<std::shared_ptr<CANTalon>>& talons) {
 	frontRightRot = talons.at(5);
 	backLeftRot = talons.at(6);
 	backRightRot = talons.at(7);
+
+	centerOfRotation.reset(new Vector(0, 0));
+	modules.push_back(SwerveModule(frontLeftDrive, frontLeftRot, -BASE_WIDTH / 2, BASE_LENGTH / 2));
+	modules.push_back(SwerveModule(frontRightDrive, frontRightRot, BASE_WIDTH / 2, BASE_LENGTH / 2));
+	modules.push_back(SwerveModule(backLeftDrive, backLeftRot, -BASE_WIDTH / 2, -BASE_LENGTH / 2));
+	modules.push_back(SwerveModule(backRightDrive, backRightRot, BASE_WIDTH / 2, -BASE_LENGTH / 2));
+
+
 }
 
 TigerSwerve::~TigerSwerve() {
+
 }
 
-void TigerSwerve::CalculateSpeedAndAngleOfWheels(double _xAxis, double _yAxis, double _rotAxis, double _gyroAngle) {
-	xAxis = _xAxis;
-	yAxis = _yAxis;
-	rotAxis = _rotAxis;
-	currentYaw = _gyroAngle;
-
-	speedAndAngle backLeft = TigerSwerve::CalculateMotorSpeed(false, false); //throws into struct because im lazy and dont
-	speedAndAngle backRight = TigerSwerve::CalculateMotorSpeed(true, false); //want to seperate out functions
-	speedAndAngle frontLeft = TigerSwerve::CalculateMotorSpeed(false, true); //i like it better anyway because each
-	speedAndAngle frontRight = TigerSwerve::CalculateMotorSpeed(true, true); //swerve module is grouped anyway
-
-	toNormalize.push_back(backLeft.speed);  //Can't figure out a way to easily get max and min of
-	toNormalize.push_back(backRight.speed); //all speeds but this works i guess.
-	toNormalize.push_back(frontLeft.speed);
-	toNormalize.push_back(frontRight.speed);
-	double maxSpeed = *std::max_element(toNormalize.begin(), toNormalize.end());
-
-	backLeft.speed = Normalize(backLeft.speed, maxSpeed);   //Normalize because math might create values greater than 1
-	backRight.speed = Normalize(backRight.speed, maxSpeed); //and you cant send a greater than 1 value to motor
-	frontLeft.speed = Normalize(frontLeft.speed, maxSpeed); //scales between -1 and 1
-	frontRight.speed = Normalize(frontRight.speed, maxSpeed);
-	toNormalize.clear(); //clears because we run in big loop and need to make sure this is empty every time
-
-	TigerSwerve::CalculateAngleAdjustments(backLeft);
-	TigerSwerve::CalculateAngleAdjustments(backRight);
-	TigerSwerve::CalculateAngleAdjustments(frontLeft);
-	TigerSwerve::CalculateAngleAdjustments(frontRight);
-
-	TigerSwerve::RunDriveMotors(backLeft.speed, backRight.speed, frontLeft.speed, frontRight.speed);
-	TigerSwerve::RunRotationMotors(backLeft.angle, backRight.angle, frontLeft.angle, frontRight.angle);
+void TigerSwerve::SetCenterOfRotation(double x, double y) {
+	centerOfRotation->_x = x;
+	centerOfRotation->_y = y;
 }
 
-TigerSwerve::speedAndAngle TigerSwerve::CalculateMotorSpeed(bool isRight, bool isFront) {
-	double desiredDir = 0;
-	double rotationVectorMag = rotAxis;        //Assigns val of rot joystick to rotation vector
+void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double headingOffset) {
+	std::vector<Vector> vects(modules.size(), Vector(0,0));
+	Vector transVector  = Vector(xSpeed, ySpeed);
 
-	if(xAxis != 0 && yAxis != 0) {             //Gets angle of movement joystick
-		double rad = atan2(xAxis, yAxis);      //is this what we want?
-		double degrees = rad * (180 / M_PI);
-		desiredDir = degrees;
+	transVector.Rotate(deg2rad(headingOffset));
+
+	double farthestDist = 0;
+	for(int i = 0; i < (signed) modules.size(); i++) {
+		//Calculates modules pos relative to pivot point
+		vects.at(i) = modules.at(i).GetLocation().Subtract(*centerOfRotation.get());
+		//find farthest distance from pivot
+		farthestDist = std::max(farthestDist, vects.at(i).GetMagnitude());
 	}
 
-	double movementVectorXMag = xAxis * cos(desiredDir - currentYaw);
-	double movementVectorYMag = yAxis * sin(desiredDir - currentYaw);
-
-	double angleCenterToWheel = 0;
-	if(!isRight && !isFront) {
-		angleCenterToWheel = atan2(-LENGTH_TO_CENTER, -WIDTH_TO_CENTER);
-	}
-	if(!isRight && isFront) {
-		angleCenterToWheel = atan2(LENGTH_TO_CENTER, -WIDTH_TO_CENTER);
-	}
-	if(isRight && !isFront) {
-		angleCenterToWheel = atan2(-LENGTH_TO_CENTER, WIDTH_TO_CENTER);
-	}
-	if(isRight && isFront) {
-		angleCenterToWheel = atan2(LENGTH_TO_CENTER, WIDTH_TO_CENTER);
+	double maxPower = 1.0;
+	for(int i = 0; i < (signed) modules.size(); i++) {
+		//rotation motion created by driving each module perpendicular to
+		//the vector from the pivot point
+		vects.at(i).Rotate(-M_PI / 2);
+		//scale by the relative rate and normalize to the farthest module
+		vects.at(i).Multiply(rotSpeed / farthestDist);
+		vects.at(i).Add(transVector);
+		//calculate max power scale down if over 100%
+		maxPower = std::max(maxPower, vects.at(i).GetMagnitude());
 	}
 
-	double tangentVelocityXMag = rotationVectorMag * cos(angleCenterToWheel);
-	double tangentVelocityYMag = -rotationVectorMag * sin(angleCenterToWheel);
-
-	double velocityX = movementVectorXMag + tangentVelocityXMag;
-	double velocityY = movementVectorYMag + tangentVelocityYMag;
-	double finalMotorSpeed = sqrt(velocityX * velocityX + velocityY * velocityY);
-	double finalAngle = atan(velocityY / velocityX);
-
-	speedAndAngle retVal;
-	retVal.angle = finalAngle;
-	retVal.speed = finalMotorSpeed;
-	return retVal;
+	for(int i = 0; i < (signed) modules.size(); i++) {
+		double power = vects.at(i).GetMagnitude() / maxPower;
+		if(power > 0.05) {
+			modules.at(i).Set(vects.at(i).GetAngle() - M_PI / 2, power);
+		}
+		else {
+			modules.at(i).Stop();
+		}
+	}
 }
 
-double TigerSwerve::Normalize(double input, double max) {
-	double normalized = 0;
-	if(max > 1) {
-		normalized = input / max;
+void TigerSwerve::SetBrakeMode() {
+	for(int i = 0; i < (signed) modules.size(); i++) {
+		modules.at(i).Set(modules.at(i).GetLocation().GetAngle(), 0);
 	}
-	else {
-		normalized = input;
-	}
-	return normalized;
 }
 
-void TigerSwerve::RunDriveMotors(double bL, double bR, double fL, double fR) {
-	frontLeftDrive->Set(fL);
-	frontRightDrive->Set(fR);
-	backLeftDrive->Set(bL);
-	backRightDrive->Set(bR);
+double TigerSwerve::deg2rad(double deg) {
+	return deg * M_PI / 180.0;
 }
 
-void TigerSwerve::RunRotationMotors(double bL, double bR, double fL, double fR) {
-	frontLeftRot->Set(fL);
-	frontRightRot->Set(fR);
-	backLeftRot->Set(bL);
-	backRightRot->Set(bR);
+void TigerSwerve::DriveRobotOriented(double x, double y, double rotation) {
+	Drive(x, y, rotation, 0);
 }
 
-void TigerSwerve::CalculateAngleAdjustments(TigerSwerve::speedAndAngle &currentAngleAndSpeed) {
-	double angleToTarget = fabs(frontLeftRot->GetPosition() - currentAngleAndSpeed.angle);
-	double angleToOpposite = fabs(frontLeftRot->GetPosition() - (currentAngleAndSpeed.angle + 180));
-	if(angleToOpposite > angleToTarget) {
-		currentAngleAndSpeed.speed = currentAngleAndSpeed.speed * -1;
-		currentAngleAndSpeed.angle = currentAngleAndSpeed.angle + 180;
-	}
+void TigerSwerve::DriveFieldOriented(double x, double y, double rotation, double gyro) {
+	Drive(x, y, rotation, gyro);
 }
