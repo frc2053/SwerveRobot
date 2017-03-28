@@ -12,7 +12,7 @@ TigerJoystick::TigerJoystick(int port) {
 	startButton.reset(new frc::JoystickButton(joystick.get(), 8));
 	leftStickButton.reset(new frc::JoystickButton(joystick.get(), 9));
 	rightStickButton.reset(new frc::JoystickButton(joystick.get(), 10));
-	leftTrigger.reset(new TigerLeftTrigger(joystick.get(), 2));
+	leftTrigger.reset(new TigerLeftTrigger(joystick.get(), 3));
 	rightTrigger.reset(new TigerRightTrigger(joystick.get(), 3));
 }
 
