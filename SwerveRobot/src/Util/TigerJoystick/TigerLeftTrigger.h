@@ -5,7 +5,7 @@
 
 class TigerLeftTrigger : public Trigger {
 public:
-	TigerLeftTrigger(frc::Joystick* joy, int axis);
+	TigerLeftTrigger(frc::Joystick joy, int axis);
 	bool Get();
 	double GetTriggerValue();
 private:
@@ -13,7 +13,7 @@ private:
 
 	int joystickAxis;
 	float joystickValue;
-	Joystick* joystick;
+	frc::Joystick joystick;
 };
 
 #endif
