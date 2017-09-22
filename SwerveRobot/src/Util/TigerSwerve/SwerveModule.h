@@ -16,7 +16,7 @@ public:
 private:
 	std::shared_ptr<CANTalon> _driveController;
 	std::shared_ptr<CANTalon> _rotateController;
-	std::shared_ptr<Vector> _location;
+	Vector _location = Vector(0, 0);
 };
 
 #endif

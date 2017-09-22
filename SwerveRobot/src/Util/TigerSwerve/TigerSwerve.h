@@ -5,6 +5,7 @@
 #include "ctrlib/CANTalon.h"
 #include "../Math/Vector.h"
 #include "SwerveModule.h"
+#include <vector>
 
 class TigerSwerve {
 private:
