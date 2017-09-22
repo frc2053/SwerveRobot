@@ -18,26 +18,17 @@ double Vector::GetMagnitude() {
 }
 
 Vector Vector::Multiply(double scalar) {
-	_x = _x * scalar;
-	_y = _y * scalar;
-	return *this;
+	return Vector(_x * scalar, _y * scalar);
 }
 
 Vector Vector::Add(Vector v) {
-	_x = _x + v._x;
-	_y = _y + v._y;
-	return *this;
+	return Vector(_x + v._x, _y + v._y);
 }
 
 Vector Vector::Subtract(Vector v) {
-	_x = _x - v._x;
-	_y = _y - v._y;
-	return *this;
+	return Vector(_x - v._x, _y - v._y);
 }
 
 Vector Vector::Rotate(double radians) {
-	double tempX = _x;
-	_x = _x * cos(radians) - _y * sin(radians);
-	_y = tempX * sin(radians) + _y * cos(radians);
-	return *this;
+	return Vector(_x * cos(radians) - _y * sin(radians), _x * sin(radians) + _y * cos(radians));
 }
