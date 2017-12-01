@@ -1,9 +1,9 @@
 #include "SwerveModule.h"
 
 SwerveModule::SwerveModule(std::shared_ptr<CANTalon> driveController, std::shared_ptr<CANTalon> rotateController, double locationX, double locationY) {
+	_location.reset(new Vector(locationX, locationY));
 	_driveController.reset(driveController.get());
 	_rotateController.reset(rotateController.get());
-	_location.reset(new Vector(locationX, locationY));
 }
 
 SwerveModule::~SwerveModule() {
@@ -35,7 +35,7 @@ double SwerveModule::NormalizeAngle(double angle) {
 	return angle;
 }
 
-Vector SwerveModule::GetLocation() {
+Vector& SwerveModule::GetLocation() {
 	return *_location.get();
 }
 

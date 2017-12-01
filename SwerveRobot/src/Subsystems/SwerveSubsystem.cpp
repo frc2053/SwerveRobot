@@ -63,3 +63,7 @@ void SwerveSubsystem::ZeroYaw() {
 void SwerveSubsystem::SwerveDrive(double xAxis, double yAxis, double rotAxis, double currentYaw) {
 	tigerSwerve->DriveFieldOriented(xAxis, yAxis, rotAxis, currentYaw);
 }
+
+std::shared_ptr<TigerSwerve> SwerveSubsystem::GetSwerveStuff() {
+	return tigerSwerve;
+}

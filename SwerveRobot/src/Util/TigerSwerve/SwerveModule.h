@@ -3,7 +3,7 @@
 
 #include "../Math/Vector.h"
 #include <math.h>
-#include "CANTalon.h"
+#include "ctrlib/CANTalon.h"
 
 class SwerveModule {
 public:
@@ -12,7 +12,7 @@ public:
 	void Set(double angle, double speed);
 	void Stop();
 	double NormalizeAngle(double angle);
-	Vector GetLocation();
+	Vector& GetLocation();
 private:
 	std::shared_ptr<CANTalon> _driveController;
 	std::shared_ptr<CANTalon> _rotateController;

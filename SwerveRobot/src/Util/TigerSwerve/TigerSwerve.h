@@ -2,9 +2,10 @@
 #define SRC_UTIL_TIGERSWERVE_TIGERSWERVE_H_
 
 #include "math.h"
-#include "CANTalon.h"
+#include "ctrlib/CANTalon.h"
 #include "../Math/Vector.h"
 #include "SwerveModule.h"
+#include <vector>
 
 class TigerSwerve {
 private:
@@ -14,7 +15,6 @@ private:
 	double xAxis = 0, yAxis = 0, rotAxis = 0, currentYaw = 0;
 
 	std::shared_ptr<Vector> centerOfRotation;
-	std::vector<SwerveModule> modules;
 
 	std::shared_ptr<CANTalon> frontRightDrive;
 	std::shared_ptr<CANTalon> frontLeftDrive;
@@ -26,6 +26,8 @@ private:
 	std::shared_ptr<CANTalon> backRightRot;
 	std::shared_ptr<CANTalon> backLeftRot;
 
+	std::shared_ptr<std::vector<SwerveModule>> modules;
+
 	void Drive(double xSpeed, double ySpeed, double rotSpeed, double headingOffset);
 	double deg2rad(double deg);
 public:
@@ -35,6 +37,7 @@ public:
 	void SetBrakeMode();
 	void DriveRobotOriented(double x, double y, double rotation);
 	void DriveFieldOriented(double x, double y, double rotation, double gyro);
+	std::shared_ptr<std::vector<SwerveModule>> GetModules();
 };
 
 #endif
