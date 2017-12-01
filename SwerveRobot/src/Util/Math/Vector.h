@@ -9,10 +9,15 @@ public:
 	virtual ~Vector();
 	double GetAngle();
 	double GetMagnitude();
-	Vector Multiply(double scalar);
-	Vector Add(Vector v);
-	Vector Subtract(Vector v);
-	Vector Rotate(double radians);
+	double GetX();
+	double GetY();
+	void SetX(double x);
+	void SetY(double y);
+	Vector& Multiply(double scalar);
+	Vector& Add(Vector& v);
+	Vector& Subtract(Vector& v);
+	Vector& Rotate(double radians);
+private:
 	double _x;
 	double _y;
 };

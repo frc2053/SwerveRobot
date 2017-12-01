@@ -12,11 +12,11 @@ public:
 	void Set(double angle, double speed);
 	void Stop();
 	double NormalizeAngle(double angle);
-	Vector GetLocation();
+	Vector& GetLocation();
 private:
 	std::shared_ptr<CANTalon> _driveController;
 	std::shared_ptr<CANTalon> _rotateController;
-	Vector _location = Vector(0, 0);
+	std::shared_ptr<Vector> _location;
 };
 
 #endif

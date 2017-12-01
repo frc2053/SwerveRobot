@@ -1,8 +1,8 @@
 #ifndef SwerveSubsystem_H
 #define SwerveSubsystem_H
 
-#include <Commands/Subsystem.h>
 #include "../RobotMap.h"
+#include <Commands/Subsystem.h>
 
 class SwerveSubsystem : public Subsystem {
 public:
@@ -18,6 +18,7 @@ public:
 	void SetTimesThroughLoop(int timeLoop);
 	bool GetIsRotDoneOverride();
 	void ZeroYaw();
+	std::shared_ptr<TigerSwerve> GetSwerveStuff();
 private:
 	std::shared_ptr<CANTalon> frontRightDriveTalon;
 	std::shared_ptr<CANTalon> frontLeftDriveTalon;

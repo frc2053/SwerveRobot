@@ -17,18 +17,42 @@ double Vector::GetMagnitude() {
 	return hypot(_x, _y);
 }
 
-Vector Vector::Multiply(double scalar) {
-	return Vector(_x * scalar, _y * scalar);
+double Vector::GetX() {
+	return _x;
 }
 
-Vector Vector::Add(Vector v) {
-	return Vector(_x + v._x, _y + v._y);
+double Vector::GetY() {
+	return _y;
 }
 
-Vector Vector::Subtract(Vector v) {
-	return Vector(_x - v._x, _y - v._y);
+void Vector::SetX(double x) {
+	_x = x;
 }
 
-Vector Vector::Rotate(double radians) {
-	return Vector(_x * cos(radians) - _y * sin(radians), _x * sin(radians) + _y * cos(radians));
+void Vector::SetY(double y) {
+	_y = y;
+}
+
+Vector& Vector::Multiply(double scalar) {
+	_x = _x * scalar;
+	_y = _y * scalar;
+	return *this;
+}
+
+Vector& Vector::Add(Vector& v) {
+	_x = _x + v.GetX();
+	_y = _y + v.GetY();
+	return *this;
+}
+
+Vector& Vector::Subtract(Vector& v) {
+	_x = _x - v.GetX();
+	_y = _y - v.GetY();
+	return *this;
+}
+
+Vector& Vector::Rotate(double radians) {
+	_x = _x * cos(radians) - _y * sin(radians);
+	_y = _x * sin(radians) + _y * cos(radians);
+	return *this;
 }
