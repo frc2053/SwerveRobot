@@ -1,13 +1,13 @@
 #include "TigerRightTrigger.h"
 
-TigerRightTrigger::TigerRightTrigger(frc::Joystick joy, int axis) {
+TigerRightTrigger::TigerRightTrigger(frc::Joystick* joy, int axis) {
 	joystick = joy;
 	joystickAxis = axis;
 	joystickValue = 0;
 }
 
 bool TigerRightTrigger::Get() {
-	joystickValue = TigerRightTrigger::Deadband(joystick.GetRawAxis(joystickAxis));
+	joystickValue = TigerRightTrigger::Deadband(joystick->GetRawAxis(joystickAxis));
 	if(joystickValue > 0) {
 		return true;
 	}
@@ -29,6 +29,6 @@ float TigerRightTrigger::Deadband(float axis) {
 }
 
 float TigerRightTrigger::GetTriggerValue() {
-	joystickValue = TigerRightTrigger::Deadband(joystick.GetRawAxis(joystickAxis));
+	joystickValue = TigerRightTrigger::Deadband(joystick->GetRawAxis(joystickAxis));
 	return joystickValue;
 }

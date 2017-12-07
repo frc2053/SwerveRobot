@@ -20,15 +20,15 @@ public:
 	void ZeroYaw();
 	std::shared_ptr<TigerSwerve> GetSwerveStuff();
 private:
-	std::shared_ptr<CANTalon> frontRightDriveTalon;
+	//std::shared_ptr<CANTalon> frontRightDriveTalon;
 	std::shared_ptr<CANTalon> frontLeftDriveTalon;
-	std::shared_ptr<CANTalon> backRightDriveTalon;
-	std::shared_ptr<CANTalon> backLeftDriveTalon;
+	//std::shared_ptr<CANTalon> backRightDriveTalon;
+	//std::shared_ptr<CANTalon> backLeftDriveTalon;
 
-	std::shared_ptr<CANTalon> frontRightRotationTalon;
+	//std::shared_ptr<CANTalon> frontRightRotationTalon;
 	std::shared_ptr<CANTalon> frontLeftRotationTalon;
-	std::shared_ptr<CANTalon> backRightRotationTalon;
-	std::shared_ptr<CANTalon> backLeftRotationTalon;
+	//std::shared_ptr<CANTalon> backRightRotationTalon;
+	//std::shared_ptr<CANTalon> backLeftRotationTalon;
 
 	std::shared_ptr<TigerDrive> tigerDrive;
 	std::shared_ptr<TigerSwerve> tigerSwerve;
