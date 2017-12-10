@@ -10,6 +10,7 @@ TigerSwerve::TigerSwerve(std::vector<std::shared_ptr<CANTalon>>& talons) {
 	currentYaw = 0;
 
 	frontLeftDrive = talons.at(0);
+<<<<<<< HEAD
 	//frontRightDrive = talons.at(2);
 	//backLeftDrive = talons.at(4);
 	//backRightDrive = talons.at(6);
@@ -21,11 +22,22 @@ TigerSwerve::TigerSwerve(std::vector<std::shared_ptr<CANTalon>>& talons) {
 	//backRightRot = talons.at(7);
 
 	std::cout << "FINISHED SETTING ARRAY" << std::endl;
+=======
+	//frontRightDrive = talons.at(1);
+	//backLeftDrive = talons.at(2);
+	//backRightDrive = talons.at(3);
+
+	frontLeftRot = talons.at(1); //.at(4);
+	//frontRightRot = talons.at(5);
+	//backLeftRot = talons.at(6);
+	//backRightRot = talons.at(7);
+>>>>>>> origin/master
 
 	centerOfRotation.reset(new Vector(0, 0));
 	std::cout << "FINISHED CENTER OF ROTATION" << std::endl;
 
 	modules->push_back(SwerveModule(frontLeftDrive, frontLeftRot, -BASE_WIDTH / 2, BASE_LENGTH / 2));
+<<<<<<< HEAD
 
 	std::cout << "FINISHED MODULE PUSH BACK" << std::endl;
 
@@ -34,6 +46,11 @@ TigerSwerve::TigerSwerve(std::vector<std::shared_ptr<CANTalon>>& talons) {
 	//modules->push_back(SwerveModule(backRightDrive, backRightRot, BASE_WIDTH / 2, -BASE_LENGTH / 2));
 	std::cout << "END OF  TIGER SWERVE" << std::endl;
 
+=======
+	//modules->push_back(SwerveModule(frontRightDrive, frontRightRot, BASE_WIDTH / 2, BASE_LENGTH / 2));
+	//modules->push_back(SwerveModule(backLeftDrive, backLeftRot, -BASE_WIDTH / 2, -BASE_LENGTH / 2));
+	//modules->push_back(SwerveModule(backRightDrive, backRightRot, BASE_WIDTH / 2, -BASE_LENGTH / 2));
+>>>>>>> origin/master
 }
 
 TigerSwerve::~TigerSwerve() {

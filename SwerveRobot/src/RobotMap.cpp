@@ -16,6 +16,7 @@ std::shared_ptr<TigerDrive> RobotMap::tigerDrive;
 std::shared_ptr<TigerSwerve> RobotMap::tigerSwerve;
 
 void RobotMap::init() {
+<<<<<<< HEAD
 	std::cout << "MADE IT TO INIT" << std::endl;
 
 	swerveSubsystemFrontLeftDriveTalon.reset(new CANTalon(1)); //Values to be changed
@@ -31,13 +32,29 @@ void RobotMap::init() {
 	swerveSubsystemFrontLeftRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
 	std::cout << "SET CONTROL MODE" << std::endl;
 
+=======
+	swerveSubsystemFrontLeftDriveTalon.reset(new CANTalon(1));
+	//swerveSubsystemFrontRightDriveTalon.reset(new CANTalon(2));
+	//swerveSubsystemBackLeftDriveTalon.reset(new CANTalon(3));
+	//swerveSubsystemBackRightDriveTalon.reset(new CANTalon(4));
+
+	swerveSubsystemFrontLeftRotationTalon.reset(new CANTalon(5));
+	//swerveSubsystemFrontRightRotationTalon.reset(new CANTalon(6));
+	//swerveSubsystemBackLeftRotationTalon.reset(new CANTalon(7));
+	//swerveSubsystemBackRightRotationTalon.reset(new CANTalon(8));
+
+	swerveSubsystemFrontLeftRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
+>>>>>>> origin/master
 	//swerveSubsystemFrontRightRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
 	//swerveSubsystemBackLeftRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
 	//swerveSubsystemBackRightRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
 
 	swerveSubsystemFrontLeftRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
+<<<<<<< HEAD
 	std::cout << "SET FEEDBACK" << std::endl;
 
+=======
+>>>>>>> origin/master
 	//swerveSubsystemFrontRightRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
 	//swerveSubsystemBackLeftRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
 	//swerveSubsystemBackRightRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
@@ -67,9 +84,12 @@ void RobotMap::init() {
     //talons.push_back(swerveSubsystemFrontRightRotationTalon);
     //talons.push_back(swerveSubsystemBackLeftRotationTalon);
     //talons.push_back(swerveSubsystemBackRightRotationTalon);
+<<<<<<< HEAD
 
 	std::cout << "FINISHED TALON.PUSHBACK" << std::endl;
 
+=======
+>>>>>>> origin/master
 
     tigerSwerve.reset(new TigerSwerve(talons));
 

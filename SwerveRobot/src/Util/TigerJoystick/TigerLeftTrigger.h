@@ -13,7 +13,7 @@ private:
 
 	int joystickAxis;
 	float joystickValue;
-	Joystick* joystick;
+	frc::Joystick* joystick;
 };
 
 #endif
