@@ -1,26 +1,39 @@
 #include "TigerSwerve.h"
+#include "../../Robot.h"
 
 TigerSwerve::TigerSwerve(std::vector<std::shared_ptr<CANTalon>>& talons) {
+	std::cout << "MADE IT TO TIGER SWERVE!" << std::endl;
+
 	xAxis = 0;
 	yAxis = 0;
 	rotAxis = 0;
 	currentYaw = 0;
 
 	frontLeftDrive = talons.at(0);
-	frontRightDrive = talons.at(1);
-	backLeftDrive = talons.at(2);
-	backRightDrive = talons.at(3);
+	//frontRightDrive = talons.at(2);
+	//backLeftDrive = talons.at(4);
+	//backRightDrive = talons.at(6);
+	std::cout << "test2" << std::endl;
+	frontLeftRot = talons.at(1); //talons.at(4)
+	std::cout << "test3" << std::endl;
+	//frontRightRot = talons.at(3);
+	//backLeftRot = talons.at(5);
+	//backRightRot = talons.at(7);
 
-	frontLeftRot = talons.at(4);
-	frontRightRot = talons.at(5);
-	backLeftRot = talons.at(6);
-	backRightRot = talons.at(7);
+	std::cout << "FINISHED SETTING ARRAY" << std::endl;
 
 	centerOfRotation.reset(new Vector(0, 0));
+	std::cout << "FINISHED CENTER OF ROTATION" << std::endl;
+
 	modules->push_back(SwerveModule(frontLeftDrive, frontLeftRot, -BASE_WIDTH / 2, BASE_LENGTH / 2));
-	modules->push_back(SwerveModule(frontRightDrive, frontRightRot, BASE_WIDTH / 2, BASE_LENGTH / 2));
-	modules->push_back(SwerveModule(backLeftDrive, backLeftRot, -BASE_WIDTH / 2, -BASE_LENGTH / 2));
-	modules->push_back(SwerveModule(backRightDrive, backRightRot, BASE_WIDTH / 2, -BASE_LENGTH / 2));
+
+	std::cout << "FINISHED MODULE PUSH BACK" << std::endl;
+
+	//modules->push_back(SwerveModule(frontRightDrive, frontRightRot, BASE_WIDTH / 2, BASE_LENGTH / 2));
+	//modules->push_back(SwerveModule(backLeftDrive, backLeftRot, -BASE_WIDTH / 2, -BASE_LENGTH / 2));
+	//modules->push_back(SwerveModule(backRightDrive, backRightRot, BASE_WIDTH / 2, -BASE_LENGTH / 2));
+	std::cout << "END OF  TIGER SWERVE" << std::endl;
+
 }
 
 TigerSwerve::~TigerSwerve() {

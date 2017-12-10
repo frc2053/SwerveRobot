@@ -2,7 +2,7 @@
 #define SRC_UTIL_TIGERSWERVE_TIGERSWERVE_H_
 
 #include "math.h"
-#include "ctrlib/CANTalon.h"
+#include "CANTalon.h"
 #include "../Math/Vector.h"
 #include "SwerveModule.h"
 #include <vector>
@@ -16,15 +16,15 @@ private:
 
 	std::shared_ptr<Vector> centerOfRotation;
 
-	std::shared_ptr<CANTalon> frontRightDrive;
+	//std::shared_ptr<CANTalon> frontRightDrive;
 	std::shared_ptr<CANTalon> frontLeftDrive;
-	std::shared_ptr<CANTalon> backRightDrive;
-	std::shared_ptr<CANTalon> backLeftDrive;
+	//std::shared_ptr<CANTalon> backRightDrive;
+	//std::shared_ptr<CANTalon> backLeftDrive;
 
-	std::shared_ptr<CANTalon> frontRightRot;
+	//std::shared_ptr<CANTalon> frontRightRot;
 	std::shared_ptr<CANTalon> frontLeftRot;
-	std::shared_ptr<CANTalon> backRightRot;
-	std::shared_ptr<CANTalon> backLeftRot;
+	//std::shared_ptr<CANTalon> backRightRot;
+	//std::shared_ptr<CANTalon> backLeftRot;
 
 	std::shared_ptr<std::vector<SwerveModule>> modules;
 
