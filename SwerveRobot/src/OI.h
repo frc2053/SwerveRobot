@@ -8,6 +8,7 @@
 class OI {
 private:
 	std::shared_ptr<TigerJoystick> driverJoystick;
+	double deg2rad(double deg);
 public:
 	OI();
 	std::shared_ptr<TigerJoystick> GetDriverJoystick();

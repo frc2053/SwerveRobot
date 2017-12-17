@@ -7,7 +7,7 @@
 
 class WheelModuleTest : public Command {
 public:
-	WheelModuleTest();
+	WheelModuleTest(double setPoint);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -15,6 +15,7 @@ public:
 	void Interrupted();
 private:
 	bool testsPassed;
+	double talonSetpoint;
 };
 
 #endif

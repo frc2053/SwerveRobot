@@ -12,18 +12,30 @@ SwerveModule::~SwerveModule() {
 }
 
 void SwerveModule::Set(double angle, double speed) {
+
+	double motorOutput = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetOutputVoltage() / RobotMap::swerveSubsystemFrontLeftRotationTalon->GetBusVoltage();
+	std::cout << "Talon Output: " << motorOutput << std::endl;
+	std::cout << "Talon Setpoint: " << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSetpoint() << std::endl;
+	std::cout << "Talon Position: " << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetPosition() << std::endl;
+	std::cout << "Talon Error: " << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetClosedLoopError() << std::endl;
+
 	angle = NormalizeAngle(angle);
-	//double currentAngle = fmod(((_rotateController->GetPosition() / .5) * (M_PI)), (2*M_PI));
-	//double currentAngle = ((_rotateController->GetEncPosition() & 0xfff) / 2048) * M_PI;
-	double currentAngle = _rotateController->GetPulseWidthPosition() & 0xFFF;
+	std::cout << "goalAngle: " << angle << std::endl;
+	double currentAngle = fmod(_rotateController->GetPosition(), 1) * (2*M_PI);
+	std::cout << "currentAngle: " << currentAngle << std::endl;
+
 	double diff = fabs(angle - currentAngle);
+	std::cout << "diff: " << diff << std::endl;
 
-	if(diff > M_PI / 2 && diff < 3 * M_PI / 2) {
+	/*if(diff > M_PI / 2 && diff < 3 * M_PI / 2) {
+		std::cout << "IN IF STATEMENT!" << std::endl;
 		angle = NormalizeAngle(angle + M_PI);
+		std::cout << "IFgoalAngle: " << angle << std::endl;
 		speed = speed * -1;
-	}
+	}*/
 
-	double toMotor = (angle / M_PI) * 2048;
+	double toMotor = angle / (2*M_PI);
+	std::cout << "toMotor: " << toMotor << std::endl;
 	_rotateController->Set(toMotor);
 	_driveController->Set(speed);
 }

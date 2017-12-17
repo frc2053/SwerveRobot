@@ -13,7 +13,7 @@ void Robot::RobotInit() {
 	Robot::swerveSubsystem->ZeroYaw();
 	Robot::swerveSubsystem->SetAdjYaw(0);
 
-	SmartDashboard::PutData("Wheel Module Test", new WheelModuleTest());
+	SmartDashboard::PutData("Wheel Module Test", new WheelModuleTest(0));
 }
 
 void Robot::DisabledInit(){

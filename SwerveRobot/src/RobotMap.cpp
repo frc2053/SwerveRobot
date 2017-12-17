@@ -27,8 +27,14 @@ void RobotMap::init() {
 	//swerveSubsystemBackLeftRotationTalon.reset(new CANTalon(7));
 	//swerveSubsystemBackRightRotationTalon.reset(new CANTalon(8));
 
-	int encoderAbsolutePositionFrontLeft = swerveSubsystemFrontLeftRotationTalon->GetPulseWidthPosition() & 0xFFF;
-	swerveSubsystemFrontLeftRotationTalon->SetEncPosition(encoderAbsolutePositionFrontLeft);
+	int pulseWidth = swerveSubsystemFrontLeftRotationTalon->GetPulseWidthPosition();
+	int encoderAbsolutePositionFrontLeft = pulseWidth & 0xFFF;
+	std::cout << "pulseWidth: " << pulseWidth << std::endl;
+	std::cout << "pulseWidthMasked: " << encoderAbsolutePositionFrontLeft << std::endl;
+	std::cout << "Setting encoder pos based on masked pulse width" << std::endl;
+	swerveSubsystemFrontLeftRotationTalon->SetEncPosition(0);
+	std::cout << "currentEncPos: " << swerveSubsystemFrontLeftRotationTalon->GetEncPosition() << std::endl;
+	std::cout << "currentPos before rel: " << swerveSubsystemFrontLeftRotationTalon->GetPosition() << std::endl;
 
 	//int encoderAbsolutePositionFrontRight = swerveSubsystemFrontRightRotationTalon->GetPulseWidthPosition() & 0xFFF;
 	//swerveSubsystemFrontRightRotationTalon->SetEncPosition(encoderAbsolutePositionFrontRight);
@@ -40,9 +46,12 @@ void RobotMap::init() {
 	//swerveSubsystemBackRightRotationTalon->SetEncPosition(encoderAbsolutePositionBackRight);
 
 	swerveSubsystemFrontLeftRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-	//swerveSubsystemFrontRightRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
-	//swerveSubsystemBackLeftRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
-	//swerveSubsystemBackRightRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
+
+	std::cout << "currentPos: " << swerveSubsystemFrontLeftRotationTalon->GetPosition() << std::endl;
+
+	//swerveSubsystemFrontRightRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+	//swerveSubsystemBackLeftRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+	//swerveSubsystemBackRightRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 
 	swerveSubsystemFrontLeftRotationTalon->SetSensorDirection(true);
 	//swerveSubsystemFrontRightRotationTalon->SetSensorDirection(true);
@@ -59,9 +68,9 @@ void RobotMap::init() {
 	//swerveSubsystemBackLeftRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
 	//swerveSubsystemBackRightRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
 
-	swerveSubsystemFrontLeftRotationTalon->SetP(.2);
-	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputVoltage(1.5, -1.5);
-	swerveSubsystemFrontLeftRotationTalon->SetAllowableClosedLoopErr(0);
+	swerveSubsystemFrontLeftRotationTalon->SetP(1);
+	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputVoltage(12, -12);
+	swerveSubsystemFrontLeftRotationTalon->SetAllowableClosedLoopErr(10);
 
     std::vector<std::shared_ptr<CANTalon>> talons;
     talons.push_back(swerveSubsystemFrontLeftDriveTalon);
