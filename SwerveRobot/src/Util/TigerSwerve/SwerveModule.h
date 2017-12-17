@@ -3,7 +3,7 @@
 
 #include "../Math/Vector.h"
 #include <math.h>
-#include "ctrlib/CANTalon.h"
+#include "CANTalon.h"
 
 class SwerveModule {
 public:

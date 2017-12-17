@@ -2,10 +2,11 @@
 #define SRC_UTIL_TIGERSWERVE_TIGERSWERVE_H_
 
 #include "math.h"
-#include "ctrlib/CANTalon.h"
+#include "CANTalon.h"
 #include "../Math/Vector.h"
 #include "SwerveModule.h"
 #include <vector>
+#include <iostream>
 
 class TigerSwerve {
 private:

@@ -38,6 +38,18 @@ void DriveCommand::Execute() {
 	currentYaw = Robot::swerveSubsystem->GetAdjYaw();
 	isRotDone = Robot::swerveSubsystem->GetIsRotDone();
 
+	double motorOutput = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetOutputVoltage() / RobotMap::swerveSubsystemFrontLeftRotationTalon->GetBusVoltage();
+	std::cout << "Talon Output: " << motorOutput << std::endl;
+	std::cout << "Talon Setpoint: " << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSetpoint() << std::endl;
+	std::cout << "Talon Position: " << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetPosition() << std::endl;
+	std::cout << "Talon Error: " << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetClosedLoopError() << std::endl;
+
+	//int angle = (RobotMap::swerveSubsystemFrontLeftRotationTalon->getpo & 0xFFF);
+	//std::cout << "Talon Current: " << angle << std::endl;
+
+	//RobotMap::swerveSubsystemFrontLeftRotationTalon->Set(Robot::oi->GetDriverJoystick()->GetLeftYAxis());
+
+
 	SetAngleFromInput();
 	RotateCommand();
 	CheckRotateOverride();

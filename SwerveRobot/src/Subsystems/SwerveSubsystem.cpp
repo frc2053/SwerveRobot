@@ -1,4 +1,5 @@
 #include "SwerveSubsystem.h"
+#include "../Commands/Drive/DriveCommand.h"
 
 SwerveSubsystem::SwerveSubsystem() : Subsystem("SwerveSubsystem") {
 	frontLeftDriveTalon = RobotMap::swerveSubsystemFrontLeftDriveTalon;
@@ -16,7 +17,7 @@ SwerveSubsystem::SwerveSubsystem() : Subsystem("SwerveSubsystem") {
 }
 
 void SwerveSubsystem::InitDefaultCommand() {
-
+	SetDefaultCommand(new DriveCommand());
 }
 
 double SwerveSubsystem::CalculateRotValue(double setAngle, double setSpeed)

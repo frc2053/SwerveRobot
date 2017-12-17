@@ -4,11 +4,12 @@
 #include "RobotMap.h"
 #include "OI.h"
 #include "Subsystems/SwerveSubsystem.h"
+#include "Commands/Test/WheelModuleTest.h"
 
 class Robot : public IterativeRobot {
 public:
+	static std::unique_ptr<SwerveSubsystem> swerveSubsystem;
 	static std::unique_ptr<OI> oi;
-	static std::shared_ptr<SwerveSubsystem> swerveSubsystem;
 	virtual void RobotInit();
 	virtual void DisabledInit();
 	virtual void DisabledPeriodic();

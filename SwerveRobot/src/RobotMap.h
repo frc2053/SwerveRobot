@@ -2,7 +2,7 @@
 #define ROBOTMAP_H
 
 #include "WPILib.h"
-#include "ctrlib/CANTalon.h"
+#include "CANTalon.h"
 #include "AHRS.h"
 #include "Util/TigerDrive/TigerDrive.h"
 #include "Util/TigerSwerve/TigerSwerve.h"
