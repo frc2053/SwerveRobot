@@ -12,16 +12,12 @@ SwerveModule::~SwerveModule() {
 }
 
 void SwerveModule::Set(double angle, double speed) {
-
-	double motorOutput = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetOutputVoltage() / RobotMap::swerveSubsystemFrontLeftRotationTalon->GetBusVoltage();
-	std::cout << "Talon Output: " << motorOutput << std::endl;
-	std::cout << "Talon Setpoint: " << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSetpoint() << std::endl;
-	std::cout << "Talon Position: " << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetPosition() << std::endl;
-	std::cout << "Talon Error: " << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetClosedLoopError() << std::endl;
-
+	std::cout << "angle init: " << angle * (180/M_PI) << std::endl;
 	angle = NormalizeAngle(angle);
 	std::cout << "goalAngle: " << angle * (180/M_PI) << std::endl;
-	double currentAngle = fmod(_rotateController->GetPosition(), 1) * (2*M_PI);
+	double totalRotations = _rotateController->GetPosition();
+	std::cout << "totalRotations: " << totalRotations << std::endl;
+	double currentAngle = fmod(totalRotations, 1) * (2*M_PI);
 	std::cout << "currentAngle: " << currentAngle * (180/M_PI) << std::endl;
 
 	double diff = fabs(angle - currentAngle);
@@ -30,21 +26,31 @@ void SwerveModule::Set(double angle, double speed) {
 	if(diff < M_PI) {
 		std::cout << "IN IF STATEMENT!" << std::endl;
         angle = currentAngle + diff;
-		//angle = NormalizeAngle(angle + M_PI);
+		angle = NormalizeAngle(angle + M_PI);
 		//std::cout << "IFgoalAngle: " << angle * (180/M_PI) << std::endl;
-		//speed = speed * -1;
+		speed = speed * -1;
 	}
 	else {
+		std::cout << "IN ELSE STATEMENT!" << std::endl;
 		speed = speed * -1;
 		angle = currentAngle + (M_PI - diff);
 	}
 
-	std::cout << "final angle: " << angle << std::endl;
+	std::cout << "final angle: " << angle * (180/M_PI) << std::endl;
 
-	double toMotor = angle / (2*M_PI);
+	double toMotor = totalRotations + (angle / (2*M_PI));
 	std::cout << "toMotor: " << toMotor << std::endl;
 	_rotateController->Set(toMotor);
 	_driveController->Set(speed);
+	double motorOutput = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetOutputVoltage() / RobotMap::swerveSubsystemFrontLeftRotationTalon->GetBusVoltage();
+	std::cout << "Talon Output: " << motorOutput << std::endl;
+	std::cout << "Talon Setpoint: " << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSetpoint() << std::endl;
+	std::cout << "Talon Position: " << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetPosition() << std::endl;
+	std::cout << "Talon Error: " << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetClosedLoopError() << std::endl;
+	//CONVERT RADIANS TO REVS
+	/*double revsGoal = angle / (2*M_PI);
+	double currentPosRevsTotal = _rotateController->GetPosition();
+	double currentPosRevsAbsolute = fmod(currentPosRevsTotal, (2*M_PI));*/
 }
 
 void SwerveModule::Stop() {
