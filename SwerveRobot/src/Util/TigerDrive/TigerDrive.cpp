@@ -12,7 +12,7 @@ TigerDrive::TigerDrive(AHRS* imuP)
 	rotateController->SetOutputRange(-1.0, 1.0);
 	rotateController->SetAbsoluteTolerance(ANGLE_TOLERANCE);
 	rotateController->SetContinuous(true);
-	rotateToAngleRate = 0;
+	rotateToAngleRate = 1;
 	controllerOverride = false;
 	yawOffset = 0;
 }

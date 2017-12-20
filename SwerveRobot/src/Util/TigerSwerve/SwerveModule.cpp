@@ -20,19 +20,26 @@ void SwerveModule::Set(double angle, double speed) {
 	std::cout << "Talon Error: " << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetClosedLoopError() << std::endl;
 
 	angle = NormalizeAngle(angle);
-	std::cout << "goalAngle: " << angle << std::endl;
+	std::cout << "goalAngle: " << angle * (180/M_PI) << std::endl;
 	double currentAngle = fmod(_rotateController->GetPosition(), 1) * (2*M_PI);
-	std::cout << "currentAngle: " << currentAngle << std::endl;
+	std::cout << "currentAngle: " << currentAngle * (180/M_PI) << std::endl;
 
 	double diff = fabs(angle - currentAngle);
-	std::cout << "diff: " << diff << std::endl;
+	std::cout << "diff: " << diff * (180/M_PI) << std::endl;
 
-	/*if(diff > M_PI / 2 && diff < 3 * M_PI / 2) {
+	if(diff < M_PI) {
 		std::cout << "IN IF STATEMENT!" << std::endl;
-		angle = NormalizeAngle(angle + M_PI);
-		std::cout << "IFgoalAngle: " << angle << std::endl;
+        angle = currentAngle + diff;
+		//angle = NormalizeAngle(angle + M_PI);
+		//std::cout << "IFgoalAngle: " << angle * (180/M_PI) << std::endl;
+		//speed = speed * -1;
+	}
+	else {
 		speed = speed * -1;
-	}*/
+		angle = currentAngle + (M_PI - diff);
+	}
+
+	std::cout << "final angle: " << angle << std::endl;
 
 	double toMotor = angle / (2*M_PI);
 	std::cout << "toMotor: " << toMotor << std::endl;
