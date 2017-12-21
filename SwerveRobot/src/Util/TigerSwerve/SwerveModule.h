@@ -1,22 +1,25 @@
 #ifndef SRC_UTIL_TIGERSWERVE_SWERVEMODULE_H_
 #define SRC_UTIL_TIGERSWERVE_SWERVEMODULE_H_
 
-#include "../Math/Vector.h"
 #include <math.h>
+#include <Util/Math/Rotation2D.h>
 #include "ctrlib/CANTalon.h"
+#include "CTREMagEncoder.h"
 
 class SwerveModule {
 public:
-	SwerveModule(std::shared_ptr<CANTalon> driveController, std::shared_ptr<CANTalon> rotateController, double locationX, double locationY);
+	SwerveModule(std::shared_ptr<CANTalon> driveController, std::shared_ptr<CANTalon> rotateController);
 	virtual ~SwerveModule();
-	void Set(double angle, double speed);
+
+	Rotation2D GetAngle() const;
+	void SetAngle(Rotation2D angle);
+	void Set(double speed, Rotation2D angle);
 	void Stop();
-	double NormalizeAngle(double angle);
-	Vector& GetLocation();
 private:
 	std::shared_ptr<CANTalon> _driveController;
 	std::shared_ptr<CANTalon> _rotateController;
-	std::shared_ptr<Vector> _location;
+	std::shared_ptr<CTREMagEncoder> _angleEncoder;
+	bool isOptimizedAngle;
 };
 
 #endif

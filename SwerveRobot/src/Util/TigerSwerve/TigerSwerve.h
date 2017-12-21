@@ -1,9 +1,9 @@
 #ifndef SRC_UTIL_TIGERSWERVE_TIGERSWERVE_H_
 #define SRC_UTIL_TIGERSWERVE_TIGERSWERVE_H_
 
+#include <Util/Math/Rotation2D.h>
 #include "math.h"
 #include "ctrlib/CANTalon.h"
-#include "../Math/Vector.h"
 #include "SwerveModule.h"
 #include <vector>
 #include <iostream>
@@ -15,7 +15,7 @@ private:
 
 	double xAxis = 0, yAxis = 0, rotAxis = 0, currentYaw = 0;
 
-	std::shared_ptr<Vector> centerOfRotation;
+	std::shared_ptr<Rotation2D> centerOfRotation;
 
 	//std::shared_ptr<CANTalon> frontRightDrive;
 	std::shared_ptr<CANTalon> frontLeftDrive;
