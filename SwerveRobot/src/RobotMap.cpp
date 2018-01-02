@@ -27,17 +27,20 @@ void RobotMap::init() {
 	swerveSubsystemBackLeftRotationTalon.reset(new CANTalon(8));
 	swerveSubsystemBackRightRotationTalon.reset(new CANTalon(9));
 
-	int pulseWidth = swerveSubsystemFrontLeftRotationTalon->GetPulseWidthPosition();
-	int encoderAbsolutePositionFrontLeft = pulseWidth & 0xFFF;
-	std::cout << "pulseWidth: " << pulseWidth << std::endl;
-	std::cout << "pulseWidthMasked: " << encoderAbsolutePositionFrontLeft << std::endl;
-	std::cout << "Setting encoder pos based on masked pulse width" << std::endl;
 	swerveSubsystemFrontLeftRotationTalon->SetEncPosition(0);
-	std::cout << "currentEncPos: " << swerveSubsystemFrontLeftRotationTalon->GetEncPosition() << std::endl;
-	std::cout << "currentPos before rel: " << swerveSubsystemFrontLeftRotationTalon->GetPosition() << std::endl;
+	swerveSubsystemFrontRightRotationTalon->SetEncPosition(0);
+	swerveSubsystemBackLeftRotationTalon->SetEncPosition(0);
+	swerveSubsystemBackRightRotationTalon->SetEncPosition(0);
+
+	int encoderAbsolutePositionFrontLeft = swerveSubsystemFrontLeftRotationTalon->GetPulseWidthPosition() & 0xFFF;
+	swerveSubsystemFrontLeftRotationTalon->SetEncPosition(encoderAbsolutePositionFrontLeft);
 
 	int encoderAbsolutePositionFrontRight = swerveSubsystemFrontRightRotationTalon->GetPulseWidthPosition() & 0xFFF;
 	swerveSubsystemFrontRightRotationTalon->SetEncPosition(encoderAbsolutePositionFrontRight);
+
+	std::cout << "encPos: " << swerveSubsystemFrontRightRotationTalon->GetEncPosition() << std::endl;
+	std::cout << "pos: " << swerveSubsystemFrontRightRotationTalon->GetPosition() << std::endl;
+	std::cout << "pulseWidth: " << swerveSubsystemFrontRightRotationTalon->GetPulseWidthPosition() << std::endl;
 
 	int encoderAbsolutePositionBackLeft = swerveSubsystemBackLeftRotationTalon->GetPulseWidthPosition() & 0xFFF;
 	swerveSubsystemBackLeftRotationTalon->SetEncPosition(encoderAbsolutePositionBackLeft);
@@ -46,9 +49,6 @@ void RobotMap::init() {
 	swerveSubsystemBackRightRotationTalon->SetEncPosition(encoderAbsolutePositionBackRight);
 
 	swerveSubsystemFrontLeftRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-
-	std::cout << "currentPos: " << swerveSubsystemFrontLeftRotationTalon->GetPosition() << std::endl;
-
 	swerveSubsystemFrontRightRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 	swerveSubsystemBackLeftRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 	swerveSubsystemBackRightRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
@@ -68,9 +68,27 @@ void RobotMap::init() {
 	swerveSubsystemBackLeftRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
 	swerveSubsystemBackRightRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
 
-	swerveSubsystemFrontLeftRotationTalon->SetP(1);
-	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputVoltage(12, -12);
+	swerveSubsystemFrontLeftRotationTalon->SetP(.5);
+	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputVoltage(3, -3);
 	swerveSubsystemFrontLeftRotationTalon->SetAllowableClosedLoopErr(10);
+
+	swerveSubsystemFrontRightRotationTalon->SetP(.5);
+	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputVoltage(3, -3);
+	swerveSubsystemFrontRightRotationTalon->SetAllowableClosedLoopErr(10);
+
+	swerveSubsystemBackLeftRotationTalon->SetP(.5);
+	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputVoltage(3, -3);
+	swerveSubsystemBackLeftRotationTalon->SetAllowableClosedLoopErr(10);
+
+	swerveSubsystemBackRightRotationTalon->SetP(.5);
+	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputVoltage(3, -3);
+	swerveSubsystemBackRightRotationTalon->SetAllowableClosedLoopErr(10);
+
+	swerveSubsystemFrontLeftDriveTalon->ConfigPeakOutputVoltage(3, -3);
+	swerveSubsystemFrontRightDriveTalon->ConfigPeakOutputVoltage(3, -3);
+	swerveSubsystemBackLeftDriveTalon->ConfigPeakOutputVoltage(3, -3);
+	swerveSubsystemBackRightDriveTalon->ConfigPeakOutputVoltage(3, -3);
+
 
     std::vector<std::shared_ptr<CANTalon>> talons;
     talons.push_back(swerveSubsystemFrontLeftDriveTalon);

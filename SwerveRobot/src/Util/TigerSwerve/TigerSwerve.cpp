@@ -59,6 +59,12 @@ void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double he
 	modules->at(0).Set(flWheelSpeed, flWheelAngle);
 	SmartDashboard::PutNumber("flWheelSpeed", flWheelSpeed);
 	SmartDashboard::PutNumber("flWheelAngle", flWheelAngle.getDegrees());
+	SmartDashboard::PutNumber("frWheelSpeed", frWheelSpeed);
+	SmartDashboard::PutNumber("frWheelAngle", frWheelAngle.getDegrees());
+	SmartDashboard::PutNumber("blWheelSpeed", blWheelSpeed);
+	SmartDashboard::PutNumber("blWheelAngle", blWheelAngle.getDegrees());
+	SmartDashboard::PutNumber("brWheelSpeed", brWheelSpeed);
+	SmartDashboard::PutNumber("brWheelAngle", brWheelAngle.getDegrees());
 	modules->at(1).Set(frWheelSpeed, frWheelAngle);
 	modules->at(2).Set(blWheelSpeed, blWheelAngle);
 	modules->at(3).Set(brWheelSpeed, brWheelAngle);
