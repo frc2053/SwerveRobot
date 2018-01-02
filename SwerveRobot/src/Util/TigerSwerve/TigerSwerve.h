@@ -2,6 +2,7 @@
 #define SRC_UTIL_TIGERSWERVE_TIGERSWERVE_H_
 
 #include <Util/Math/Rotation2D.h>
+#include <Util/Math/Translation2D.h>
 #include "math.h"
 #include "ctrlib/CANTalon.h"
 #include "SwerveModule.h"
@@ -10,22 +11,22 @@
 
 class TigerSwerve {
 private:
-	const double BASE_LENGTH = 20;
-	const double BASE_WIDTH = 20;
+	static constexpr double BASE_LENGTH = 20;
+	static constexpr double BASE_WIDTH = 20;
 
 	double xAxis = 0, yAxis = 0, rotAxis = 0, currentYaw = 0;
 
 	std::shared_ptr<Rotation2D> centerOfRotation;
 
-	//std::shared_ptr<CANTalon> frontRightDrive;
+	std::shared_ptr<CANTalon> frontRightDrive;
 	std::shared_ptr<CANTalon> frontLeftDrive;
-	//std::shared_ptr<CANTalon> backRightDrive;
-	//std::shared_ptr<CANTalon> backLeftDrive;
+	std::shared_ptr<CANTalon> backRightDrive;
+	std::shared_ptr<CANTalon> backLeftDrive;
 
-	//std::shared_ptr<CANTalon> frontRightRot;
+	std::shared_ptr<CANTalon> frontRightRot;
 	std::shared_ptr<CANTalon> frontLeftRot;
-	//std::shared_ptr<CANTalon> backRightRot;
-	//std::shared_ptr<CANTalon> backLeftRot;
+	std::shared_ptr<CANTalon> backRightRot;
+	std::shared_ptr<CANTalon> backLeftRot;
 
 	std::shared_ptr<std::vector<SwerveModule>> modules;
 
@@ -39,6 +40,9 @@ public:
 	void DriveRobotOriented(double x, double y, double rotation);
 	void DriveFieldOriented(double x, double y, double rotation, double gyro);
 	std::shared_ptr<std::vector<SwerveModule>> GetModules();
+	static void SwerveInverseKinematics(Translation2D &translation,
+				double rotation, double &wheelSpeedFR, double &wheelSpeedFL, double &wheelSpeedBR, double &wheelSpeedBL,
+				Rotation2D &wheelAngleFL, Rotation2D &wheelAngleFR, Rotation2D &wheelAngleBL, Rotation2D &wheelAngleBR);
 };
 
 #endif

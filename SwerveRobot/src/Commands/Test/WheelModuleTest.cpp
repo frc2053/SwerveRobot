@@ -20,7 +20,7 @@ void WheelModuleTest::Execute() {
 	}*/
 
 	std::cout << "Hi" << std::endl;
-	Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(0).Set(talonSetpoint, 0);
+	//Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(0).Set(talonSetpoint, 0);
 
 	/*//test drive motors
 	for(int i = 0; i < (signed) Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->size(); i++) {
