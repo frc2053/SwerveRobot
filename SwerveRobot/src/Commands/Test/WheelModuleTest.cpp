@@ -12,18 +12,18 @@ void WheelModuleTest::Initialize() {
 
 void WheelModuleTest::Execute() {
 	//test rotations
-	/*for(int i = 0; i < 2 * M_PI; i = i + 45) {
-		for(int j = 0; j < (signed) Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->size(); j++) {
-			Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(i * (M_PI / 180), 0);
+	for(int i = 0; i < 365; i = i + 45) {
+		for(int j = 0; j < 4; j++) {
+			Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(i));
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-	}*/
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	}
 
 	std::cout << "Hi" << std::endl;
-	//Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(0).Set(talonSetpoint, 0);
+	//Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(0).Set(0, Rotation2D::fromDegrees(0));
 
-	/*//test drive motors
-	for(int i = 0; i < (signed) Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->size(); i++) {
+	//test drive motors
+	/*for(int i = 0; i < (signed) Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->size(); i++) {
 		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(i).Set(0, .2);
 	}
 	std::this_thread::sleep_for(std::chrono::milliseconds(1));

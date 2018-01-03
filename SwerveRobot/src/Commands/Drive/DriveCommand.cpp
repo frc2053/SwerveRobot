@@ -118,13 +118,13 @@ void DriveCommand::CallToSwerveDrive() {
 	if(rotAxis == 0)
 	{
 		Robot::swerveSubsystem->SetIsRotDoneOverride(false);
-		Robot::swerveSubsystem->SwerveDrive(xAxis, yAxis, finalRotVal, currentYaw);
+		Robot::swerveSubsystem->SwerveDrive(xAxis, yAxis, finalRotVal, 0);
 	}
 	else
 	{
 		Robot::swerveSubsystem->SetIsRotDoneOverride(true);
 		Robot::swerveSubsystem->SetIsRotDone(true);
 		Robot::swerveSubsystem->SetTimesThroughLoop(0);
-		Robot::swerveSubsystem->SwerveDrive(xAxis, yAxis, rotAxis, currentYaw);
+		Robot::swerveSubsystem->SwerveDrive(xAxis, yAxis, rotAxis, 0);
 	}
 }

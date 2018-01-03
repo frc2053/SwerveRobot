@@ -60,7 +60,8 @@ int CTREMagEncoder::ConvertAngleToSetpoint(Rotation2D targetAngle) {
 
 int CTREMagEncoder::ConvertAngleToEncoderTicks(Rotation2D angle) {
 	double degrees = angle.getDegrees();
-	return degrees / 360.0 * 4096;
+	int ticks = degrees / 360.0 * 4096;
+	return ticks;
 }
 
 void CTREMagEncoder::SetEncoderRaw(int ticks) {
