@@ -26,7 +26,6 @@ void SwerveModule::SetAngle(Rotation2D angle) {
 	else {
 		isOptimizedAngle = false;
 	}
-	SmartDashboard::PutNumber("FLangleSetPoint", angle.getDegrees());
 	int setpoint = _angleEncoder->ConvertAngleToSetpoint(angle);
 	_rotateController->Set(setpoint / 4096.0);
 }

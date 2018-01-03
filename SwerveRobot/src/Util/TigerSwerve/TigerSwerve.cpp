@@ -41,11 +41,8 @@ void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double he
 
 	Rotation2D gyroAngle = Rotation2D::fromDegrees(headingOffset);
 
-	rotSpeed = rotSpeed * -1;
-
-	currentYaw = -headingOffset;
+	currentYaw = headingOffset;
 	trans.rotateBy(gyroAngle);
-	rotSpeed = rotSpeed * 1;
 
 	double flWheelSpeed;
 	double frWheelSpeed;
@@ -56,16 +53,10 @@ void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double he
 	Rotation2D blWheelAngle;
 	Rotation2D brWheelAngle;
 	SwerveInverseKinematics(trans, rotSpeed, frWheelSpeed, flWheelSpeed, brWheelSpeed, blWheelSpeed, flWheelAngle, frWheelAngle, blWheelAngle, brWheelAngle);
-	//modules->at(0).Set(flWheelSpeed, flWheelAngle);
-	SmartDashboard::PutNumber("FLWheelSpeed", flWheelSpeed);
-	SmartDashboard::PutNumber("FLWheelAngle", flWheelAngle.getDegrees());
-	SmartDashboard::PutNumber("FLWheelSpeed", flWheelSpeed);
-	SmartDashboard::PutNumber("FLWheelAngle", flWheelAngle.getDegrees());
-	SmartDashboard::PutNumber("FLWheelSetpoint", frontLeftRot->GetSetpoint());
-	SmartDashboard::PutNumber("FLWheelPos", frontLeftRot->GetPosition());
-	//modules->at(1).Set(frWheelSpeed, frWheelAngle);
-	//modules->at(2).Set(blWheelSpeed, blWheelAngle);
-	//modules->at(3).Set(brWheelSpeed, brWheelAngle);
+	modules->at(0).Set(flWheelSpeed, flWheelAngle);
+	modules->at(1).Set(frWheelSpeed, frWheelAngle);
+	modules->at(2).Set(blWheelSpeed, blWheelAngle);
+	modules->at(3).Set(brWheelSpeed, brWheelAngle);
 }
 
 void TigerSwerve::SetBrakeMode() {
