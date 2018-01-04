@@ -36,13 +36,20 @@ void TigerSwerve::SetCenterOfRotation(double x, double y) {
 }
 
 void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double headingOffset) {
-	Translation2D trans(xSpeed, ySpeed);
+	Translation2D trans(ySpeed, xSpeed);
+	std::cout << "trans: (" << trans.getX() << "," << trans.getY() << ")" << std::endl;
 	Rotation2D rot = Rotation2D::fromDegrees(rotSpeed);
+	std::cout << "rotSpeed: " << rotSpeed << std::endl;
+	std::cout << "rot: " << rot.getDegrees() << std::endl;
 
 	Rotation2D gyroAngle = Rotation2D::fromDegrees(headingOffset);
+	std::cout << "gyroAngleRot: " << gyroAngle.getDegrees() << std::endl;
 
 	currentYaw = headingOffset;
+	std::cout << "currentYaw: " << currentYaw << std::endl;
 	trans.rotateBy(gyroAngle);
+	std::cout << "rotated trans" << std::endl;
+	std::cout << "trans: (" << trans.getX() << "," << trans.getY() << ")" << std::endl;
 
 	double flWheelSpeed;
 	double frWheelSpeed;
@@ -53,10 +60,10 @@ void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double he
 	Rotation2D blWheelAngle;
 	Rotation2D brWheelAngle;
 	SwerveInverseKinematics(trans, rotSpeed, frWheelSpeed, flWheelSpeed, brWheelSpeed, blWheelSpeed, flWheelAngle, frWheelAngle, blWheelAngle, brWheelAngle);
-	modules->at(0).Set(flWheelSpeed, flWheelAngle);
-	modules->at(1).Set(frWheelSpeed, frWheelAngle);
+	//modules->at(0).Set(flWheelSpeed, flWheelAngle);
+	//modules->at(1).Set(frWheelSpeed, frWheelAngle);
 	modules->at(2).Set(blWheelSpeed, blWheelAngle);
-	modules->at(3).Set(brWheelSpeed, brWheelAngle);
+	//modules->at(3).Set(brWheelSpeed, brWheelAngle);
 }
 
 void TigerSwerve::SetBrakeMode() {

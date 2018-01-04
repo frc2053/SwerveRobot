@@ -18,9 +18,12 @@ Rotation2D SwerveModule::GetAngle() const {
 
 void SwerveModule::SetAngle(Rotation2D angle) {
 	Rotation2D currentAngle = _angleEncoder->GetAngle();
+	SmartDashboard::PutNumber("currentAngle", currentAngle.getDegrees());
 	Rotation2D deltaAngle = currentAngle.rotateBy(angle.inverse());
+	SmartDashboard::PutNumber("deltaAngle", deltaAngle.getDegrees());
 	if(deltaAngle.getRadians() > M_PI && deltaAngle.getRadians() < 3 * M_PI_2) {
 		angle = angle.rotateBy(Rotation2D::fromRadians(M_PI));
+		std::cout << "angle after rotation: " << angle.getDegrees() << std::endl;
 		isOptimizedAngle = true;
 	}
 	else {

@@ -10,12 +10,13 @@ CTREMagEncoder::~CTREMagEncoder() {
 }
 
 Rotation2D CTREMagEncoder::GetRawAngle() const {
-	return Rotation2D::fromRadians(GetEncoderTicks() / 4096.0 * 2 * M_PI);
+	return Rotation2D::fromRadians(GetEncoderTicks(false) / 4096.0 * 2 * M_PI);
 
 }
 
 Rotation2D CTREMagEncoder::GetAngle() const {
-	return m_offset.rotateBy(GetRawAngle());
+	//return m_offset.rotateBy(GetRawAngle());
+	return GetRawAngle();
 }
 
 int CTREMagEncoder::GetRotations() const {
@@ -23,7 +24,7 @@ int CTREMagEncoder::GetRotations() const {
 }
 
 int CTREMagEncoder::GetEncoderTicks(bool overflow) const {
-	int ticks = m_talon->GetPulseWidthPosition();
+	int ticks = m_talon->GetEncPosition();
 	ticks = ticks * -1; //negative b/c Pulse Width Position doesn't
 				 //take sensor direction into account
 	if (!overflow) {
@@ -39,7 +40,6 @@ void CTREMagEncoder::Calibrate() {
 
 int CTREMagEncoder::ConvertAngleToSetpoint(Rotation2D targetAngle) {
 	Rotation2D angle = targetAngle.rotateBy(m_offset);
-
 	int ticks = ConvertAngleToEncoderTicks(angle); // 0 - 4096
 
 	int encoderTicks = GetEncoderTicks(true);

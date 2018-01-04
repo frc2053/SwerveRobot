@@ -32,6 +32,11 @@ void RobotMap::init() {
 	swerveSubsystemBackLeftRotationTalon->SetEncPosition(0);
 	swerveSubsystemBackRightRotationTalon->SetEncPosition(0);
 
+	swerveSubsystemBackLeftDriveTalon->SetInverted(true);
+	swerveSubsystemBackRightDriveTalon->SetInverted(true);
+	swerveSubsystemFrontLeftDriveTalon->SetInverted(true);
+	swerveSubsystemFrontRightDriveTalon->SetInverted(true);
+
 	int encoderAbsolutePositionFrontLeft = swerveSubsystemFrontLeftRotationTalon->GetPulseWidthPosition() & 0xFFF;
 	swerveSubsystemFrontLeftRotationTalon->SetPulseWidthPosition(encoderAbsolutePositionFrontLeft);
 
