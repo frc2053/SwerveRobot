@@ -65,5 +65,5 @@ int CTREMagEncoder::ConvertAngleToEncoderTicks(Rotation2D angle) {
 }
 
 void CTREMagEncoder::SetEncoderRaw(int ticks) {
-	m_talon->GetSensorCollection().SetPulseWidthPosition();
+	m_talon->GetSensorCollection().SetPulseWidthPosition(ticks, 0);
 }

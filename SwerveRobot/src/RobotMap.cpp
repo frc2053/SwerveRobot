@@ -27,82 +27,78 @@ void RobotMap::init() {
 	swerveSubsystemBackLeftRotationTalon.reset(new WPI_TalonSRX(8));
 	swerveSubsystemBackRightRotationTalon.reset(new WPI_TalonSRX(9));
 
-	swerveSubsystemFrontLeftRotationTalon->SetEncPosition(0);
-	swerveSubsystemFrontRightRotationTalon->SetEncPosition(0);
-	swerveSubsystemBackLeftRotationTalon->SetEncPosition(0);
-	swerveSubsystemBackRightRotationTalon->SetEncPosition(0);
+	swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+	swerveSubsystemFrontRightRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+	swerveSubsystemBackLeftRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+	swerveSubsystemBackRightRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
 
 	swerveSubsystemBackLeftDriveTalon->SetInverted(true);
 	swerveSubsystemBackRightDriveTalon->SetInverted(true);
 	swerveSubsystemFrontLeftDriveTalon->SetInverted(true);
 	swerveSubsystemFrontRightDriveTalon->SetInverted(true);
 
-	int encoderAbsolutePositionFrontLeft = swerveSubsystemFrontLeftRotationTalon->GetPulseWidthPosition() & 0xFFF;
-	swerveSubsystemFrontLeftRotationTalon->SetPulseWidthPosition(encoderAbsolutePositionFrontLeft);
+	int encoderAbsolutePositionFrontLeft = swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition() & 0xFFF;
+	swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().SetPulseWidthPosition(encoderAbsolutePositionFrontLeft, 10);
 
-	int encoderAbsolutePositionFrontRight = swerveSubsystemFrontRightRotationTalon->GetPulseWidthPosition() & 0xFFF;
-	swerveSubsystemFrontRightRotationTalon->SetPulseWidthPosition(encoderAbsolutePositionFrontRight);
+	int encoderAbsolutePositionFrontRight = swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetPulseWidthPosition() & 0xFFF;
+	swerveSubsystemFrontRightRotationTalon->GetSensorCollection().SetPulseWidthPosition(encoderAbsolutePositionFrontRight, 10);
 
-	int encoderAbsolutePositionBackLeft = swerveSubsystemBackLeftRotationTalon->GetPulseWidthPosition() & 0xFFF;
-	swerveSubsystemBackLeftRotationTalon->SetPulseWidthPosition(encoderAbsolutePositionBackLeft);
+	int encoderAbsolutePositionBackLeft = swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition() & 0xFFF;
+	swerveSubsystemBackLeftRotationTalon->GetSensorCollection().SetPulseWidthPosition(encoderAbsolutePositionBackLeft, 10);
 
-	int encoderAbsolutePositionBackRight = swerveSubsystemBackRightRotationTalon->GetPulseWidthPosition() & 0xFFF;
-	swerveSubsystemBackRightRotationTalon->SetPulseWidthPosition(encoderAbsolutePositionBackRight);
+	int encoderAbsolutePositionBackRight = swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetPulseWidthPosition() & 0xFFF;
+	swerveSubsystemBackRightRotationTalon->GetSensorCollection().SetPulseWidthPosition(encoderAbsolutePositionBackRight, 10);
 
-	swerveSubsystemFrontLeftRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-	swerveSubsystemFrontRightRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-	swerveSubsystemBackLeftRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-	swerveSubsystemBackRightRotationTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+	swerveSubsystemFrontLeftRotationTalon->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
+	swerveSubsystemFrontRightRotationTalon->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
+	swerveSubsystemBackLeftRotationTalon->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
+	swerveSubsystemBackRightRotationTalon->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
 
-	swerveSubsystemFrontLeftRotationTalon->SetSensorDirection(true);
-	swerveSubsystemFrontRightRotationTalon->SetSensorDirection(true);
-	swerveSubsystemBackLeftRotationTalon->SetSensorDirection(true);
-	swerveSubsystemBackRightRotationTalon->SetSensorDirection(true);
+	swerveSubsystemFrontLeftRotationTalon->SetSensorPhase(true);
+	swerveSubsystemFrontRightRotationTalon->SetSensorPhase(true);
+	swerveSubsystemBackLeftRotationTalon->SetSensorPhase(true);
+	swerveSubsystemBackRightRotationTalon->SetSensorPhase(true);
 
 	swerveSubsystemFrontLeftRotationTalon->SetInverted(false);
 	swerveSubsystemFrontRightRotationTalon->SetInverted(false);
 	swerveSubsystemBackLeftRotationTalon->SetInverted(false);
 	swerveSubsystemBackRightRotationTalon->SetInverted(false);
 
-	swerveSubsystemFrontLeftRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
-	swerveSubsystemFrontRightRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
-	swerveSubsystemBackLeftRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
-	swerveSubsystemBackRightRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
+	swerveSubsystemFrontLeftRotationTalon->Set(ctre::phoenix::motorcontrol::ControlMode::Position, 0);
+	swerveSubsystemFrontRightRotationTalon->Set(ctre::phoenix::motorcontrol::ControlMode::Position, 0);
+	swerveSubsystemBackLeftRotationTalon->Set(ctre::phoenix::motorcontrol::ControlMode::Position, 0);
+	swerveSubsystemBackRightRotationTalon->Set(ctre::phoenix::motorcontrol::ControlMode::Position, 0);
 
-	swerveSubsystemFrontLeftRotationTalon->SetP(6);
-	swerveSubsystemFrontLeftRotationTalon->SetI(0);
-	swerveSubsystemFrontLeftRotationTalon->SetD(15);
-	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputVoltage(12, -12);
-	swerveSubsystemFrontLeftRotationTalon->SetAllowableClosedLoopErr(35);
-
-	swerveSubsystemFrontRightRotationTalon->SetP(6);
-	swerveSubsystemFrontRightRotationTalon->SetI(0);
-	swerveSubsystemFrontRightRotationTalon->SetD(15);
-	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputVoltage(12, -12);
-	swerveSubsystemFrontRightRotationTalon->SetAllowableClosedLoopErr(35);
-
-	swerveSubsystemBackLeftRotationTalon->SetP(6);
-	swerveSubsystemBackLeftRotationTalon->SetI(0);
-	swerveSubsystemBackLeftRotationTalon->SetD(15);
-
-	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputVoltage(12, -12);
-	swerveSubsystemBackLeftRotationTalon->SetAllowableClosedLoopErr(35);
-
-	swerveSubsystemBackRightRotationTalon->SetP(6);
-	swerveSubsystemBackRightRotationTalon->SetI(0);
-	swerveSubsystemBackRightRotationTalon->SetD(15);
-
-	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputVoltage(12, -12);
-	swerveSubsystemBackRightRotationTalon->SetAllowableClosedLoopErr(35);
+	swerveSubsystemFrontLeftRotationTalon->Config_kP(0, 6, 10);
+	swerveSubsystemFrontLeftRotationTalon->Config_kI(0, 0, 10);
+	swerveSubsystemFrontLeftRotationTalon->Config_kD(0, 15, 10);
+	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputForward(1, 10);
+	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputReverse(-1, 10);
+	swerveSubsystemFrontLeftRotationTalon->ConfigAllowableClosedloopError(0, 35, 10);
 
 
-	CANTalon::FeedbackDeviceStatus isBRPresent = swerveSubsystemBackRightRotationTalon->IsSensorPresent(CANTalon::CtreMagEncoder_Relative);
-	CANTalon::FeedbackDeviceStatus isFRPresent = swerveSubsystemFrontRightRotationTalon->IsSensorPresent(CANTalon::CtreMagEncoder_Relative);
+	swerveSubsystemFrontRightRotationTalon->Config_kP(0, 6, 10);
+	swerveSubsystemFrontRightRotationTalon->Config_kI(0, 0, 10);
+	swerveSubsystemFrontRightRotationTalon->Config_kD(0, 15, 10);
+	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputForward(1, 10);
+	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputReverse(-1, 10);
+	swerveSubsystemFrontRightRotationTalon->ConfigAllowableClosedloopError(0, 35, 10);
 
-	std::cout << "isBRPresent: " << isBRPresent << std::endl;
-	std::cout << "isFRPresent: " << isFRPresent << std::endl;
+	swerveSubsystemBackLeftRotationTalon->Config_kP(0, 6, 10);
+	swerveSubsystemBackLeftRotationTalon->Config_kI(0, 0, 10);
+	swerveSubsystemBackLeftRotationTalon->Config_kD(0, 15, 10);
+	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputForward(1, 10);
+	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputReverse(-1, 10);
+	swerveSubsystemBackLeftRotationTalon->ConfigAllowableClosedloopError(0, 35, 10);
 
-    std::vector<std::shared_ptr<CANTalon>> talons;
+	swerveSubsystemBackRightRotationTalon->Config_kP(0, 6, 10);
+	swerveSubsystemBackRightRotationTalon->Config_kI(0, 0, 10);
+	swerveSubsystemBackRightRotationTalon->Config_kD(0, 15, 10);
+	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputForward(1, 10);
+	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputReverse(-1, 10);
+	swerveSubsystemBackRightRotationTalon->ConfigAllowableClosedloopError(0, 35, 10);
+
+    std::vector<std::shared_ptr<WPI_TalonSRX>> talons;
     talons.push_back(swerveSubsystemFrontLeftDriveTalon);
     talons.push_back(swerveSubsystemFrontRightDriveTalon);
     talons.push_back(swerveSubsystemBackLeftDriveTalon);
