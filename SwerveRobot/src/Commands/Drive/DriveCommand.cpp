@@ -118,13 +118,23 @@ void DriveCommand::CallToSwerveDrive() {
 	if(rotAxis == 0)
 	{
 		Robot::swerveSubsystem->SetIsRotDoneOverride(false);
-		Robot::swerveSubsystem->SwerveDrive(xAxis, yAxis, finalRotVal, currentYaw);
+		Robot::swerveSubsystem->SwerveDrive(xAxis, -yAxis, finalRotVal, currentYaw);
 	}
 	else
 	{
 		Robot::swerveSubsystem->SetIsRotDoneOverride(true);
 		Robot::swerveSubsystem->SetIsRotDone(true);
 		Robot::swerveSubsystem->SetTimesThroughLoop(0);
-		Robot::swerveSubsystem->SwerveDrive(xAxis, yAxis, rotAxis, currentYaw);
+		Robot::swerveSubsystem->SwerveDrive(xAxis, -yAxis, rotAxis, currentYaw);
 	}
+
+	std::cout << "blCurrent" << RobotMap::swerveSubsystemBackLeftRotationTalon->GetOutputCurrent() << std::endl;
+	std::cout << "brCurrent" << RobotMap::swerveSubsystemBackRightRotationTalon->GetOutputCurrent() << std::endl;
+	std::cout << "flCurrent" << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetOutputCurrent() << std::endl;
+	std::cout << "frCurrent" << RobotMap::swerveSubsystemFrontRightRotationTalon->GetOutputCurrent() << std::endl;
+	std::cout << "blRPM" << RobotMap::swerveSubsystemBackLeftRotationTalon->GetEncVel() << std::endl;
+	std::cout << "brRPM" <<RobotMap::swerveSubsystemBackRightRotationTalon->GetEncVel() << std::endl;
+	std::cout << "flRPM" << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetEncVel() << std::endl;
+	std::cout << "frRPM" << RobotMap::swerveSubsystemFrontRightRotationTalon->GetEncVel() << std::endl;
+	std::cout << "-------------------------------------------" << std::endl;
 }

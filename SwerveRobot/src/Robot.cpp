@@ -36,6 +36,7 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
+
 }
 
 void Robot::TestPeriodic() {

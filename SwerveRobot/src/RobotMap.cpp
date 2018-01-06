@@ -69,31 +69,31 @@ void RobotMap::init() {
 	swerveSubsystemBackLeftRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
 	swerveSubsystemBackRightRotationTalon->SetControlMode(CANTalon::ControlMode::kPosition);
 
-	swerveSubsystemFrontLeftRotationTalon->SetP(3);
+	swerveSubsystemFrontLeftRotationTalon->SetP(6);
 	swerveSubsystemFrontLeftRotationTalon->SetI(0);
-	swerveSubsystemFrontLeftRotationTalon->SetD(40);
-	//swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputVoltage(3, -3);
-	swerveSubsystemFrontLeftRotationTalon->SetAllowableClosedLoopErr(10);
+	swerveSubsystemFrontLeftRotationTalon->SetD(15);
+	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputVoltage(12, -12);
+	swerveSubsystemFrontLeftRotationTalon->SetAllowableClosedLoopErr(35);
 
-	swerveSubsystemFrontRightRotationTalon->SetP(3);
+	swerveSubsystemFrontRightRotationTalon->SetP(6);
 	swerveSubsystemFrontRightRotationTalon->SetI(0);
-	swerveSubsystemFrontRightRotationTalon->SetD(40);
-	//swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputVoltage(3, -3);
-	swerveSubsystemFrontRightRotationTalon->SetAllowableClosedLoopErr(10);
+	swerveSubsystemFrontRightRotationTalon->SetD(15);
+	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputVoltage(12, -12);
+	swerveSubsystemFrontRightRotationTalon->SetAllowableClosedLoopErr(35);
 
-	swerveSubsystemBackLeftRotationTalon->SetP(3);
+	swerveSubsystemBackLeftRotationTalon->SetP(6);
 	swerveSubsystemBackLeftRotationTalon->SetI(0);
-	swerveSubsystemBackLeftRotationTalon->SetD(40);
+	swerveSubsystemBackLeftRotationTalon->SetD(15);
 
-	//swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputVoltage(3, -3);
-	swerveSubsystemBackLeftRotationTalon->SetAllowableClosedLoopErr(10);
+	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputVoltage(12, -12);
+	swerveSubsystemBackLeftRotationTalon->SetAllowableClosedLoopErr(35);
 
-	swerveSubsystemBackRightRotationTalon->SetP(3);
+	swerveSubsystemBackRightRotationTalon->SetP(6);
 	swerveSubsystemBackRightRotationTalon->SetI(0);
-	swerveSubsystemBackRightRotationTalon->SetD(40);
+	swerveSubsystemBackRightRotationTalon->SetD(15);
 
-	//swerveSubsystemBackRightRotationTalon->ConfigPeakOutputVoltage(3, -3);
-	swerveSubsystemBackRightRotationTalon->SetAllowableClosedLoopErr(10);
+	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputVoltage(12, -12);
+	swerveSubsystemBackRightRotationTalon->SetAllowableClosedLoopErr(35);
 
 
 	CANTalon::FeedbackDeviceStatus isBRPresent = swerveSubsystemBackRightRotationTalon->IsSensorPresent(CANTalon::CtreMagEncoder_Relative);
