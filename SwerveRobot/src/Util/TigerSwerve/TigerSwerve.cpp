@@ -1,7 +1,7 @@
 #include "TigerSwerve.h"
 #include "../../Robot.h"
 
-TigerSwerve::TigerSwerve(std::vector<std::shared_ptr<CANTalon>>& talons) {
+TigerSwerve::TigerSwerve(std::vector<std::shared_ptr<WPI_TalonSRX>>& talons) {
 	xAxis = 0;
 	yAxis = 0;
 	rotAxis = 0;

@@ -1,7 +1,7 @@
 #include "SwerveModule.h"
 #include <iostream>
 #include "../../Robot.h"
-SwerveModule::SwerveModule(std::shared_ptr<CANTalon> driveController, std::shared_ptr<CANTalon> rotateController) {
+SwerveModule::SwerveModule(std::shared_ptr<WPI_TalonSRX> driveController, std::shared_ptr<WPI_TalonSRX> rotateController) {
 	_driveController.reset(driveController.get());
 	_rotateController.reset(rotateController.get());
 	_angleEncoder.reset(new CTREMagEncoder(_rotateController.get()));

@@ -2,7 +2,7 @@
 #include "CTREMagEncoder.h"
 #include <WPILib.h>
 
-CTREMagEncoder::CTREMagEncoder(CANTalon* talon) : m_talon(talon) {
+CTREMagEncoder::CTREMagEncoder(WPI_TalonSRX* talon) : m_talon(talon) {
 }
 
 CTREMagEncoder::~CTREMagEncoder() {
@@ -24,7 +24,7 @@ int CTREMagEncoder::GetRotations() const {
 }
 
 int CTREMagEncoder::GetEncoderTicks(bool overflow) const {
-	int ticks = m_talon->GetEncPosition();
+	int ticks = m_talon->GetSensorCollection().GetQuadraturePosition();
 	ticks = ticks * -1; //negative b/c Pulse Width Position doesn't
 				 //take sensor direction into account
 	if (!overflow) {
@@ -65,5 +65,5 @@ int CTREMagEncoder::ConvertAngleToEncoderTicks(Rotation2D angle) {
 }
 
 void CTREMagEncoder::SetEncoderRaw(int ticks) {
-	m_talon->SetPulseWidthPosition(ticks);
+	m_talon->GetSensorCollection().SetPulseWidthPosition();
 }

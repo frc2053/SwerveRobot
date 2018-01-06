@@ -132,9 +132,9 @@ void DriveCommand::CallToSwerveDrive() {
 	std::cout << "brCurrent" << RobotMap::swerveSubsystemBackRightRotationTalon->GetOutputCurrent() << std::endl;
 	std::cout << "flCurrent" << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetOutputCurrent() << std::endl;
 	std::cout << "frCurrent" << RobotMap::swerveSubsystemFrontRightRotationTalon->GetOutputCurrent() << std::endl;
-	std::cout << "blRPM" << RobotMap::swerveSubsystemBackLeftRotationTalon->GetEncVel() << std::endl;
-	std::cout << "brRPM" <<RobotMap::swerveSubsystemBackRightRotationTalon->GetEncVel() << std::endl;
-	std::cout << "flRPM" << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetEncVel() << std::endl;
-	std::cout << "frRPM" << RobotMap::swerveSubsystemFrontRightRotationTalon->GetEncVel() << std::endl;
+	std::cout << "blRPM" << RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadratureVelocity() << std::endl;
+	std::cout << "brRPM" <<RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetQuadratureVelocity() << std::endl;
+	std::cout << "flRPM" << RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadratureVelocity() << std::endl;
+	std::cout << "frRPM" << RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetQuadratureVelocity() << std::endl;
 	std::cout << "-------------------------------------------" << std::endl;
 }

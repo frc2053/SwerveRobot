@@ -4,7 +4,7 @@
 #include <Util/Math/Rotation2D.h>
 #include <Util/Math/Translation2D.h>
 #include "math.h"
-#include "ctrlib/CANTalon.h"
+#include "ctre/Phoenix.h"
 #include "SwerveModule.h"
 #include <vector>
 #include <iostream>
@@ -18,22 +18,22 @@ private:
 
 	std::shared_ptr<Rotation2D> centerOfRotation;
 
-	std::shared_ptr<CANTalon> frontRightDrive;
-	std::shared_ptr<CANTalon> frontLeftDrive;
-	std::shared_ptr<CANTalon> backRightDrive;
-	std::shared_ptr<CANTalon> backLeftDrive;
+	std::shared_ptr<WPI_TalonSRX> frontRightDrive;
+	std::shared_ptr<WPI_TalonSRX> frontLeftDrive;
+	std::shared_ptr<WPI_TalonSRX> backRightDrive;
+	std::shared_ptr<WPI_TalonSRX> backLeftDrive;
 
-	std::shared_ptr<CANTalon> frontRightRot;
-	std::shared_ptr<CANTalon> frontLeftRot;
-	std::shared_ptr<CANTalon> backRightRot;
-	std::shared_ptr<CANTalon> backLeftRot;
+	std::shared_ptr<WPI_TalonSRX> frontRightRot;
+	std::shared_ptr<WPI_TalonSRX> frontLeftRot;
+	std::shared_ptr<WPI_TalonSRX> backRightRot;
+	std::shared_ptr<WPI_TalonSRX> backLeftRot;
 
 	std::shared_ptr<std::vector<SwerveModule>> modules;
 
 	void Drive(double xSpeed, double ySpeed, double rotSpeed, double headingOffset);
 	double deg2rad(double deg);
 public:
-	TigerSwerve(std::vector<std::shared_ptr<CANTalon>>& talons);
+	TigerSwerve(std::vector<std::shared_ptr<WPI_TalonSRX>>& talons);
 	virtual ~TigerSwerve();
 	void SetCenterOfRotation(double x, double y);
 	void SetBrakeMode();

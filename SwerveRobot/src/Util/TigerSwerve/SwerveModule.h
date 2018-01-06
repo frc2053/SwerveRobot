@@ -3,12 +3,12 @@
 
 #include <math.h>
 #include <Util/Math/Rotation2D.h>
-#include "ctrlib/CANTalon.h"
+#include "ctre/Phoenix.h"
 #include "CTREMagEncoder.h"
 
 class SwerveModule {
 public:
-	SwerveModule(std::shared_ptr<CANTalon> driveController, std::shared_ptr<CANTalon> rotateController);
+	SwerveModule(std::shared_ptr<WPI_TalonSRX> driveController, std::shared_ptr<WPI_TalonSRX> rotateController);
 	virtual ~SwerveModule();
 
 	Rotation2D GetAngle() const;
@@ -16,8 +16,8 @@ public:
 	void Set(double speed, Rotation2D angle);
 	void Stop();
 private:
-	std::shared_ptr<CANTalon> _driveController;
-	std::shared_ptr<CANTalon> _rotateController;
+	std::shared_ptr<WPI_TalonSRX> _driveController;
+	std::shared_ptr<WPI_TalonSRX> _rotateController;
 	std::shared_ptr<CTREMagEncoder> _angleEncoder;
 	bool isOptimizedAngle;
 };

@@ -1,14 +1,14 @@
 #include "RobotMap.h"
 
-std::shared_ptr<CANTalon> RobotMap::swerveSubsystemFrontLeftDriveTalon;
-std::shared_ptr<CANTalon> RobotMap::swerveSubsystemFrontRightDriveTalon;
-std::shared_ptr<CANTalon> RobotMap::swerveSubsystemBackLeftDriveTalon;
-std::shared_ptr<CANTalon> RobotMap::swerveSubsystemBackRightDriveTalon;
+std::shared_ptr<WPI_TalonSRX> RobotMap::swerveSubsystemFrontLeftDriveTalon;
+std::shared_ptr<WPI_TalonSRX> RobotMap::swerveSubsystemFrontRightDriveTalon;
+std::shared_ptr<WPI_TalonSRX> RobotMap::swerveSubsystemBackLeftDriveTalon;
+std::shared_ptr<WPI_TalonSRX> RobotMap::swerveSubsystemBackRightDriveTalon;
 
-std::shared_ptr<CANTalon> RobotMap::swerveSubsystemFrontLeftRotationTalon;
-std::shared_ptr<CANTalon> RobotMap::swerveSubsystemFrontRightRotationTalon;
-std::shared_ptr<CANTalon> RobotMap::swerveSubsystemBackLeftRotationTalon;
-std::shared_ptr<CANTalon> RobotMap::swerveSubsystemBackRightRotationTalon;
+std::shared_ptr<WPI_TalonSRX> RobotMap::swerveSubsystemFrontLeftRotationTalon;
+std::shared_ptr<WPI_TalonSRX> RobotMap::swerveSubsystemFrontRightRotationTalon;
+std::shared_ptr<WPI_TalonSRX> RobotMap::swerveSubsystemBackLeftRotationTalon;
+std::shared_ptr<WPI_TalonSRX> RobotMap::swerveSubsystemBackRightRotationTalon;
 
 std::shared_ptr<AHRS> RobotMap::robotIMU;
 std::shared_ptr<frc::PowerDistributionPanel> RobotMap::pdp;
@@ -17,15 +17,15 @@ std::shared_ptr<TigerSwerve> RobotMap::tigerSwerve;
 
 void RobotMap::init() {
 	
-	swerveSubsystemFrontLeftDriveTalon.reset(new CANTalon(2));
-	swerveSubsystemFrontRightDriveTalon.reset(new CANTalon(3));
-	swerveSubsystemBackLeftDriveTalon.reset(new CANTalon(4));
-	swerveSubsystemBackRightDriveTalon.reset(new CANTalon(5));
+	swerveSubsystemFrontLeftDriveTalon.reset(new WPI_TalonSRX(2));
+	swerveSubsystemFrontRightDriveTalon.reset(new WPI_TalonSRX(3));
+	swerveSubsystemBackLeftDriveTalon.reset(new WPI_TalonSRX(4));
+	swerveSubsystemBackRightDriveTalon.reset(new WPI_TalonSRX(5));
 
-	swerveSubsystemFrontLeftRotationTalon.reset(new CANTalon(6));
-	swerveSubsystemFrontRightRotationTalon.reset(new CANTalon(7));
-	swerveSubsystemBackLeftRotationTalon.reset(new CANTalon(8));
-	swerveSubsystemBackRightRotationTalon.reset(new CANTalon(9));
+	swerveSubsystemFrontLeftRotationTalon.reset(new WPI_TalonSRX(6));
+	swerveSubsystemFrontRightRotationTalon.reset(new WPI_TalonSRX(7));
+	swerveSubsystemBackLeftRotationTalon.reset(new WPI_TalonSRX(8));
+	swerveSubsystemBackRightRotationTalon.reset(new WPI_TalonSRX(9));
 
 	swerveSubsystemFrontLeftRotationTalon->SetEncPosition(0);
 	swerveSubsystemFrontRightRotationTalon->SetEncPosition(0);
