@@ -1,9 +1,10 @@
 #include "WheelModuleTest.h"
 
 WheelModuleTest::WheelModuleTest(double setPoint) {
-	//Requires(Robot::swerveSubsystem.get());
+	Requires(Robot::swerveSubsystem.get());
 	testsPassed = false;
 	talonSetpoint = setPoint;
+
 }
 
 void WheelModuleTest::Initialize() {
@@ -12,16 +13,21 @@ void WheelModuleTest::Initialize() {
 
 void WheelModuleTest::Execute() {
 	//test rotations
-	/*for(int i = 0; i < 365; i = i + 45) {
+	for(int i = 0; i < 365; i = i + 45) {
 		for(int j = 0; j < 4; j++) {
+			Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(i));
 		}
-		//Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(2).Set(0, Rotation2D::fromDegrees(i));
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	}*/
-	RobotMap::swerveSubsystemBackLeftRotationTalon->Set(ControlMode::PercentOutput, .15);
-	//RobotMap::swerveSubsystemBackRightRotationTalon->Set(ControlMode::PercentOutput, .15);
-	//RobotMap::swerveSubsystemFrontLeftRotationTalon->Set(ControlMode::PercentOutput, .15);
-	//RobotMap::swerveSubsystemFrontRightRotationTalon->Set(ControlMode::PercentOutput, .15);
+		std::this_thread::sleep_for(std::chrono::seconds(2));
+	}
+	//Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(0).Set(0, Rotation2D::fromDegrees(talonSetpoint));
+	//Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(1).Set(0, Rotation2D::fromDegrees(talonSetpoint));
+	//Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(2).Set(0, Rotation2D::fromDegrees(talonSetpoint));
+	//Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(3).Set(0, Rotation2D::fromDegrees(talonSetpoint));
+
+	//RobotMap::swerveSubsystemBackLeftDriveTalon->Set(ControlMode::PercentOutput, .35);
+	//RobotMap::swerveSubsystemBackRightDriveTalon->Set(ControlMode::PercentOutput, .35);
+	//RobotMap::swerveSubsystemFrontLeftDriveTalon->Set(ControlMode::PercentOutput, .35);
+	//RobotMap::swerveSubsystemFrontRightDriveTalon->Set(ControlMode::PercentOutput, .35);
 
 	testsPassed = true;
 }
@@ -31,6 +37,11 @@ bool WheelModuleTest::IsFinished() {
 }
 
 void WheelModuleTest::End() {
+	SmartDashboard::PutBoolean("Executing", false);
+	RobotMap::swerveSubsystemBackLeftDriveTalon->Set(ControlMode::PercentOutput, 0);
+	RobotMap::swerveSubsystemBackRightDriveTalon->Set(ControlMode::PercentOutput, 0);
+	RobotMap::swerveSubsystemFrontLeftDriveTalon->Set(ControlMode::PercentOutput, 0);
+	RobotMap::swerveSubsystemFrontRightDriveTalon->Set(ControlMode::PercentOutput, 0);
 
 }
 

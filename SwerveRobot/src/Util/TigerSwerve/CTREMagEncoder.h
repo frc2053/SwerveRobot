@@ -3,15 +3,18 @@
 #include "../Math/Rotation2D.h"
 #include "ctre/Phoenix.h"
 #include <string>
+#include "ctre/phoenix/MotorControl/CAN/WPI_TalonSRX.h"
+
+using namespace ctre::phoenix::motorcontrol;
 
 class CTREMagEncoder {
 private:
-	WPI_TalonSRX* m_talon;
+	can::WPI_TalonSRX* m_talon;
 	std::string m_name;
 	std::string m_calibrationKey;
 	Rotation2D m_offset;
 public:
-	CTREMagEncoder(WPI_TalonSRX *talon);
+	CTREMagEncoder(can::WPI_TalonSRX *talon);
 	virtual ~CTREMagEncoder();
 	Rotation2D GetRawAngle() const;
 	Rotation2D GetAngle() const;

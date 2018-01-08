@@ -7,15 +7,15 @@ OI::OI() {
 
 	SmartDashboard::PutData("Zero Yaw", new ZeroYaw());
 
-	driverJoystick->aButton->WhenPressed(new WheelModuleTest(deg2rad(0)));
-	driverJoystick->bButton->WhenPressed(new WheelModuleTest(deg2rad(45)));
-	driverJoystick->xButton->WhenPressed(new WheelModuleTest(deg2rad(90)));
-	driverJoystick->yButton->WhenPressed(new WheelModuleTest(deg2rad(135)));
-	driverJoystick->startButton->WhenPressed(new WheelModuleTest(deg2rad(180)));
-	driverJoystick->selectButton->WhenPressed(new WheelModuleTest(deg2rad(225)));
-	driverJoystick->leftShoulderButton->WhenPressed(new WheelModuleTest(deg2rad(270)));
-	driverJoystick->rightShoulderButton->WhenPressed(new WheelModuleTest(deg2rad(315)));
-	driverJoystick->leftStickButton->WhenPressed(new WheelModuleTest(deg2rad(360)));
+	driverJoystick->aButton->WhileHeld(new WheelModuleTest(0));
+	driverJoystick->bButton->WhileHeld(new WheelModuleTest(45));
+	driverJoystick->xButton->WhileHeld(new WheelModuleTest(90));
+	driverJoystick->yButton->WhileHeld(new WheelModuleTest(135));
+	driverJoystick->startButton->WhileHeld(new WheelModuleTest(180));
+	driverJoystick->selectButton->WhileHeld(new WheelModuleTest(225));
+	driverJoystick->leftShoulderButton->WhileHeld(new WheelModuleTest(270));
+	driverJoystick->rightShoulderButton->WhileHeld(new WheelModuleTest(315));
+	driverJoystick->leftStickButton->WhileHeld(new WheelModuleTest(360));
 
 
 }

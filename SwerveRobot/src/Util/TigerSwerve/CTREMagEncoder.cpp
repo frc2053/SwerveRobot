@@ -1,8 +1,9 @@
 #include <sstream>
 #include "CTREMagEncoder.h"
 #include <WPILib.h>
+#include <iostream>
 
-CTREMagEncoder::CTREMagEncoder(WPI_TalonSRX* talon) : m_talon(talon) {
+CTREMagEncoder::CTREMagEncoder(can::WPI_TalonSRX* talon) : m_talon(talon) {
 }
 
 CTREMagEncoder::~CTREMagEncoder() {
@@ -15,8 +16,7 @@ Rotation2D CTREMagEncoder::GetRawAngle() const {
 }
 
 Rotation2D CTREMagEncoder::GetAngle() const {
-	//return m_offset.rotateBy(GetRawAngle());
-	return GetRawAngle();
+	return m_offset.rotateBy(GetRawAngle());
 }
 
 int CTREMagEncoder::GetRotations() const {

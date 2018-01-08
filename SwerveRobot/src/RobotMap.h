@@ -23,7 +23,7 @@ public:
 
 	static std::shared_ptr<AHRS> robotIMU;
 	static std::shared_ptr<TigerDrive> tigerDrive;
-	//static std::shared_ptr<PowerDistributionPanel> pdp;
+	static std::shared_ptr<frc::PowerDistributionPanel> pdp;
 	static std::shared_ptr<TigerSwerve> tigerSwerve;
 };
 #endif

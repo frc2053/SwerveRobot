@@ -1,8 +1,8 @@
 #ifndef SRC_TIGERDRIVE_TIGERDRIVE_H_
 #define SRC_TIGERDRIVE_TIGERDRIVE_H_
 
-#include "AHRS.h"
 #include "WPILib.h"
+#include "AHRS.h"
 
 class TigerDrive : public frc::PIDOutput
 {

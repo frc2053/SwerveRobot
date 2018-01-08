@@ -36,6 +36,18 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
+	SmartDashboard::PutNumber("flError", RobotMap::swerveSubsystemFrontLeftRotationTalon->GetClosedLoopError(0));
+	SmartDashboard::PutNumber("frError", RobotMap::swerveSubsystemFrontRightRotationTalon->GetClosedLoopError(0));
+	SmartDashboard::PutNumber("blError", RobotMap::swerveSubsystemBackLeftRotationTalon->GetClosedLoopError(0));
+	SmartDashboard::PutNumber("brError", RobotMap::swerveSubsystemBackRightRotationTalon->GetClosedLoopError(0));
+	SmartDashboard::PutNumber("flSetpoint", RobotMap::swerveSubsystemFrontLeftRotationTalon->GetClosedLoopTarget(0));
+	SmartDashboard::PutNumber("frSetpoint", RobotMap::swerveSubsystemFrontRightRotationTalon->GetClosedLoopTarget(0));
+	SmartDashboard::PutNumber("blSetpoint", RobotMap::swerveSubsystemBackLeftRotationTalon->GetClosedLoopTarget(0));
+	SmartDashboard::PutNumber("brSetpoint", RobotMap::swerveSubsystemBackRightRotationTalon->GetClosedLoopTarget(0));
+	SmartDashboard::PutNumber("flCurrent", RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("frCurrent", RobotMap::swerveSubsystemFrontRightRotationTalon->GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("blCurrent", RobotMap::swerveSubsystemBackLeftRotationTalon->GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("brCurrent", RobotMap::swerveSubsystemBackRightRotationTalon->GetSelectedSensorPosition(0));
 
 }
 
