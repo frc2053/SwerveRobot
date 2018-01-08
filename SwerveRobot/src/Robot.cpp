@@ -25,6 +25,15 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
+	RobotMap::swerveSubsystemFrontLeftRotationTalon->Set(ControlMode::Position, 2562);
+	RobotMap::swerveSubsystemFrontRightRotationTalon->Set(ControlMode::Position, 4038);
+	RobotMap::swerveSubsystemBackLeftRotationTalon->Set(ControlMode::Position, 965);
+	RobotMap::swerveSubsystemBackRightRotationTalon->Set(ControlMode::Position, 648);
+
+	RobotMap::swerveSubsystemFrontLeftRotationTalon->SetSelectedSensorPosition(0, 0, 10);
+	RobotMap::swerveSubsystemFrontRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);
+	RobotMap::swerveSubsystemBackLeftRotationTalon->SetSelectedSensorPosition(0, 0, 10);
+	RobotMap::swerveSubsystemBackRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);
 }
 
 void Robot::AutonomousPeriodic() {
@@ -32,6 +41,16 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
+	//TODO: REMOVE FOR COMP
+	RobotMap::swerveSubsystemFrontLeftRotationTalon->Set(ControlMode::Position, 2562);
+	RobotMap::swerveSubsystemFrontRightRotationTalon->Set(ControlMode::Position, 4038);
+	RobotMap::swerveSubsystemBackLeftRotationTalon->Set(ControlMode::Position, 965);
+	RobotMap::swerveSubsystemBackRightRotationTalon->Set(ControlMode::Position, 648);
+
+	RobotMap::swerveSubsystemFrontLeftRotationTalon->SetSelectedSensorPosition(0, 0, 10);
+	RobotMap::swerveSubsystemFrontRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);
+	RobotMap::swerveSubsystemBackLeftRotationTalon->SetSelectedSensorPosition(0, 0, 10);
+	RobotMap::swerveSubsystemBackRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);
 }
 
 void Robot::TeleopPeriodic() {
