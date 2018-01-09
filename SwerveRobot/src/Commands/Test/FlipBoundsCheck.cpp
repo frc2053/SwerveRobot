@@ -96,6 +96,7 @@ bool FlipBoundsCheck::IsFinished() {
 }
 
 void FlipBoundsCheck::End() {
+	std::cout << "ended" << std::endl;
 }
 
 void FlipBoundsCheck::Interrupted() {

@@ -41,6 +41,7 @@ bool NinetyTwoSeventy::IsFinished() {
 }
 
 void NinetyTwoSeventy::End() {
+	std::cout << "ended" << std::endl;
 }
 
 void NinetyTwoSeventy::Interrupted() {

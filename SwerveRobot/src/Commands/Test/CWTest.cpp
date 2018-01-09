@@ -25,6 +25,7 @@ bool CWTest::IsFinished() {
 }
 
 void CWTest::End() {
+	std::cout << "ended" << std::endl;
 }
 
 void CWTest::Interrupted() {

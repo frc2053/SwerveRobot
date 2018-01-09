@@ -10,7 +10,7 @@ void CCWTest::Initialize() {
 }
 
 void CCWTest::Execute() {
-	for(int i = 315; i <= 0; i = i - 45) {
+	for(int i = 315; i >= 0; i = i - 45) {
 		for(int j = 0; j < 4; j++) {
 			Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(i));
 		}
@@ -24,7 +24,7 @@ bool CCWTest::IsFinished() {
 }
 
 void CCWTest::End() {
-
+	std::cout << "ended" << std::endl;
 }
 
 void CCWTest::Interrupted() {

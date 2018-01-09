@@ -46,10 +46,10 @@ void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double he
 	Rotation2D rot = Rotation2D::fromDegrees(rotSpeed);
 	Rotation2D gyroAngle = Rotation2D::fromDegrees(headingOffset);
 	currentYaw = headingOffset;
-	std::cout << "gyroAngle: " << gyroAngle.getDegrees() << std::endl;
-	std::cout << "trans: (" << trans.getX() << ", " << trans.getY() << ")" <<std::endl;
+	//std::cout << "gyroAngle: " << gyroAngle.getDegrees() << std::endl;
+	//std::cout << "trans: (" << trans.getX() << ", " << trans.getY() << ")" <<std::endl;
 	trans = trans.rotateBy(gyroAngle);
-	std::cout << "trans: (" << trans.getX() << ", " << trans.getY() << ")" <<std::endl;
+	//std::cout << "trans: (" << trans.getX() << ", " << trans.getY() << ")" <<std::endl;
 
 
 	double flWheelSpeed;
@@ -75,8 +75,8 @@ void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double he
 			modules->at(2).Set(0, prevBLAngle);
 			modules->at(3).Set(0, prevBRAngle);
 		}
-		std::cout << "prevFL" << prevFLAngle.getDegrees() << std::endl;
-		std::cout << "0xDEADBEEF" << std::endl;
+		//std::cout << "prevFL" << prevFLAngle.getDegrees() << std::endl;
+		//std::cout << "0xDEADBEEF" << std::endl;
 	}
 	else {
 		angleTimer->Reset();

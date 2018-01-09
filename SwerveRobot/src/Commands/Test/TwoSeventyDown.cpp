@@ -38,6 +38,7 @@ bool TwoSeventyDown::IsFinished() {
 }
 
 void TwoSeventyDown::End() {
+	std::cout << "ended" << std::endl;
 }
 
 void TwoSeventyDown::Interrupted() {

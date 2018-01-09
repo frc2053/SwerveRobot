@@ -32,6 +32,7 @@ bool ZeroOneEighty::IsFinished() {
 }
 
 void ZeroOneEighty::End() {
+	std::cout << "ended" << std::endl;
 }
 
 void ZeroOneEighty::Interrupted() {

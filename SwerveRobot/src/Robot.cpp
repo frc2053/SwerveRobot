@@ -12,8 +12,6 @@ void Robot::RobotInit() {
 
 	Robot::swerveSubsystem->ZeroYaw();
 	Robot::swerveSubsystem->SetAdjYaw(0);
-
-	SmartDashboard::PutData("CWTest", new CWTest());
 }
 
 void Robot::DisabledInit(){
@@ -63,15 +61,15 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
-	SmartDashboard::PutNumber("flPos", RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition());
-	SmartDashboard::PutNumber("frPos", RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetQuadraturePosition());
-	SmartDashboard::PutNumber("blPos", RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadraturePosition());
-	SmartDashboard::PutNumber("brPos", RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetQuadraturePosition());
+	//SmartDashboard::PutNumber("flPos", RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition());
+	//SmartDashboard::PutNumber("frPos", RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetQuadraturePosition());
+	//SmartDashboard::PutNumber("blPos", RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadraturePosition());
+	//SmartDashboard::PutNumber("brPos", RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetQuadraturePosition());
 
-	SmartDashboard::PutNumber("flSet", RobotMap::swerveSubsystemFrontLeftRotationTalon->GetClosedLoopTarget(0));
-	SmartDashboard::PutNumber("frSet", RobotMap::swerveSubsystemFrontRightRotationTalon->GetClosedLoopTarget(0));
-	SmartDashboard::PutNumber("blSet", RobotMap::swerveSubsystemBackLeftRotationTalon->GetClosedLoopTarget(0));
-	SmartDashboard::PutNumber("brSet", RobotMap::swerveSubsystemBackRightRotationTalon->GetClosedLoopTarget(0));
+	//SmartDashboard::PutNumber("flSet", RobotMap::swerveSubsystemFrontLeftRotationTalon->GetClosedLoopTarget(0));
+	//SmartDashboard::PutNumber("frSet", RobotMap::swerveSubsystemFrontRightRotationTalon->GetClosedLoopTarget(0));
+	//SmartDashboard::PutNumber("blSet", RobotMap::swerveSubsystemBackLeftRotationTalon->GetClosedLoopTarget(0));
+	//SmartDashboard::PutNumber("brSet", RobotMap::swerveSubsystemBackRightRotationTalon->GetClosedLoopTarget(0));
 }
 
 void Robot::TestPeriodic() {
