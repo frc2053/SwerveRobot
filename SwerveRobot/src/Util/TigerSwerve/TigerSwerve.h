@@ -5,6 +5,7 @@
 #include <Util/Math/Translation2D.h>
 #include "math.h"
 #include "ctre/Phoenix.h"
+#include "WPILib.h"
 #include "SwerveModule.h"
 #include <vector>
 #include <iostream>
@@ -33,10 +34,9 @@ private:
 	void Drive(double xSpeed, double ySpeed, double rotSpeed, double headingOffset);
 	double deg2rad(double deg);
 
-	Rotation2D prevFLAngle;
-	Rotation2D prevFRAngle;
-	Rotation2D prevBLAngle;
-	Rotation2D prevBRAngle;
+	Rotation2D prevFLAngle, prevFRAngle, prevBLAngle, prevBRAngle;
+
+	std::shared_ptr<frc::Timer> angleTimer;
 public:
 	TigerSwerve(std::vector<std::shared_ptr<WPI_TalonSRX>>& talons);
 	virtual ~TigerSwerve();

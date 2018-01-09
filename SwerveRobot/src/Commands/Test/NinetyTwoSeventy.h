@@ -1,13 +1,14 @@
-#ifndef WheelModuleTest_H
-#define WheelModuleTest_H
+#ifndef NinetyTwoSeventy_H
+#define NinetyTwoSeventy_H
 
+#include "WPILib.h"
 #include "../../Robot.h"
 #include <chrono>
 #include <thread>
 
-class WheelModuleTest : public Command {
+class NinetyTwoSeventy : public frc::Command {
 public:
-	WheelModuleTest(double setPoint);
+	NinetyTwoSeventy();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -15,7 +16,6 @@ public:
 	void Interrupted();
 private:
 	bool testsPassed;
-	double talonSetpoint;
 };
 
 #endif

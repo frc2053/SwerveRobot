@@ -90,6 +90,8 @@ void RobotMap::init() {
 	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputForward(.416, 10);
 	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputReverse(-.416, 10);
 	swerveSubsystemFrontLeftRotationTalon->ConfigAllowableClosedloopError(0, 35, 10);
+	swerveSubsystemFrontLeftRotationTalon->ConfigContinuousCurrentLimit(10, 10);
+	swerveSubsystemFrontLeftRotationTalon->ConfigPeakCurrentLimit(0, 10);
 
 
 	swerveSubsystemFrontRightRotationTalon->Config_kP(0, 2, 10);
@@ -98,6 +100,9 @@ void RobotMap::init() {
 	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputForward(.416, 10);
 	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputReverse(-.416, 10);
 	swerveSubsystemFrontRightRotationTalon->ConfigAllowableClosedloopError(0, 10, 10);
+	swerveSubsystemFrontRightRotationTalon->ConfigContinuousCurrentLimit(10, 10);
+	swerveSubsystemFrontRightRotationTalon->ConfigPeakCurrentLimit(0, 10);
+
 
 	swerveSubsystemBackLeftRotationTalon->Config_kP(0, 2, 10);
 	swerveSubsystemBackLeftRotationTalon->Config_kI(0, 0, 10);
@@ -105,6 +110,9 @@ void RobotMap::init() {
 	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputForward(.416, 10);
 	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputReverse(-.416, 10);
 	swerveSubsystemBackLeftRotationTalon->ConfigAllowableClosedloopError(0, 10, 10);
+	swerveSubsystemBackLeftRotationTalon->ConfigContinuousCurrentLimit(10, 10);
+	swerveSubsystemBackLeftRotationTalon->ConfigPeakCurrentLimit(0, 10);
+
 
 	swerveSubsystemBackRightRotationTalon->Config_kP(0, 1.7, 10);
 	swerveSubsystemBackRightRotationTalon->Config_kI(0, 0, 10);
@@ -112,6 +120,9 @@ void RobotMap::init() {
 	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputForward(.416, 10);
 	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputReverse(-.416, 10);
 	swerveSubsystemBackRightRotationTalon->ConfigAllowableClosedloopError(0, 35, 10);
+	swerveSubsystemBackRightRotationTalon->ConfigContinuousCurrentLimit(10, 10);
+	swerveSubsystemBackRightRotationTalon->ConfigPeakCurrentLimit(0, 10);
+
 
 
     std::vector<std::shared_ptr<WPI_TalonSRX>> talons;
