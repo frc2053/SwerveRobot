@@ -84,33 +84,35 @@ void RobotMap::init() {
 	swerveSubsystemBackLeftRotationTalon->Set(ctre::phoenix::motorcontrol::ControlMode::Position, 0);
 	swerveSubsystemBackRightRotationTalon->Set(ctre::phoenix::motorcontrol::ControlMode::Position, 0);
 
-	swerveSubsystemFrontLeftRotationTalon->Config_kP(0, 1.2, 10);
+	swerveSubsystemFrontLeftRotationTalon->Config_kP(0, 2, 10);
 	swerveSubsystemFrontLeftRotationTalon->Config_kI(0, 0, 10);
-	swerveSubsystemFrontLeftRotationTalon->Config_kD(0, 0, 10);
-	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputForward(1, 10);
-	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputReverse(-1, 10);
+	swerveSubsystemFrontLeftRotationTalon->Config_kD(0, .2, 10);
+	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputForward(.416, 10);
+	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputReverse(-.416, 10);
 	swerveSubsystemFrontLeftRotationTalon->ConfigAllowableClosedloopError(0, 35, 10);
 
 
-	swerveSubsystemFrontRightRotationTalon->Config_kP(0, 1.2, 10);
+	swerveSubsystemFrontRightRotationTalon->Config_kP(0, 2, 10);
 	swerveSubsystemFrontRightRotationTalon->Config_kI(0, 0, 10);
-	swerveSubsystemFrontRightRotationTalon->Config_kD(0, 0, 10);
-	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputForward(1, 10);
-	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputReverse(-1, 10);
-	swerveSubsystemFrontRightRotationTalon->ConfigAllowableClosedloopError(0, 35, 10);
+	swerveSubsystemFrontRightRotationTalon->Config_kD(0, .2, 10);
+	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputForward(.416, 10);
+	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputReverse(-.416, 10);
+	swerveSubsystemFrontRightRotationTalon->ConfigAllowableClosedloopError(0, 10, 10);
 
-	swerveSubsystemBackLeftRotationTalon->Config_kP(0, 1.2, 10);
-	swerveSubsystemBackLeftRotationTalon->Config_kD(0, 0, 10);
-	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputForward(1, 10);
-	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputReverse(-1, 10);
-	swerveSubsystemBackLeftRotationTalon->ConfigAllowableClosedloopError(0, 35, 10);
+	swerveSubsystemBackLeftRotationTalon->Config_kP(0, 2, 10);
+	swerveSubsystemBackLeftRotationTalon->Config_kI(0, 0, 10);
+	swerveSubsystemBackLeftRotationTalon->Config_kD(0, .2, 10);
+	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputForward(.416, 10);
+	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputReverse(-.416, 10);
+	swerveSubsystemBackLeftRotationTalon->ConfigAllowableClosedloopError(0, 10, 10);
 
-	swerveSubsystemBackRightRotationTalon->Config_kP(0, 1.2, 10);
+	swerveSubsystemBackRightRotationTalon->Config_kP(0, 1.7, 10);
 	swerveSubsystemBackRightRotationTalon->Config_kI(0, 0, 10);
 	swerveSubsystemBackRightRotationTalon->Config_kD(0, 0, 10);
-	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputForward(1, 10);
-	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputReverse(-1, 10);
+	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputForward(.416, 10);
+	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputReverse(-.416, 10);
 	swerveSubsystemBackRightRotationTalon->ConfigAllowableClosedloopError(0, 35, 10);
+
 
     std::vector<std::shared_ptr<WPI_TalonSRX>> talons;
     talons.push_back(swerveSubsystemFrontLeftDriveTalon);

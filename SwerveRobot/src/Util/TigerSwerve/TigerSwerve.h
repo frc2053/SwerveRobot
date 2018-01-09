@@ -11,8 +11,8 @@
 
 class TigerSwerve {
 private:
-	static constexpr double BASE_LENGTH = 20;
-	static constexpr double BASE_WIDTH = 20;
+	static constexpr double BASE_LENGTH = 23;
+	static constexpr double BASE_WIDTH = 23;
 
 	double xAxis = 0, yAxis = 0, rotAxis = 0, currentYaw = 0;
 
@@ -32,6 +32,11 @@ private:
 
 	void Drive(double xSpeed, double ySpeed, double rotSpeed, double headingOffset);
 	double deg2rad(double deg);
+
+	Rotation2D prevFLAngle;
+	Rotation2D prevFRAngle;
+	Rotation2D prevBLAngle;
+	Rotation2D prevBRAngle;
 public:
 	TigerSwerve(std::vector<std::shared_ptr<WPI_TalonSRX>>& talons);
 	virtual ~TigerSwerve();

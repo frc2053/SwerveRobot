@@ -50,10 +50,22 @@ void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double he
 	Rotation2D blWheelAngle;
 	Rotation2D brWheelAngle;
 	SwerveInverseKinematics(trans, rotSpeed, frWheelSpeed, flWheelSpeed, brWheelSpeed, blWheelSpeed, flWheelAngle, frWheelAngle, blWheelAngle, brWheelAngle);
-	modules->at(0).Set(flWheelSpeed, flWheelAngle);
-	modules->at(1).Set(frWheelSpeed, frWheelAngle);
-	modules->at(2).Set(blWheelSpeed, blWheelAngle);
-	modules->at(3).Set(brWheelSpeed, brWheelAngle);
+	if(trans.getX() == 0 && trans.getY() == 0) {
+		modules->at(0).Set(0, prevFLAngle);
+		modules->at(1).Set(0, prevFRAngle);
+		modules->at(2).Set(0, prevBLAngle);
+		modules->at(3).Set(0, prevBRAngle);
+	}
+	else {
+		modules->at(0).Set(flWheelSpeed, flWheelAngle);
+		modules->at(1).Set(frWheelSpeed, frWheelAngle);
+		modules->at(2).Set(blWheelSpeed, blWheelAngle);
+		modules->at(3).Set(brWheelSpeed, brWheelAngle);
+	}
+	prevFLAngle = flWheelAngle;
+	prevFRAngle = frWheelAngle;
+	prevBLAngle = blWheelAngle;
+	prevBRAngle = brWheelAngle;
 }
 
 void TigerSwerve::SetBrakeMode() {
