@@ -68,6 +68,10 @@ void RobotMap::init() {
     swerveSubsystemBackLeftRotationTalon->SetSelectedSensorPosition(0, 0, 10);
     swerveSubsystemBackRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);
 
+    std::cout << "fl quad3: " << swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition() << std::endl;
+    std::cout << "fr quad3: " << swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetQuadraturePosition() << std::endl;
+    std::cout << "bl quad3: " << swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadraturePosition() << std::endl;
+    std::cout << "br quad3: " << swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetQuadraturePosition() << std::endl;
 
 	swerveSubsystemFrontLeftRotationTalon->SetSensorPhase(false);
 	swerveSubsystemFrontRightRotationTalon->SetSensorPhase(false);
