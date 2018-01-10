@@ -61,6 +61,8 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
+	SmartDashboard::PutNumber("Back Left Sensor Pos: ", RobotMap::swerveSubsystemBackLeftDriveTalon->GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("Back Left Sensor Vel: ", RobotMap::swerveSubsystemBackLeftDriveTalon->GetSelectedSensorVelocity(0) * (600/2048));
 	//SmartDashboard::PutNumber("flPos", RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition());
 	//SmartDashboard::PutNumber("frPos", RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetQuadraturePosition());
 	//SmartDashboard::PutNumber("blPos", RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadraturePosition());

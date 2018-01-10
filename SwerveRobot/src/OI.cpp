@@ -8,6 +8,7 @@
 #include "Commands/Test/TwoSeventyDown.h"
 #include "Commands/Test/TwoSeventyUp.h"
 #include "Commands/Test/ZeroOneEighty.h"
+#include "Commands/Test/GoToVelocity.h"
 
 
 OI::OI() {
@@ -21,6 +22,9 @@ OI::OI() {
 	SmartDashboard::PutData("TwoSeventyDown", new TwoSeventyDown());
 	SmartDashboard::PutData("TwoSeventyUp", new TwoSeventyUp());
 	SmartDashboard::PutData("ZeroOneEighty", new ZeroOneEighty());
+
+	driverJoystick->aButton->WhileHeld(new GoToVelocity(15000));
+	driverJoystick->aButton->WhenReleased(new GoToVelocity(0));
 
 }
 

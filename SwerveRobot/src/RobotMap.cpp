@@ -35,6 +35,10 @@ void RobotMap::init() {
 	swerveSubsystemFrontLeftDriveTalon->SetInverted(true);
 	swerveSubsystemFrontRightDriveTalon->SetInverted(true);
 
+	swerveSubsystemBackLeftDriveTalon->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 10);
+	swerveSubsystemBackLeftDriveTalon->SetSensorPhase(false);
+	swerveSubsystemBackLeftDriveTalon->Config_kF(0, .1, 10);
+
 	swerveSubsystemFrontLeftRotationTalon->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
 	swerveSubsystemFrontRightRotationTalon->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
 	swerveSubsystemBackLeftRotationTalon->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
