@@ -19,7 +19,7 @@ Rotation2D SwerveModule::GetAngle() const {
 void SwerveModule::SetAngle(Rotation2D angle) {
 	Rotation2D currentAngle = _angleEncoder->GetAngle();
 	Rotation2D deltaAngle = currentAngle.rotateBy(angle.inverse());
-	if(deltaAngle.getRadians() > M_PI_2 && deltaAngle.getRadians() < 3 * M_PI_2) {
+	if(deltaAngle.getRadians() >= M_PI_2 && deltaAngle.getRadians() <= 3 * M_PI_2) {
 		angle = angle.rotateBy(Rotation2D::fromRadians(M_PI));
 		isOptimizedAngle = true;
 	}
@@ -28,6 +28,9 @@ void SwerveModule::SetAngle(Rotation2D angle) {
 	}
 	int setpoint = _angleEncoder->ConvertAngleToSetpoint(angle);
 	_rotateController->Set(ControlMode::Position, setpoint);
+	std::cout << "setPoint: " << _rotateController->GetClosedLoopTarget(0) << std::endl;
+	std::cout << "roateController: " << _rotateController->GetClosedLoopError(0) << std::endl;
+
 }
 
 void SwerveModule::Stop() {
