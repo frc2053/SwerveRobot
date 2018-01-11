@@ -44,7 +44,7 @@ void TigerSwerve::SetCenterOfRotation(double x, double y) {
 void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double headingOffset) {
 	Translation2D trans(ySpeed, xSpeed);
 	Rotation2D rot = Rotation2D::fromDegrees(rotSpeed);
-	Rotation2D gyroAngle = Rotation2D::fromDegrees(headingOffset);
+	Rotation2D gyroAngle = Rotation2D::fromDegrees(-headingOffset);
 	currentYaw = headingOffset;
 	//std::cout << "gyroAngle: " << gyroAngle.getDegrees() << std::endl;
 	//std::cout << "trans: (" << trans.getX() << ", " << trans.getY() << ")" <<std::endl;
@@ -62,12 +62,18 @@ void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double he
 	Rotation2D brWheelAngle;
 
 	SwerveInverseKinematics(trans, rotSpeed, frWheelSpeed, flWheelSpeed, brWheelSpeed, blWheelSpeed, flWheelAngle, frWheelAngle, blWheelAngle, brWheelAngle);
-	if(xSpeed == 0 && ySpeed == 0) {
+	/*if(xSpeed == 0 && ySpeed == 0) {
 		if(angleTimer->Get() >= 1) {
 			modules->at(0).Set(0, Rotation2D::fromDegrees(-45));
 			modules->at(1).Set(0, Rotation2D::fromDegrees(45));
 			modules->at(2).Set(0, Rotation2D::fromDegrees(45));
 			modules->at(3).Set(0, Rotation2D::fromDegrees(-45));
+		}
+		if(rotSpeed != 0) {
+			modules->at(0).Set(flWheelSpeed, flWheelAngle);
+			modules->at(1).Set(frWheelSpeed, frWheelAngle);
+			modules->at(2).Set(blWheelSpeed, blWheelAngle);
+			modules->at(3).Set(brWheelSpeed, brWheelAngle);
 		}
 		else {
 			modules->at(0).Set(0, prevFLAngle);
@@ -77,8 +83,8 @@ void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double he
 		}
 		//std::cout << "prevFL" << prevFLAngle.getDegrees() << std::endl;
 		//std::cout << "0xDEADBEEF" << std::endl;
-	}
-	else {
+	}*/
+	//else {
 		angleTimer->Reset();
 		angleTimer->Start();
 		modules->at(0).Set(flWheelSpeed, flWheelAngle);
@@ -91,7 +97,7 @@ void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double he
 		prevFRAngle = frWheelAngle;
 		prevBLAngle = blWheelAngle;
 		prevBRAngle = brWheelAngle;
-	}
+	//}
 
 }
 

@@ -118,14 +118,14 @@ void DriveCommand::CallToSwerveDrive() {
 	if(rotAxis == 0)
 	{
 		Robot::swerveSubsystem->SetIsRotDoneOverride(false);
-		Robot::swerveSubsystem->SwerveDrive(xAxis, -yAxis, finalRotVal, currentYaw);
+		Robot::swerveSubsystem->SwerveDrive(xAxis, -yAxis, -finalRotVal, currentYaw);
 	}
 	else
 	{
 		Robot::swerveSubsystem->SetIsRotDoneOverride(true);
 		Robot::swerveSubsystem->SetIsRotDone(true);
 		Robot::swerveSubsystem->SetTimesThroughLoop(0);
-		Robot::swerveSubsystem->SwerveDrive(xAxis, -yAxis, rotAxis, currentYaw);
+		Robot::swerveSubsystem->SwerveDrive(xAxis, -yAxis, -rotAxis, currentYaw);
 	}
 
 	//std::cout << "blCurrent" << RobotMap::swerveSubsystemBackLeftRotationTalon->GetOutputCurrent() << std::endl;
