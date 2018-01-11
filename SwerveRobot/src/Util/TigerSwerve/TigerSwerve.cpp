@@ -2,6 +2,7 @@
 #include "../../Robot.h"
 
 TigerSwerve::TigerSwerve(std::vector<std::shared_ptr<WPI_TalonSRX>>& talons) {
+
 	xAxis = 0;
 	yAxis = 0;
 	rotAxis = 0;
@@ -127,10 +128,10 @@ void TigerSwerve::SwerveInverseKinematics(Translation2D &translation,
 		double rotation, double &wheelSpeedFR, double &wheelSpeedFL, double &wheelSpeedBR, double &wheelSpeedBL,
 		Rotation2D &wheelAngleFL, Rotation2D &wheelAngleFR, Rotation2D &wheelAngleBL, Rotation2D &wheelAngleBR) {
 
-	double A = translation.getX() - rotation * (BASE_LENGTH / 2.0);
-	double B = translation.getX() + rotation * (BASE_LENGTH / 2.0);
-	double C = translation.getY() - rotation * (BASE_WIDTH / 2.0);
-	double D = translation.getY() + rotation * (BASE_WIDTH / 2.0);
+	double A = translation.getX() - rotation * (RobotMap::WHEELBASE_LENTH / 2.0);
+	double B = translation.getX() + rotation * (RobotMap::WHEELBASE_LENTH / 2.0);
+	double C = translation.getY() - rotation * (RobotMap::WHEELBASE_WIDTH / 2.0);
+	double D = translation.getY() + rotation * (RobotMap::WHEELBASE_WIDTH / 2.0);
 	wheelSpeedFL = sqrt(pow(B, 2) + pow(D, 2));
 	wheelSpeedFR = sqrt(pow(B, 2) + pow(C, 2));
 	wheelSpeedBR = sqrt(pow(A, 2) + pow(D, 2));

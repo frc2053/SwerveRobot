@@ -12,9 +12,6 @@
 
 class TigerSwerve {
 private:
-	static constexpr double BASE_LENGTH = 21.875;
-	static constexpr double BASE_WIDTH = 23;
-
 	double xAxis = 0, yAxis = 0, rotAxis = 0, currentYaw = 0;
 
 	std::shared_ptr<Rotation2D> centerOfRotation;

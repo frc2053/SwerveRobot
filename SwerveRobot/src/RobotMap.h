@@ -6,6 +6,7 @@
 #include "AHRS.h"
 #include "Util/TigerDrive/TigerDrive.h"
 #include "Util/TigerSwerve/TigerSwerve.h"
+#include "pathfinder.h"
 
 class RobotMap {
 public:
@@ -25,5 +26,7 @@ public:
 	static std::shared_ptr<TigerDrive> tigerDrive;
 	static std::shared_ptr<frc::PowerDistributionPanel> pdp;
 	static std::shared_ptr<TigerSwerve> tigerSwerve;
+	static double WHEELBASE_WIDTH;
+	static double WHEELBASE_LENTH;
 };
 #endif
