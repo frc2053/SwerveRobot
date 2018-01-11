@@ -40,23 +40,34 @@ void Robot::AutonomousPeriodic() {
 
 void Robot::TeleopInit() {
 	//TODO: REMOVE FOR COMP
-	/*int FL_CAL = 2549;
-	int BL_CAL = 977;
+	int FL_CAL = 524;
+	int BL_CAL = 904;
+	int FR_CAL = 2786;
+	int BR_CAL = 1161;
 
-	int currentPWMFL = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition();
-	int calSetpointFL = (FL_CAL - currentPWMFL) + RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition();
+	int currentPWMFL = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition() % 4096;
+	int calSetpointFL = (FL_CAL - currentPWMFL) - (RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition() % 4096) - (FL_CAL - currentPWMFL);
 
-	int currentPWMBL = RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition();
-	int calSetpointBL = (BL_CAL - currentPWMBL) + RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadraturePosition();
+	int currentPWMBL = RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition() % 4096;
+	int calSetpointBL = (BL_CAL - currentPWMBL) - (RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadraturePosition() % 4096) - (BL_CAL - currentPWMBL);
+
+	std::cout << "BR_CAL: " << BR_CAL << std::endl;
+	int currentPWMBR = RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetPulseWidthPosition() % 4096;
+	std::cout << "currentPWBR: " << currentPWMBR << std::endl;
+	int calSetpointBR = (BR_CAL - currentPWMBR) - (RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetQuadraturePosition() % 4096) - (BR_CAL - currentPWMBR);
+	std::cout << "calSetpointBR: " << calSetpointBR << std::endl;
+
+	int currentPWMFR = RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetPulseWidthPosition() % 4096;
+	int calSetpointFR = (FR_CAL - currentPWMFR) - (RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetQuadraturePosition() % 4096) - (FR_CAL - currentPWMFR);
 
 	RobotMap::swerveSubsystemFrontLeftRotationTalon->Set(ControlMode::Position, calSetpointFL);
-	RobotMap::swerveSubsystemFrontRightRotationTalon->Set(ControlMode::Position, 3588);
+	RobotMap::swerveSubsystemFrontRightRotationTalon->Set(ControlMode::Position, calSetpointFR);
 	RobotMap::swerveSubsystemBackLeftRotationTalon->Set(ControlMode::Position, calSetpointBL);
-	RobotMap::swerveSubsystemBackRightRotationTalon->Set(ControlMode::Position, 645);
+	RobotMap::swerveSubsystemBackRightRotationTalon->Set(ControlMode::Position, calSetpointBR);
 	//RobotMap::swerveSubsystemFrontLeftRotationTalon->SetSelectedSensorPosition(0, 0, 10);
 	//RobotMap::swerveSubsystemFrontRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);
 	//RobotMap::swerveSubsystemBackLeftRotationTalon->SetSelectedSensorPosition(0, 0, 10);
-	//RobotMap::swerveSubsystemBackRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);*/
+	//RobotMap::swerveSubsystemBackRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);
 }
 
 void Robot::TeleopPeriodic() {
