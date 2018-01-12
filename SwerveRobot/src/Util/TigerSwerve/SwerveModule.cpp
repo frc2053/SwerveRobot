@@ -18,38 +18,38 @@ Rotation2D SwerveModule::GetAngle() const {
 
 void SwerveModule::SetAngle(Rotation2D angle) {
 	// is there a way to print out which module number this is from here???
-	std::cout << "InputSetAngle: " << angle.getDegrees() << std::endl;
+	//std::cout << "InputSetAngle: " << angle.getDegrees() << std::endl;
 
 	Rotation2D currentAngle = _angleEncoder->GetAngle();
-	std::cout << "CurrentAngle: " << currentAngle.getDegrees() << std::endl;
+	//std::cout << "CurrentAngle: " << currentAngle.getDegrees() << std::endl;
 
 	Rotation2D deltaAngle = currentAngle.rotateBy(angle.inverse());
-	std::cout << "DeltaAngle: " << deltaAngle.getDegrees() << std::endl;
+	//std::cout << "DeltaAngle: " << deltaAngle.getDegrees() << std::endl;
 	deltaAngle = Rotation2D::fromDegrees(fabs(deltaAngle.getDegrees()));
-	std::cout << "Abs DeltaAngle: " << deltaAngle.getDegrees() << std::endl;
+	//std::cout << "Abs DeltaAngle: " << deltaAngle.getDegrees() << std::endl;
 
 
 
 	if(deltaAngle.getRadians() > M_PI_2 && deltaAngle.getRadians() <= 3 * M_PI_2) {
-		std::cout << "Set Point The Long Way Around" << std::endl;
+		//std::cout << "Set Point The Long Way Around" << std::endl;
 
 		angle = angle.rotateBy(Rotation2D::fromRadians(M_PI));
-		std::cout << "New (Optimzed) Set Point " << angle.getDegrees() << std::endl;
+		//std::cout << "New (Optimzed) Set Point " << angle.getDegrees() << std::endl;
 
 		isOptimizedAngle = true;
 	}
 
 	else {
-		std::cout << "Set Point The Short Way Around" << std::endl;
-		std::cout << "New Set Point " << angle.getDegrees() << std::endl;
+		//std::cout << "Set Point The Short Way Around" << std::endl;
+		//std::cout << "New Set Point " << angle.getDegrees() << std::endl;
 		isOptimizedAngle = false;
 	}
 
 	int setpoint = _angleEncoder->ConvertAngleToSetpoint(angle);
 	_rotateController->Set(ControlMode::Position, setpoint);
 
-	std::cout << "Final Calculated Set Point: " << setpoint << std::endl;
-	std::cout << "END Set Angle" << std::endl;
+	//std::cout << "Final Calculated Set Point: " << setpoint << std::endl;
+	//std::cout << "END Set Angle" << std::endl;
 
 }
 

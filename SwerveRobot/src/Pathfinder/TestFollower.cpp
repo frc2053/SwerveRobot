@@ -37,22 +37,22 @@ void TestFollower::Generate() {
 }
 
 void TestFollower::FollowPath() {
-	EncoderFollower flFollower = malloc(sizeof(EncoderFollower));
+	/*EncoderFollower flFollower = (EncoderFollower)malloc(sizeof(EncoderFollower));
 	flFollower.last_error = 0;
 	flFollower.segment = 0;
 	flFollower.finished = 0;
 
-	EncoderFollower frFollower = malloc(sizeof(EncoderFollower));
+	EncoderFollower frFollower = (EncoderFollower)malloc(sizeof(EncoderFollower));
 	frFollower.last_error = 0;
 	frFollower.segment = 0;
 	frFollower.finished = 0;
 
-	EncoderFollower blFollower = malloc(sizeof(EncoderFollower));
+	EncoderFollower blFollower = (EncoderFollower)malloc(sizeof(EncoderFollower));
 	blFollower.last_error = 0;
 	blFollower.segment = 0;
 	blFollower.finished = 0;
 
-	EncoderFollower brFollower = malloc(sizeof(EncoderFollower));
+	EncoderFollower brFollower =(EncoderFollower)malloc(sizeof(EncoderFollower));
 	brFollower.last_error = 0;
 	brFollower.segment = 0;
 	brFollower.finished = 0;
@@ -68,6 +68,7 @@ void TestFollower::FollowPath() {
 	double bl = pathfinder_follow_encoder(blconfig, &blFollower, backLeft, length, RobotMap::swerveSubsystemBackLeftDriveTalon->GetSelectedSensorPosition(0));
 	double br = pathfinder_follow_encoder(brconfig, &brFollower, backRight, length, RobotMap::swerveSubsystemBackRightDriveTalon->GetSelectedSensorPosition(0));
 
+*/
 }
 
 TestFollower::~TestFollower() {

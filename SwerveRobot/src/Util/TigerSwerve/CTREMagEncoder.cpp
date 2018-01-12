@@ -43,14 +43,14 @@ int CTREMagEncoder::ConvertAngleToSetpoint(Rotation2D targetAngle) {
 	int ticks = ConvertAngleToEncoderTicks(angle); // 0 - 4096
 
 	int encoderTicks = GetEncoderTicks(true);
-	std::cout << "ticks before add: " << ticks << std::endl;
+	//std::cout << "ticks before add: " << ticks << std::endl;
 	ticks = ticks + (encoderTicks/4096)*4096; //Add ticks equivalent to full rotations on encoder.
-	std::cout << "ticks after add: " << ticks << std::endl;
+	//std::cout << "ticks after add: " << ticks << std::endl;
 
 	int error = encoderTicks - ticks;
 
-	std::cout << "error: " << error << std::endl;
-	std::cout << "ticks before: " << ticks << std::endl;
+	//std::cout << "error: " << error << std::endl;
+	//std::cout << "ticks before: " << ticks << std::endl;
 	// Ensure the movement is <= 180 deg (2048 encoder ticks)
 	if (error <= -2048) {
 		ticks = ticks - 4096;
@@ -59,7 +59,7 @@ int CTREMagEncoder::ConvertAngleToSetpoint(Rotation2D targetAngle) {
 		ticks = ticks + 4096;
 	}
 
-	std::cout << "ticks after: " << ticks << std::endl;
+	//std::cout << "ticks after: " << ticks << std::endl;
 	return ticks;
 }
 
