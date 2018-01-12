@@ -132,14 +132,14 @@ void TigerSwerve::SwerveInverseKinematics(Translation2D &translation,
 	double B = translation.getX() + rotation * (RobotMap::WHEELBASE_LENTH / 2.0);
 	double C = translation.getY() - rotation * (RobotMap::WHEELBASE_WIDTH / 2.0);
 	double D = translation.getY() + rotation * (RobotMap::WHEELBASE_WIDTH / 2.0);
-	wheelSpeedFL = sqrt(pow(B, 2) + pow(D, 2));
-	wheelSpeedFR = sqrt(pow(B, 2) + pow(C, 2));
-	wheelSpeedBR = sqrt(pow(A, 2) + pow(D, 2));
-	wheelSpeedBL = sqrt(pow(A, 2) + pow(C, 2));
-	wheelAngleFL = Rotation2D(B,D,true);
-	wheelAngleFR = Rotation2D(B,C,true);
-	wheelAngleBL = Rotation2D(A,D,true);
-	wheelAngleBR = Rotation2D(A,C,true);
+	wheelSpeedFL = sqrt(pow(A, 2) + pow(D, 2)); //sqrt(pow(B, 2) + pow(D, 2));
+	wheelSpeedFR = sqrt(pow(B, 2) + pow(C, 2)); //sqrt(pow(B, 2) + pow(C, 2));
+	wheelSpeedBR = sqrt(pow(B, 2) + pow(D, 2)); //sqrt(pow(A, 2) + pow(D, 2));
+	wheelSpeedBL = sqrt(pow(A, 2) + pow(C, 2)); //sqrt(pow(A, 2) + pow(C, 2));
+	wheelAngleFL = Rotation2D(A,C,true); //Rotation2D(B,D,true);
+	wheelAngleFR = Rotation2D(B,C,true); //Rotation2D(B,C,true);
+	wheelAngleBL = Rotation2D(A,D,true); //Rotation2D(A,D,true);
+	wheelAngleBR = Rotation2D(B,D,true); //Rotation2D(A,C,true);
 
 	double maxWheelSpeed = std::max(wheelSpeedFL,std::max(wheelSpeedFR,std::max(wheelSpeedBL,wheelSpeedBR)));
 	if (maxWheelSpeed > 1) {
