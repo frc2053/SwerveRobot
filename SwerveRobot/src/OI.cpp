@@ -23,8 +23,8 @@ OI::OI() {
 	SmartDashboard::PutData("TwoSeventyUp", new TwoSeventyUp());
 	SmartDashboard::PutData("ZeroOneEighty", new ZeroOneEighty());
 
-	driverJoystick->aButton->WhileHeld(new GoToVelocity(15000));
-	driverJoystick->aButton->WhenReleased(new GoToVelocity(0));
+	//driverJoystick->aButton->WhileHeld(new GoToVelocity(15000));
+	//driverJoystick->aButton->WhenReleased(new GoToVelocity(0));
 
 }
 

@@ -78,15 +78,19 @@ void DriveCommand::GetInputs() {
 void DriveCommand::SetAngleFromInput() {
 	if(isAPressed) {
 		RobotMap::tigerDrive->rotateController->SetSetpoint(180);
+		setAngle = 180;
 	}
 	if(isBPressed) {
 		RobotMap::tigerDrive->rotateController->SetSetpoint(90);
+		setAngle = 90;
 	}
 	if(isXPressed) {
 		RobotMap::tigerDrive->rotateController->SetSetpoint(-90);
+		setAngle = -90;
 	}
 	if(isYPressed) {
 		RobotMap::tigerDrive->rotateController->SetSetpoint(0);
+		setAngle = 0;
 	}
 	if(isLeftStickPressed)
 	{
