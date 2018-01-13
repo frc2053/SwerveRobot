@@ -18,7 +18,7 @@ private:
 	const double MAX_ACCEL = 393.70078740156;
 	const double MAX_JERK = 2362.2047244094;
 	const int TICKS_PER_REV = 2048;
-	const double WHEEL_CIRCUMFERENCE = 2.5;
+	const double WHEEL_CIRCUMFERENCE = 7.85398;
 	const double K_P = 1.0;
 	const double K_I = 0.0;
 	const double K_D = 0.0;
