@@ -50,20 +50,20 @@ void Robot::TeleopInit() {
 	int FR_CAL = 2786;
 	int BR_CAL = 1161;
 
-	int currentPWMFL = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition();
-	int calSetpointFL = (FL_CAL - currentPWMFL) - (RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition());
+	int currentPWMFL = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition() % 4096;
+	int calSetpointFL = (FL_CAL - currentPWMFL) - (RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition() % 4096) - (FL_CAL - currentPWMFL);
 
-	int currentPWMBL = RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition();
-	int calSetpointBL = (BL_CAL - currentPWMBL) - (RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadraturePosition());
+	int currentPWMBL = RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition() % 4096;
+	int calSetpointBL = (BL_CAL - currentPWMBL) - (RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadraturePosition() % 4096) - (BL_CAL - currentPWMBL);
 
 	std::cout << "BR_CAL: " << BR_CAL << std::endl;
-	int currentPWMBR = RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetPulseWidthPosition();
+	int currentPWMBR = RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetPulseWidthPosition() % 4096;
 	std::cout << "currentPWBR: " << currentPWMBR << std::endl;
-	int calSetpointBR = (BR_CAL - currentPWMBR) - (RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetQuadraturePosition());
+	int calSetpointBR = (BR_CAL - currentPWMBR) - (RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetQuadraturePosition() % 4096) - (BR_CAL - currentPWMBR);
 	std::cout << "calSetpointBR: " << calSetpointBR << std::endl;
 
-	int currentPWMFR = RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetPulseWidthPosition();
-	int calSetpointFR = (FR_CAL - currentPWMFR) - (RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetQuadraturePosition());
+	int currentPWMFR = RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetPulseWidthPosition() % 4096;
+	int calSetpointFR = (FR_CAL - currentPWMFR) - (RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetQuadraturePosition() % 4096) - (FR_CAL - currentPWMFR);
 
 	RobotMap::swerveSubsystemFrontLeftRotationTalon->Set(ControlMode::Position, calSetpointFL);
 	RobotMap::swerveSubsystemFrontRightRotationTalon->Set(ControlMode::Position, calSetpointFR);
