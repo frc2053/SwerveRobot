@@ -35,22 +35,28 @@ void RobotMap::init() {
 	swerveSubsystemBackLeftRotationTalon.reset(new WPI_TalonSRX(8));
 	swerveSubsystemBackRightRotationTalon.reset(new WPI_TalonSRX(9));
 
-	swerveSubsystemBackLeftDriveTalon->SetInverted(true);
-	swerveSubsystemBackRightDriveTalon->SetInverted(true);
-	swerveSubsystemFrontLeftDriveTalon->SetInverted(true);
-	swerveSubsystemFrontRightDriveTalon->SetInverted(true);
+	swerveSubsystemBackLeftDriveTalon->SetInverted(false);
+	swerveSubsystemBackRightDriveTalon->SetInverted(false);
+	swerveSubsystemFrontLeftDriveTalon->SetInverted(false);
+	swerveSubsystemFrontRightDriveTalon->SetInverted(false);
+
+	swerveSubsystemBackLeftDriveTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+	swerveSubsystemBackRightDriveTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+	swerveSubsystemFrontLeftDriveTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+	swerveSubsystemFrontRightDriveTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+
 
 	swerveSubsystemBackLeftDriveTalon->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 10);
-	swerveSubsystemBackLeftDriveTalon->SetSensorPhase(false);
+	swerveSubsystemBackLeftDriveTalon->SetSensorPhase(true);
 
 	swerveSubsystemBackRightDriveTalon->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 10);
-	swerveSubsystemBackRightDriveTalon->SetSensorPhase(false);
+	swerveSubsystemBackRightDriveTalon->SetSensorPhase(true);
 
 	swerveSubsystemFrontLeftDriveTalon->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 10);
-	swerveSubsystemFrontLeftDriveTalon->SetSensorPhase(false);
+	swerveSubsystemFrontLeftDriveTalon->SetSensorPhase(true);
 
 	swerveSubsystemFrontRightDriveTalon->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 10);
-	swerveSubsystemFrontRightDriveTalon->SetSensorPhase(false);
+	swerveSubsystemFrontRightDriveTalon->SetSensorPhase(true);
 
 	swerveSubsystemFrontLeftRotationTalon->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
 	swerveSubsystemFrontRightRotationTalon->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
@@ -137,7 +143,7 @@ void RobotMap::init() {
 
 	swerveSubsystemBackRightRotationTalon->Config_kP(0, 2.5, 10);
 	swerveSubsystemBackRightRotationTalon->Config_kI(0, 0, 10);
-	swerveSubsystemBackRightRotationTalon->Config_kD(0, 0, 10);
+	swerveSubsystemBackRightRotationTalon->Config_kD(0, .2, 10);
 	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputForward(.416, 10);
 	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputReverse(-.416, 10);
 	swerveSubsystemBackRightRotationTalon->ConfigAllowableClosedloopError(0, 35, 10);

@@ -33,6 +33,15 @@ private:
 	Segment* backLeft;
 	Segment* backRight;
 	int length;
+	std::shared_ptr<std::vector<SwerveModule>> modules;
+	EncoderFollower* flFollower = (EncoderFollower*)malloc(sizeof(EncoderFollower));
+	EncoderFollower* frFollower = (EncoderFollower*)malloc(sizeof(EncoderFollower));
+	EncoderFollower* blFollower = (EncoderFollower*)malloc(sizeof(EncoderFollower));
+	EncoderFollower* brFollower =(EncoderFollower*)malloc(sizeof(EncoderFollower));
+	EncoderConfig flconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
+	EncoderConfig frconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
+	EncoderConfig blconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
+	EncoderConfig brconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
 };
 
 #endif

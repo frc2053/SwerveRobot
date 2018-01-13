@@ -44,7 +44,7 @@ void TigerSwerve::SetCenterOfRotation(double x, double y) {
 
 void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double headingOffset) {
 	Translation2D trans(ySpeed, xSpeed);
-	Rotation2D rot = Rotation2D::fromDegrees(rotSpeed);
+	Rotation2D rot = Rotation2D::fromDegrees(rotSpeed * .5);
 	Rotation2D gyroAngle = Rotation2D::fromDegrees(-headingOffset);
 	currentYaw = headingOffset;
 	//std::cout << "gyroAngle: " << gyroAngle.getDegrees() << std::endl;

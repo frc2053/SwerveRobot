@@ -12,13 +12,13 @@ TestFollower::TestFollower() {
 }
 
 void TestFollower::Generate() {
+	modules = RobotMap::tigerSwerve->GetModules();
 	Waypoint points[POINT_LENGTH];
-	Waypoint p1 = {-157.48, -39.3701, d2r(45)};
-	Waypoint p2 = {-39.3701, 78.7402, d2r(0)};
-	Waypoint p3 = {78.7402, 157.48, d2r(0)};
+	Waypoint p1 = {0, 0, d2r(0)};
+	Waypoint p2 = {24, 0, d2r(0)};
 	points[0] = p1;
 	points[1] = p2;
-	points[2] = p3;
+	//points[2] = p3;
 
 	pathfinder_prepare(points, POINT_LENGTH, FIT_HERMITE_CUBIC, PATHFINDER_SAMPLES_HIGH, TIMESTEP, MAX_VEL, MAX_ACCEL, MAX_JERK, &candidate);
 	length = candidate.length;
@@ -34,33 +34,30 @@ void TestFollower::Generate() {
 	SWERVE_MODE mode = SWERVE_DEFAULT;
 
 	pathfinder_modify_swerve(trajectory, length, frontLeft, frontRight, backLeft, backRight, WHEELBASE_WIDTH, WHEELBASE_LENGTH, mode);
-}
 
-void TestFollower::FollowPath() {
-	EncoderFollower* flFollower = (EncoderFollower*)malloc(sizeof(EncoderFollower));
+	FILE* fp = fopen("/home/lvuser/myfile.csv", "w");
+	pathfinder_serialize_csv(fp, trajectory, length);
+	fclose(fp);
+
 	flFollower->last_error = 0;
 	flFollower->segment = 0;
 	flFollower->finished = 0;
 
-	EncoderFollower* frFollower = (EncoderFollower*)malloc(sizeof(EncoderFollower));
 	frFollower->last_error = 0;
 	frFollower->segment = 0;
 	frFollower->finished = 0;
 
-	EncoderFollower* blFollower = (EncoderFollower*)malloc(sizeof(EncoderFollower));
 	blFollower->last_error = 0;
 	blFollower->segment = 0;
 	blFollower->finished = 0;
 
-	EncoderFollower* brFollower =(EncoderFollower*)malloc(sizeof(EncoderFollower));
 	brFollower->last_error = 0;
 	brFollower->segment = 0;
 	brFollower->finished = 0;
+}
 
-	EncoderConfig flconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
-	EncoderConfig frconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
-	EncoderConfig blconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
-	EncoderConfig brconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
+void TestFollower::FollowPath() {
+
 
 
 	double fl = pathfinder_follow_encoder(flconfig, flFollower, frontLeft, length, RobotMap::swerveSubsystemFrontLeftDriveTalon->GetSelectedSensorPosition(0));
@@ -73,16 +70,19 @@ void TestFollower::FollowPath() {
 	double desired_headingbl = r2d(blFollower->heading);
 	double desired_headingbr = r2d(brFollower->heading);
 
-	std::shared_ptr<std::vector<SwerveModule>> modules = RobotMap::tigerSwerve->GetModules();
+	std::cout << "flhead: " << desired_headingfl << std::endl;
+	std::cout << "frhead: " << desired_headingfr << std::endl;
+	std::cout << "blhead: " << desired_headingbl << std::endl;
+	std::cout << "brhead: " << desired_headingbr << std::endl;
+	std::cout << "fl: " << fl << std::endl;
+	std::cout << "fr: " << fr << std::endl;
+	std::cout << "bl: " << bl << std::endl;
+	std::cout << "br: " << br << std::endl;
+
 	modules->at(0).Set(fl, Rotation2D::fromDegrees(desired_headingfl));
 	modules->at(1).Set(fr, Rotation2D::fromDegrees(desired_headingfr));
 	modules->at(2).Set(bl, Rotation2D::fromDegrees(desired_headingbl));
 	modules->at(3).Set(br, Rotation2D::fromDegrees(desired_headingbr));
-
-	free(flFollower);
-	free(frFollower);
-	free(blFollower);
-	free(brFollower);
 }
 
 TestFollower::~TestFollower() {
@@ -91,5 +91,9 @@ TestFollower::~TestFollower() {
 	free(frontRight);
 	free(backLeft);
 	free(backRight);
+	free(flFollower);
+	free(frFollower);
+	free(blFollower);
+	free(brFollower);
 }
 
