@@ -78,6 +78,11 @@ void TestFollower::FollowPath() {
 	modules->at(1).Set(fr, Rotation2D::fromDegrees(desired_headingfr));
 	modules->at(2).Set(bl, Rotation2D::fromDegrees(desired_headingbl));
 	modules->at(3).Set(br, Rotation2D::fromDegrees(desired_headingbr));
+
+	free(flFollower);
+	free(frFollower);
+	free(blFollower);
+	free(brFollower);
 }
 
 TestFollower::~TestFollower() {
