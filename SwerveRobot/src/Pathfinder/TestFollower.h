@@ -11,13 +11,14 @@ public:
 	void Generate();
 	void FollowPath();
 private:
+	//ALL IN INCHES PLEASE!!!
 	int POINT_LENGTH = 3;
 	const double TIMESTEP = 0.01;
-	const double MAX_VEL = 15;
-	const double MAX_ACCEL = 10;
-	const double MAX_JERK = 60;
+	const double MAX_VEL = 590.55118110234;
+	const double MAX_ACCEL = 393.70078740156;
+	const double MAX_JERK = 2362.2047244094;
 	const int TICKS_PER_REV = 2048;
-	const double WHEEL_CIRCUMFERENCE = 0.0635;
+	const double WHEEL_CIRCUMFERENCE = 7.85398;
 	const double K_P = 1.0;
 	const double K_I = 0.0;
 	const double K_D = 0.0;
