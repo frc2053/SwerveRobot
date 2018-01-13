@@ -19,8 +19,8 @@ double RobotMap::WHEELBASE_WIDTH;
 
 void RobotMap::init() {
 	
-	WHEELBASE_LENTH = 0.555625;
-	WHEELBASE_WIDTH = 0.5842;
+	WHEELBASE_LENTH = 21.875;
+	WHEELBASE_WIDTH = 23;
 
     pdp.reset(new frc::PowerDistributionPanel());
     SmartDashboard::PutData(pdp.get());
