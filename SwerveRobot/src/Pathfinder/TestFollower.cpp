@@ -37,25 +37,25 @@ void TestFollower::Generate() {
 }
 
 void TestFollower::FollowPath() {
-	EncoderFollower flFollower = (EncoderFollower)malloc(sizeof(EncoderFollower));
-	flFollower.last_error = 0;
-	flFollower.segment = 0;
-	flFollower.finished = 0;
+	EncoderFollower* flFollower = (EncoderFollower*)malloc(sizeof(EncoderFollower));
+	flFollower->last_error = 0;
+	flFollower->segment = 0;
+	flFollower->finished = 0;
 
-	EncoderFollower frFollower = (EncoderFollower)malloc(sizeof(EncoderFollower));
-	frFollower.last_error = 0;
-	frFollower.segment = 0;
-	frFollower.finished = 0;
+	EncoderFollower* frFollower = (EncoderFollower*)malloc(sizeof(EncoderFollower));
+	frFollower->last_error = 0;
+	frFollower->segment = 0;
+	frFollower->finished = 0;
 
-	EncoderFollower blFollower = (EncoderFollower)malloc(sizeof(EncoderFollower));
-	blFollower.last_error = 0;
-	blFollower.segment = 0;
-	blFollower.finished = 0;
+	EncoderFollower* blFollower = (EncoderFollower*)malloc(sizeof(EncoderFollower));
+	blFollower->last_error = 0;
+	blFollower->segment = 0;
+	blFollower->finished = 0;
 
-	EncoderFollower brFollower =(EncoderFollower)malloc(sizeof(EncoderFollower));
-	brFollower.last_error = 0;
-	brFollower.segment = 0;
-	brFollower.finished = 0;
+	EncoderFollower* brFollower =(EncoderFollower*)malloc(sizeof(EncoderFollower));
+	brFollower->last_error = 0;
+	brFollower->segment = 0;
+	brFollower->finished = 0;
 
 	EncoderConfig flconfig = {0, 2048, .0635, K_P, K_I, K_D, K_V, K_A};
 	EncoderConfig frconfig = {0, 2048, .0635, K_P, K_I, K_D, K_V, K_A};
@@ -63,10 +63,21 @@ void TestFollower::FollowPath() {
 	EncoderConfig brconfig = {0, 2048, .0635, K_P, K_I, K_D, K_V, K_A};
 
 
-	double fl = pathfinder_follow_encoder(flconfig, &flFollower, frontLeft, length, RobotMap::swerveSubsystemFrontLeftDriveTalon->GetSelectedSensorPosition(0));
-	double fr = pathfinder_follow_encoder(frconfig, &frFollower, frontRight, length, RobotMap::swerveSubsystemFrontRightDriveTalon->GetSelectedSensorPosition(0));
-	double bl = pathfinder_follow_encoder(blconfig, &blFollower, backLeft, length, RobotMap::swerveSubsystemBackLeftDriveTalon->GetSelectedSensorPosition(0));
-	double br = pathfinder_follow_encoder(brconfig, &brFollower, backRight, length, RobotMap::swerveSubsystemBackRightDriveTalon->GetSelectedSensorPosition(0));
+	double fl = pathfinder_follow_encoder(flconfig, flFollower, frontLeft, length, RobotMap::swerveSubsystemFrontLeftDriveTalon->GetSelectedSensorPosition(0));
+	double fr = pathfinder_follow_encoder(frconfig, frFollower, frontRight, length, RobotMap::swerveSubsystemFrontRightDriveTalon->GetSelectedSensorPosition(0));
+	double bl = pathfinder_follow_encoder(blconfig, blFollower, backLeft, length, RobotMap::swerveSubsystemBackLeftDriveTalon->GetSelectedSensorPosition(0));
+	double br = pathfinder_follow_encoder(brconfig, brFollower, backRight, length, RobotMap::swerveSubsystemBackRightDriveTalon->GetSelectedSensorPosition(0));
+
+	double desired_headingfl = r2d(flFollower->heading);
+	double desired_headingfr = r2d(frFollower->heading);
+	double desired_headingbl = r2d(blFollower->heading);
+	double desired_headingbr = r2d(brFollower->heading);
+
+	std::shared_ptr<std::vector<SwerveModule>> modules = RobotMap::tigerSwerve->GetModules();
+	modules->at(0).Set(fl, Rotation2D::fromDegrees(desired_headingfl));
+	modules->at(1).Set(fr, Rotation2D::fromDegrees(desired_headingfr));
+	modules->at(2).Set(bl, Rotation2D::fromDegrees(desired_headingbl));
+	modules->at(3).Set(br, Rotation2D::fromDegrees(desired_headingbr));
 }
 
 TestFollower::~TestFollower() {

@@ -2,6 +2,7 @@
 #define SRC_PATHFINDER_TESTFOLLOWER_H_
 
 #include "../RobotMap.h"
+#include "../Robot.h"
 
 class TestFollower {
 public:
