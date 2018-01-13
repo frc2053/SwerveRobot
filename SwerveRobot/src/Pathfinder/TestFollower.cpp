@@ -13,9 +13,9 @@ TestFollower::TestFollower() {
 
 void TestFollower::Generate() {
 	Waypoint points[POINT_LENGTH];
-	Waypoint p1 = {-4, -1, d2r(45)};
-	Waypoint p2 = {-1, 2, d2r(0)};
-	Waypoint p3 = {2, 4, d2r(0)};
+	Waypoint p1 = {-157.48, -39.3701, d2r(45)};
+	Waypoint p2 = {-39.3701, 78.7402, d2r(0)};
+	Waypoint p3 = {78.7402, 157.48, d2r(0)};
 	points[0] = p1;
 	points[1] = p2;
 	points[2] = p3;
@@ -57,10 +57,10 @@ void TestFollower::FollowPath() {
 	brFollower->segment = 0;
 	brFollower->finished = 0;
 
-	EncoderConfig flconfig = {0, 2048, .0635, K_P, K_I, K_D, K_V, K_A};
-	EncoderConfig frconfig = {0, 2048, .0635, K_P, K_I, K_D, K_V, K_A};
-	EncoderConfig blconfig = {0, 2048, .0635, K_P, K_I, K_D, K_V, K_A};
-	EncoderConfig brconfig = {0, 2048, .0635, K_P, K_I, K_D, K_V, K_A};
+	EncoderConfig flconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
+	EncoderConfig frconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
+	EncoderConfig blconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
+	EncoderConfig brconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
 
 
 	double fl = pathfinder_follow_encoder(flconfig, flFollower, frontLeft, length, RobotMap::swerveSubsystemFrontLeftDriveTalon->GetSelectedSensorPosition(0));
