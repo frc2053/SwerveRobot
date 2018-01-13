@@ -1,3 +1,4 @@
+#include "Commands/Autonomous/TestAuto.h"
 #include "Robot.h"
 
 std::unique_ptr<OI> Robot::oi;
@@ -10,8 +11,13 @@ void Robot::RobotInit() {
 	swerveSubsystem.reset(new SwerveSubsystem());
 	oi.reset(new OI());
 
+	autoChooser.AddDefault("Test Auto", new TestAuto());
+
+	SmartDashboard::PutData("Auto mode chooser", &autoChooser);
+
 	Robot::swerveSubsystem->ZeroYaw();
 	Robot::swerveSubsystem->SetAdjYaw(0);
+
 }
 
 void Robot::DisabledInit(){
@@ -23,15 +29,10 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
-	/*RobotMap::swerveSubsystemFrontLeftRotationTalon->Set(ControlMode::Position, 2562);
-	RobotMap::swerveSubsystemFrontRightRotationTalon->Set(ControlMode::Position, 4038);
-	RobotMap::swerveSubsystemBackLeftRotationTalon->Set(ControlMode::Position, 965);
-	RobotMap::swerveSubsystemBackRightRotationTalon->Set(ControlMode::Position, 648);
-
-	RobotMap::swerveSubsystemFrontLeftRotationTalon->SetSelectedSensorPosition(0, 0, 10);
-	RobotMap::swerveSubsystemFrontRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);
-	RobotMap::swerveSubsystemBackLeftRotationTalon->SetSelectedSensorPosition(0, 0, 10);
-	RobotMap::swerveSubsystemBackRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);*/
+	selectedMode.reset(autoChooser.GetSelected());
+	if(selectedMode != nullptr) {
+		selectedMode->Start();
+	}
 }
 
 void Robot::AutonomousPeriodic() {
@@ -39,6 +40,10 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
+	if(selectedMode != nullptr) {
+		selectedMode->Cancel();
+	}
+
 	//TODO: REMOVE FOR COMP
 	int FL_CAL = 524;
 	int BL_CAL = 904;

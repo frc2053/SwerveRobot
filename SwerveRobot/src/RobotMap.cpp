@@ -42,7 +42,15 @@ void RobotMap::init() {
 
 	swerveSubsystemBackLeftDriveTalon->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 10);
 	swerveSubsystemBackLeftDriveTalon->SetSensorPhase(false);
-	swerveSubsystemBackLeftDriveTalon->Config_kF(0, .1, 10);
+
+	swerveSubsystemBackRightDriveTalon->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 10);
+	swerveSubsystemBackRightDriveTalon->SetSensorPhase(false);
+
+	swerveSubsystemFrontLeftDriveTalon->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 10);
+	swerveSubsystemFrontLeftDriveTalon->SetSensorPhase(false);
+
+	swerveSubsystemFrontRightDriveTalon->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 10);
+	swerveSubsystemFrontRightDriveTalon->SetSensorPhase(false);
 
 	swerveSubsystemFrontLeftRotationTalon->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
 	swerveSubsystemFrontRightRotationTalon->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
@@ -97,7 +105,7 @@ void RobotMap::init() {
 	swerveSubsystemBackLeftRotationTalon->Set(ctre::phoenix::motorcontrol::ControlMode::Position, 0);
 	swerveSubsystemBackRightRotationTalon->Set(ctre::phoenix::motorcontrol::ControlMode::Position, 0);
 
-	swerveSubsystemFrontLeftRotationTalon->Config_kP(0, 2, 10);
+	swerveSubsystemFrontLeftRotationTalon->Config_kP(0, 2.5, 10);
 	swerveSubsystemFrontLeftRotationTalon->Config_kI(0, 0, 10);
 	swerveSubsystemFrontLeftRotationTalon->Config_kD(0, .2, 10);
 	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputForward(.416, 10);
@@ -107,7 +115,7 @@ void RobotMap::init() {
 	swerveSubsystemFrontLeftRotationTalon->ConfigPeakCurrentLimit(0, 10);
 
 
-	swerveSubsystemFrontRightRotationTalon->Config_kP(0, 2, 10);
+	swerveSubsystemFrontRightRotationTalon->Config_kP(0, 2.5, 10);
 	swerveSubsystemFrontRightRotationTalon->Config_kI(0, 0, 10);
 	swerveSubsystemFrontRightRotationTalon->Config_kD(0, .2, 10);
 	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputForward(.416, 10);
@@ -117,7 +125,7 @@ void RobotMap::init() {
 	swerveSubsystemFrontRightRotationTalon->ConfigPeakCurrentLimit(0, 10);
 
 
-	swerveSubsystemBackLeftRotationTalon->Config_kP(0, 2, 10);
+	swerveSubsystemBackLeftRotationTalon->Config_kP(0, 2.5, 10);
 	swerveSubsystemBackLeftRotationTalon->Config_kI(0, 0, 10);
 	swerveSubsystemBackLeftRotationTalon->Config_kD(0, .2, 10);
 	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputForward(.416, 10);
@@ -127,7 +135,7 @@ void RobotMap::init() {
 	swerveSubsystemBackLeftRotationTalon->ConfigPeakCurrentLimit(0, 10);
 
 
-	swerveSubsystemBackRightRotationTalon->Config_kP(0, 1.7, 10);
+	swerveSubsystemBackRightRotationTalon->Config_kP(0, 2.5, 10);
 	swerveSubsystemBackRightRotationTalon->Config_kI(0, 0, 10);
 	swerveSubsystemBackRightRotationTalon->Config_kD(0, 0, 10);
 	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputForward(.416, 10);
