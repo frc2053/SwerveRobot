@@ -88,10 +88,10 @@ void TigerSwerve::Drive(double xSpeed, double ySpeed, double rotSpeed, double he
 	//else {
 		angleTimer->Reset();
 		angleTimer->Start();
-		modules->at(0).Set(flWheelSpeed, flWheelAngle);
-		modules->at(1).Set(frWheelSpeed, frWheelAngle);
-		modules->at(2).Set(blWheelSpeed, blWheelAngle);
-		modules->at(3).Set(brWheelSpeed, brWheelAngle);
+		modules->at(0).Set(flWheelSpeed, flWheelAngle, true);
+		modules->at(1).Set(frWheelSpeed, frWheelAngle, true);
+		modules->at(2).Set(blWheelSpeed, blWheelAngle, true);
+		modules->at(3).Set(brWheelSpeed, brWheelAngle, true);
 
 
 		prevFLAngle = flWheelAngle;
@@ -128,8 +128,8 @@ void TigerSwerve::SwerveInverseKinematics(Translation2D &translation,
 		double rotation, double &wheelSpeedFR, double &wheelSpeedFL, double &wheelSpeedBR, double &wheelSpeedBL,
 		Rotation2D &wheelAngleFL, Rotation2D &wheelAngleFR, Rotation2D &wheelAngleBL, Rotation2D &wheelAngleBR) {
 
-	double A = translation.getX() - rotation * (RobotMap::WHEELBASE_LENTH / 2.0);
-	double B = translation.getX() + rotation * (RobotMap::WHEELBASE_LENTH / 2.0);
+	double A = translation.getX() - rotation * (RobotMap::WHEELBASE_LENGTH / 2.0);
+	double B = translation.getX() + rotation * (RobotMap::WHEELBASE_LENGTH / 2.0);
 	double C = translation.getY() - rotation * (RobotMap::WHEELBASE_WIDTH / 2.0);
 	double D = translation.getY() + rotation * (RobotMap::WHEELBASE_WIDTH / 2.0);
 	wheelSpeedFL = sqrt(pow(A, 2) + pow(D, 2)); //sqrt(pow(B, 2) + pow(D, 2));

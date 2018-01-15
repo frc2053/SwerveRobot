@@ -14,13 +14,13 @@ std::shared_ptr<AHRS> RobotMap::robotIMU;
 std::shared_ptr<frc::PowerDistributionPanel> RobotMap::pdp;
 std::shared_ptr<TigerDrive> RobotMap::tigerDrive;
 std::shared_ptr<TigerSwerve> RobotMap::tigerSwerve;
-double RobotMap::WHEELBASE_LENTH;
+double RobotMap::WHEELBASE_LENGTH;
 double RobotMap::WHEELBASE_WIDTH;
 
 void RobotMap::init() {
 	
-	WHEELBASE_LENTH = 21.875;
-	WHEELBASE_WIDTH = 23;
+	WHEELBASE_LENGTH = 23;
+	WHEELBASE_WIDTH = 21.875;
 
     pdp.reset(new frc::PowerDistributionPanel());
     SmartDashboard::PutData(pdp.get());

@@ -27,6 +27,6 @@ public:
 	static std::shared_ptr<frc::PowerDistributionPanel> pdp;
 	static std::shared_ptr<TigerSwerve> tigerSwerve;
 	static double WHEELBASE_WIDTH;
-	static double WHEELBASE_LENTH;
+	static double WHEELBASE_LENGTH;
 };
 #endif

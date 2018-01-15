@@ -2,7 +2,7 @@
 
 TestFollower::TestFollower() {
 	WHEELBASE_WIDTH = RobotMap::WHEELBASE_WIDTH;
-	WHEELBASE_LENGTH = RobotMap::WHEELBASE_LENTH;
+	WHEELBASE_LENGTH = RobotMap::WHEELBASE_LENGTH;
 	frontLeft = NULL;
 	frontRight = NULL;
 	backLeft = NULL;
@@ -58,8 +58,6 @@ void TestFollower::Generate() {
 
 void TestFollower::FollowPath() {
 
-
-
 	double fl = pathfinder_follow_encoder(flconfig, flFollower, frontLeft, length, RobotMap::swerveSubsystemFrontLeftDriveTalon->GetSelectedSensorPosition(0));
 	double fr = pathfinder_follow_encoder(frconfig, frFollower, frontRight, length, RobotMap::swerveSubsystemFrontRightDriveTalon->GetSelectedSensorPosition(0));
 	double bl = pathfinder_follow_encoder(blconfig, blFollower, backLeft, length, RobotMap::swerveSubsystemBackLeftDriveTalon->GetSelectedSensorPosition(0));
@@ -71,18 +69,18 @@ void TestFollower::FollowPath() {
 	double desired_headingbr = r2d(brFollower->heading);
 
 	std::cout << "flhead: " << desired_headingfl << std::endl;
-	std::cout << "frhead: " << desired_headingfr << std::endl;
-	std::cout << "blhead: " << desired_headingbl << std::endl;
-	std::cout << "brhead: " << desired_headingbr << std::endl;
+	//std::cout << "frhead: " << desired_headingfr << std::endl;
+	//std::cout << "blhead: " << desired_headingbl << std::endl;
+	//std::cout << "brhead: " << desired_headingbr << std::endl;
 	std::cout << "fl: " << fl << std::endl;
-	std::cout << "fr: " << fr << std::endl;
-	std::cout << "bl: " << bl << std::endl;
-	std::cout << "br: " << br << std::endl;
+	//std::cout << "fr: " << fr << std::endl;
+	//std::cout << "bl: " << bl << std::endl;
+	//std::cout << "br: " << br << std::endl;
 
-	modules->at(0).Set(fl, Rotation2D::fromDegrees(desired_headingfl));
-	modules->at(1).Set(fr, Rotation2D::fromDegrees(desired_headingfr));
-	modules->at(2).Set(bl, Rotation2D::fromDegrees(desired_headingbl));
-	modules->at(3).Set(br, Rotation2D::fromDegrees(desired_headingbr));
+	modules->at(0).Set(fl, Rotation2D::fromDegrees(desired_headingfl), false);
+	modules->at(1).Set(fr, Rotation2D::fromDegrees(desired_headingfr), false);
+	modules->at(2).Set(bl, Rotation2D::fromDegrees(desired_headingbl), false);
+	modules->at(3).Set(br, Rotation2D::fromDegrees(desired_headingbr), false);
 }
 
 TestFollower::~TestFollower() {

@@ -39,7 +39,7 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() {
 	Scheduler::GetInstance()->Run();
-	//follower.FollowPath();
+	follower.FollowPath();
 }
 
 void Robot::TeleopInit() {
@@ -48,50 +48,52 @@ void Robot::TeleopInit() {
 	}
 
 	//TODO: REMOVE FOR COMP
-	int FL_CAL = 524;
-	int BL_CAL = 904;
-	int FR_CAL = 2786;
-	int BR_CAL = 1161;
+	/*int FL_CAL = 668;
+	int BL_CAL = 907;
+	int FR_CAL = 3180;
+	int BR_CAL = 558;
 
-	int currentPWMFL = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition() % 4096;
-	int calSetpointFL = (FL_CAL - currentPWMFL) - (RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition() % 4096) - (FL_CAL - currentPWMFL);
+	int currentPWMFL = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition();
+	int currentQUADFL = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition();
+	int calSetpointFL =  currentQUADFL + (((currentQUADFL % 4096) - ((currentPWMFL % 4096) - FL_CAL)) - (currentQUADFL % 4096));
 
-	int currentPWMBL = RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition() % 4096;
-	int calSetpointBL = (BL_CAL - currentPWMBL) - (RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadraturePosition() % 4096) - (BL_CAL - currentPWMBL);
+	int currentPWMFR = RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetPulseWidthPosition();
+	int currentQUADFR = RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetQuadraturePosition();
+	int calSetpointFR =  currentQUADFR + (((currentQUADFR % 4096) - ((currentPWMFR % 4096) - FR_CAL)) - (currentQUADFR % 4096));
 
-	std::cout << "BR_CAL: " << BR_CAL << std::endl;
-	int currentPWMBR = RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetPulseWidthPosition() % 4096;
-	std::cout << "currentPWBR: " << currentPWMBR << std::endl;
-	int calSetpointBR = (BR_CAL - currentPWMBR) - (RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetQuadraturePosition() % 4096) - (BR_CAL - currentPWMBR);
-	std::cout << "calSetpointBR: " << calSetpointBR << std::endl;
+	int currentPWMBL = RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition();
+	int currentQUADBL = RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadraturePosition();
+	int calSetpointBL =  currentQUADBL + (((currentQUADBL % 4096) - ((currentPWMBL % 4096) - BL_CAL)) - (currentQUADBL % 4096));
 
-	int currentPWMFR = RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetPulseWidthPosition() % 4096;
-	int calSetpointFR = (FR_CAL - currentPWMFR) - (RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetQuadraturePosition() % 4096) - (FR_CAL - currentPWMFR);
+	int currentPWMBR = RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetPulseWidthPosition();
+	int currentQUADBR = RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetQuadraturePosition();
+	int calSetpointBR =  currentQUADBR + (((currentQUADBR % 4096) - ((currentPWMBR % 4096) - BR_CAL)) - (currentQUADBR % 4096));
 
 	RobotMap::swerveSubsystemFrontLeftRotationTalon->Set(ControlMode::Position, calSetpointFL);
 	RobotMap::swerveSubsystemFrontRightRotationTalon->Set(ControlMode::Position, calSetpointFR);
 	RobotMap::swerveSubsystemBackLeftRotationTalon->Set(ControlMode::Position, calSetpointBL);
 	RobotMap::swerveSubsystemBackRightRotationTalon->Set(ControlMode::Position, calSetpointBR);
-	//RobotMap::swerveSubsystemFrontLeftRotationTalon->SetSelectedSensorPosition(0, 0, 10);
-	//RobotMap::swerveSubsystemFrontRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);
-	//RobotMap::swerveSubsystemBackLeftRotationTalon->SetSelectedSensorPosition(0, 0, 10);
-	//RobotMap::swerveSubsystemBackRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);
+
+	//std::this_thread::sleep_for(std::chrono::seconds(3));
+
+	RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+	RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+	RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+	RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+
+	RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().SetPulseWidthPosition(0, 10);
+	RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().SetPulseWidthPosition(0, 10);
+	RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().SetPulseWidthPosition(0, 10);
+	RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().SetPulseWidthPosition(0, 10);*/
 }
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
-	double velocity = (float)RobotMap::swerveSubsystemBackLeftDriveTalon->GetSelectedSensorVelocity(0) * 0.0732421875;
-	SmartDashboard::PutNumber("Back Left Sensor Pos: ", RobotMap::swerveSubsystemBackLeftDriveTalon->GetSelectedSensorPosition(0));
-	SmartDashboard::PutNumber("Back Left Sensor Vel: ", velocity);
-	SmartDashboard::PutNumber("flPos", RobotMap::swerveSubsystemFrontLeftDriveTalon->GetSensorCollection().GetQuadraturePosition());
-	SmartDashboard::PutNumber("frPos", RobotMap::swerveSubsystemFrontRightDriveTalon->GetSensorCollection().GetQuadraturePosition());
-	SmartDashboard::PutNumber("blPos", RobotMap::swerveSubsystemBackLeftDriveTalon->GetSensorCollection().GetQuadraturePosition());
-	SmartDashboard::PutNumber("brPos", RobotMap::swerveSubsystemBackRightDriveTalon->GetSensorCollection().GetQuadraturePosition());
-
-	//SmartDashboard::PutNumber("flSet", RobotMap::swerveSubsystemFrontLeftRotationTalon->GetClosedLoopTarget(0));
-	//SmartDashboard::PutNumber("frSet", RobotMap::swerveSubsystemFrontRightRotationTalon->GetClosedLoopTarget(0));
-	//SmartDashboard::PutNumber("blSet", RobotMap::swerveSubsystemBackLeftRotationTalon->GetClosedLoopTarget(0));
-	//SmartDashboard::PutNumber("brSet", RobotMap::swerveSubsystemBackRightRotationTalon->GetClosedLoopTarget(0));
+	//double velocitybl = (float)RobotMap::swerveSubsystemBackLeftDriveTalon->GetSelectedSensorVelocity(0) * 0.0732421875;
+	SmartDashboard::PutNumber("flPos", RobotMap::swerveSubsystemFrontLeftDriveTalon->GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("frPos", RobotMap::swerveSubsystemFrontRightDriveTalon->GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("blPos", RobotMap::swerveSubsystemBackLeftDriveTalon->GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("brPos", RobotMap::swerveSubsystemBackRightDriveTalon->GetSelectedSensorPosition(0));
 }
 
 void Robot::TestPeriodic() {

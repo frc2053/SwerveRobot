@@ -11,82 +11,82 @@ void FlipBoundsCheck::Initialize() {
 
 void FlipBoundsCheck::Execute() {
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(0));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(0), true);
 	}
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(45));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(45), true);
 	}
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(315));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(315), true);
 	}
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(45));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(45), true);
 	}
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(315));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(315), true);
 	}
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(45));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(45), true);
 	}
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(135));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(135), true);
 	}
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(45));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(45), true);
 	}
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(135));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(135), true);
 	}
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(45));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(45), true);
 	}
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(135));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(135), true);
 	}
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(225));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(225), true);
 	}
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(135));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(135), true);
 	}	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(225));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(225), true);
 	}	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(135));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(135), true);
 	}	std::this_thread::sleep_for(std::chrono::seconds(1));
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(225));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(225), true);
 	}
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(315));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(315), true);
 	}
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(225));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(225), true);
 	}
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(315));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(315), true);
 	}
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(225));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(225), true);
 	}
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(315));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(315), true);
 	}
 	for(int j = 0; j < 4; j++) {
-		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(0));
+		Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(0), true);
 	}
 	testsPassed = true;
 }

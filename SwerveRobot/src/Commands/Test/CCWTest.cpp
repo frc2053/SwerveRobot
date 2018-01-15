@@ -12,7 +12,7 @@ void CCWTest::Initialize() {
 void CCWTest::Execute() {
 	for(int i = 315; i >= 0; i = i - 45) {
 		for(int j = 0; j < 4; j++) {
-			Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(i));
+			Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(i), true);
 		}
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}

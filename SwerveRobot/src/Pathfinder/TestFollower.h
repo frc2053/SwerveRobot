@@ -11,15 +11,15 @@ public:
 	void Generate();
 	void FollowPath();
 private:
-	//ALL IN INCHES PLEASE!!!
-	int POINT_LENGTH = 3;
+	//ALL IN FEET PLEASE!!!
+	int POINT_LENGTH = 2;
 	const double TIMESTEP = 0.01;
-	const double MAX_VEL = 590.55118110234;
-	const double MAX_ACCEL = 393.70078740156;
-	const double MAX_JERK = 2362.2047244094;
-	const int TICKS_PER_REV = 2048;
-	const double WHEEL_CIRCUMFERENCE = 7.85398;
-	const double K_P = 1.0;
+	const double MAX_VEL = 50;
+	const double MAX_ACCEL = 33;
+	const double MAX_JERK = 164;
+	const int TICKS_PER_REV = 8192;
+	const double WHEEL_CIRCUMFERENCE = 0.65449867893738;
+	const double K_P = .05;
 	const double K_I = 0.0;
 	const double K_D = 0.0;
 	const double K_V = 1 / MAX_VEL;
@@ -37,11 +37,11 @@ private:
 	EncoderFollower* flFollower = (EncoderFollower*)malloc(sizeof(EncoderFollower));
 	EncoderFollower* frFollower = (EncoderFollower*)malloc(sizeof(EncoderFollower));
 	EncoderFollower* blFollower = (EncoderFollower*)malloc(sizeof(EncoderFollower));
-	EncoderFollower* brFollower =(EncoderFollower*)malloc(sizeof(EncoderFollower));
-	EncoderConfig flconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
-	EncoderConfig frconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
-	EncoderConfig blconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
-	EncoderConfig brconfig = {0, 2048, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
+	EncoderFollower* brFollower = (EncoderFollower*)malloc(sizeof(EncoderFollower));
+	EncoderConfig flconfig = {0, TICKS_PER_REV, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
+	EncoderConfig frconfig = {0, TICKS_PER_REV, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
+	EncoderConfig blconfig = {0, TICKS_PER_REV, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
+	EncoderConfig brconfig = {0, TICKS_PER_REV, WHEEL_CIRCUMFERENCE, K_P, K_I, K_D, K_V, K_A};
 };
 
 #endif

@@ -13,7 +13,7 @@ void CWTest::Execute() {
 	//test rotations
 	for(int i = 0; i <= 315; i = i + 45) {
 		for(int j = 0; j < 4; j++) {
-			Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(i));
+			Robot::swerveSubsystem->GetSwerveStuff()->GetModules()->at(j).Set(0, Rotation2D::fromDegrees(i), true);
 		}
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
