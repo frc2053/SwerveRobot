@@ -17,9 +17,9 @@ private:
 	const double MAX_VEL = 50;
 	const double MAX_ACCEL = 33;
 	const double MAX_JERK = 164;
-	const int TICKS_PER_REV = 8192;
+	const int TICKS_PER_REV = 26214;
 	const double WHEEL_CIRCUMFERENCE = 0.65449867893738;
-	const double K_P = .05;
+	const double K_P = .1;
 	const double K_I = 0.0;
 	const double K_D = 0.0;
 	const double K_V = 1 / MAX_VEL;

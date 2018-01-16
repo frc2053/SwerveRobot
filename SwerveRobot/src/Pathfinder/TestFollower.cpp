@@ -15,7 +15,7 @@ void TestFollower::Generate() {
 	modules = RobotMap::tigerSwerve->GetModules();
 	Waypoint points[POINT_LENGTH];
 	Waypoint p1 = {0, 0, d2r(0)};
-	Waypoint p2 = {24, 0, d2r(0)};
+	Waypoint p2 = {8, 2, d2r(0)};
 	points[0] = p1;
 	points[1] = p2;
 	//points[2] = p3;
