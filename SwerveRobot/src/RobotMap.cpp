@@ -76,25 +76,10 @@ void RobotMap::init() {
 	int encoderAbsolutePositionBackRight = swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetPulseWidthPosition() & 0xFFF;
 	swerveSubsystemBackRightRotationTalon->SetSelectedSensorPosition(encoderAbsolutePositionBackRight, 0, 10);
 
-    std::cout << "fl quad1: " << swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition() << std::endl;
-    std::cout << "fr quad1: " << swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetQuadraturePosition() << std::endl;
-    std::cout << "bl quad1: " << swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadraturePosition() << std::endl;
-    std::cout << "br quad1: " << swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetQuadraturePosition() << std::endl;
-
-    std::cout << "fl abs2: " << swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition() << std::endl;
-    std::cout << "fr abs2: " << swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetPulseWidthPosition() << std::endl;
-    std::cout << "bl abs2: " << swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition() << std::endl;
-    std::cout << "br abs2: " << swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetPulseWidthPosition() << std::endl;
-
     swerveSubsystemFrontLeftRotationTalon->SetSelectedSensorPosition(0, 0, 10);
     swerveSubsystemFrontRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);
     swerveSubsystemBackLeftRotationTalon->SetSelectedSensorPosition(0, 0, 10);
     swerveSubsystemBackRightRotationTalon->SetSelectedSensorPosition(0, 0, 10);
-
-    std::cout << "fl quad3: " << swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition() << std::endl;
-    std::cout << "fr quad3: " << swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetQuadraturePosition() << std::endl;
-    std::cout << "bl quad3: " << swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadraturePosition() << std::endl;
-    std::cout << "br quad3: " << swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetQuadraturePosition() << std::endl;
 
 	swerveSubsystemFrontLeftRotationTalon->SetSensorPhase(false);
 	swerveSubsystemFrontRightRotationTalon->SetSensorPhase(false);

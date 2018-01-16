@@ -15,7 +15,7 @@ void TestFollower::Generate() {
 	modules = RobotMap::tigerSwerve->GetModules();
 	Waypoint points[POINT_LENGTH];
 	Waypoint p1 = {0, 0, d2r(0)};
-	Waypoint p2 = {8, 2, d2r(0)};
+	Waypoint p2 = {8, 0, d2r(0)};
 	points[0] = p1;
 	points[1] = p2;
 	//points[2] = p3;
@@ -62,6 +62,11 @@ void TestFollower::FollowPath() {
 	double fr = pathfinder_follow_encoder(frconfig, frFollower, frontRight, length, RobotMap::swerveSubsystemFrontRightDriveTalon->GetSelectedSensorPosition(0));
 	double bl = pathfinder_follow_encoder(blconfig, blFollower, backLeft, length, RobotMap::swerveSubsystemBackLeftDriveTalon->GetSelectedSensorPosition(0));
 	double br = pathfinder_follow_encoder(brconfig, brFollower, backRight, length, RobotMap::swerveSubsystemBackRightDriveTalon->GetSelectedSensorPosition(0));
+
+	/*double desired_headingfl = r2d(K_T * (flFollower->heading - d2r(Robot::swerveSubsystem->GetAdjYaw())));
+	double desired_headingfr = r2d(K_T * (frFollower->heading - d2r(Robot::swerveSubsystem->GetAdjYaw())));
+	double desired_headingbl = r2d(K_T * (blFollower->heading - d2r(Robot::swerveSubsystem->GetAdjYaw())));
+	double desired_headingbr = r2d(K_T * (brFollower->heading - d2r(Robot::swerveSubsystem->GetAdjYaw())));*/
 
 	double desired_headingfl = r2d(flFollower->heading);
 	double desired_headingfr = r2d(frFollower->heading);
