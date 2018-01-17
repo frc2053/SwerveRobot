@@ -62,38 +62,36 @@ void Robot::TeleopInit() {
 
 	std::cout << "BeginCAL" << std::endl;
 
-	std::this_thread::sleep_for(std::chrono::seconds(1));
 	int currentPWMFL = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition();
-	std::this_thread::sleep_for(std::chrono::seconds(1));
 	int currentQUADFL = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition();
 	std::cout << "FL_CAL " << FL_CAL << "currentPWMFL " << currentPWMFL << "currentQUADFL " << currentQUADFL << std::endl;
-	int calSetpointFL =  currentQUADFL + (((currentQUADFL % 4096) - ((currentPWMFL % 4096) - FL_CAL)) - (currentQUADFL % 4096));
+	int calSetpointFL = (((currentQUADFL % 4096) - ((currentPWMFL % 4096) - FL_CAL)) - (currentQUADFL % 4096));
 	std::cout << "calSetpointFL " << calSetpointFL << std::endl;
 
 	int currentPWMFR = RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetPulseWidthPosition();
 	int currentQUADFR = RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetQuadraturePosition();
 	std::cout << "FR_CAL " << FR_CAL << "currentPWMFR " << currentPWMFR << "currentQUADFR " << currentQUADFR << std::endl;
-	int calSetpointFR =  currentQUADFR + (((currentQUADFR % 4096) - ((currentPWMFR % 4096) - FR_CAL)) - (currentQUADFR % 4096));
+	int calSetpointFR = (((currentQUADFR % 4096) - ((currentPWMFR % 4096) - FR_CAL)) - (currentQUADFR % 4096));
 	std::cout << "calSetpointFR " << calSetpointFR << std::endl;
 
 	int currentPWMBL = RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition();
 	int currentQUADBL = RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetQuadraturePosition();
 	std::cout << "BL_CAL " << BL_CAL << "currentPWMBL " << currentPWMBL << "currentQUADBL " << currentQUADBL << std::endl;
-	int calSetpointBL =  currentQUADBL + (((currentQUADBL % 4096) - ((currentPWMBL % 4096) - BL_CAL)) - (currentQUADBL % 4096));
+	int calSetpointBL =  (((currentQUADBL % 4096) - ((currentPWMBL % 4096) - BL_CAL)) - (currentQUADBL % 4096));
 	std::cout << "calSetpointBL " << calSetpointBL << std::endl;
 
 	int currentPWMBR = RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetPulseWidthPosition();
 	int currentQUADBR = RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetQuadraturePosition();
 	std::cout << "BR_CAL " << BR_CAL << "currentPWMBR " << currentPWMBR << "currentQUADBR " << currentQUADBR << std::endl;
-	int calSetpointBR =  currentQUADBR + (((currentQUADBR % 4096) - ((currentPWMBR % 4096) - BR_CAL)) - (currentQUADBR % 4096));
+	int calSetpointBR =  (((currentQUADBR % 4096) - ((currentPWMBR % 4096) - BR_CAL)) - (currentQUADBR % 4096));
 	std::cout << "calSetpointBR " << calSetpointBR << std::endl;
 
-	RobotMap::swerveSubsystemFrontLeftRotationTalon->Set(ControlMode::Position, FL_CAL);
-	RobotMap::swerveSubsystemFrontRightRotationTalon->Set(ControlMode::Position, FR_CAL);
-	RobotMap::swerveSubsystemBackLeftRotationTalon->Set(ControlMode::Position, BL_CAL);
-	RobotMap::swerveSubsystemBackRightRotationTalon->Set(ControlMode::Position, BR_CAL);
+	RobotMap::swerveSubsystemFrontLeftRotationTalon->Set(ControlMode::Position, calSetpointFL);
+	RobotMap::swerveSubsystemFrontRightRotationTalon->Set(ControlMode::Position, calSetpointFR);
+	RobotMap::swerveSubsystemBackLeftRotationTalon->Set(ControlMode::Position, calSetpointBL);
+	RobotMap::swerveSubsystemBackRightRotationTalon->Set(ControlMode::Position, calSetpointBR);
 
-	/*std::cout << "Positions Set, Sleeping" << std::endl;
+	std::cout << "Positions Set, Sleeping" << std::endl;
 
 	std::this_thread::sleep_for(std::chrono::seconds(2));
 
@@ -118,14 +116,10 @@ void Robot::TeleopInit() {
 
 	std::cout << "Zero Encoders" << std::endl;
 
-	RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
-	RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
-	RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
-	RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
-	ctre::phoenix::ErrorCode errFL = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().SetPulseWidthPosition(0, 10);
-	ctre::phoenix::ErrorCode errFR = RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().SetPulseWidthPosition(0, 10);
-	ctre::phoenix::ErrorCode errBL = RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().SetPulseWidthPosition(0, 10);
-	ctre::phoenix::ErrorCode errBR = RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().SetPulseWidthPosition(0, 10);
+	ctre::phoenix::ErrorCode errFL = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+	ctre::phoenix::ErrorCode errFR = RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+	ctre::phoenix::ErrorCode errBL = RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
+	ctre::phoenix::ErrorCode errBR = RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().SetQuadraturePosition(0, 10);
 
 	std::cout << "flErr: " << errFL << std::endl;
 	std::cout << "frErr: " << errFR << std::endl;
@@ -152,7 +146,7 @@ void Robot::TeleopInit() {
 	std::cout << "BL_Sel: " << RobotMap::swerveSubsystemBackLeftRotationTalon->GetSelectedSensorPosition(0);
 	std::cout << "BR_Sel: " << RobotMap::swerveSubsystemBackRightRotationTalon->GetSelectedSensorPosition(0);
 
-	std::cout << "EndCAL" << std::endl;*/
+	std::cout << "EndCAL" << std::endl;
 
 }
 

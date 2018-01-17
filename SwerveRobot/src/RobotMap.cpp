@@ -135,8 +135,6 @@ void RobotMap::init() {
 	swerveSubsystemBackRightRotationTalon->ConfigContinuousCurrentLimit(10, 10);
 	swerveSubsystemBackRightRotationTalon->ConfigPeakCurrentLimit(0, 10);
 
-
-
     std::vector<std::shared_ptr<WPI_TalonSRX>> talons;
     talons.push_back(swerveSubsystemFrontLeftDriveTalon);
     talons.push_back(swerveSubsystemFrontRightDriveTalon);

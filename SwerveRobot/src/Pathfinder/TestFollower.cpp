@@ -58,10 +58,15 @@ void TestFollower::Generate() {
 
 void TestFollower::FollowPath() {
 
-	double fl = pathfinder_follow_encoder(flconfig, flFollower, frontLeft, length, RobotMap::swerveSubsystemFrontLeftDriveTalon->GetSelectedSensorPosition(0));
-	double fr = pathfinder_follow_encoder(frconfig, frFollower, frontRight, length, RobotMap::swerveSubsystemFrontRightDriveTalon->GetSelectedSensorPosition(0));
-	double bl = pathfinder_follow_encoder(blconfig, blFollower, backLeft, length, RobotMap::swerveSubsystemBackLeftDriveTalon->GetSelectedSensorPosition(0));
-	double br = pathfinder_follow_encoder(brconfig, brFollower, backRight, length, RobotMap::swerveSubsystemBackRightDriveTalon->GetSelectedSensorPosition(0));
+	int flCurrentPos = RobotMap::swerveSubsystemFrontLeftDriveTalon->GetSelectedSensorPosition(0);
+	int frCurrentPos = RobotMap::swerveSubsystemFrontRightDriveTalon->GetSelectedSensorPosition(0);
+	int blCurrentPos = RobotMap::swerveSubsystemBackLeftDriveTalon->GetSelectedSensorPosition(0);
+	int brCurrentPos = RobotMap::swerveSubsystemBackRightDriveTalon->GetSelectedSensorPosition(0);
+
+	double fl = pathfinder_follow_encoder(flconfig, flFollower, frontLeft, length, flCurrentPos);
+	double fr = pathfinder_follow_encoder(frconfig, frFollower, frontRight, length, frCurrentPos);
+	double bl = pathfinder_follow_encoder(blconfig, blFollower, backLeft, length, blCurrentPos);
+	double br = pathfinder_follow_encoder(brconfig, brFollower, backRight, length, brCurrentPos);
 
 	/*double desired_headingfl = r2d(K_T * (d2r(Robot::swerveSubsystem->GetAdjYaw() - flFollower->heading)));
 	double desired_headingfr = r2d(K_T * (d2r(Robot::swerveSubsystem->GetAdjYaw() - frFollower->heading)));
@@ -73,14 +78,10 @@ void TestFollower::FollowPath() {
 	double desired_headingbl = r2d(blFollower->heading);
 	double desired_headingbr = r2d(brFollower->heading);
 
-	std::cout << "flhead: " << desired_headingfl << std::endl;
-	//std::cout << "frhead: " << desired_headingfr << std::endl;
-	//std::cout << "blhead: " << desired_headingbl << std::endl;
-	//std::cout << "brhead: " << desired_headingbr << std::endl;
-	std::cout << "fl: " << fl << std::endl;
-	//std::cout << "fr: " << fr << std::endl;
-	//std::cout << "bl: " << bl << std::endl;
-	//std::cout << "br: " << br << std::endl;
+	SmartDashboard::PutNumber("FL ERROR", flFollower->last_error);
+	SmartDashboard::PutNumber("FR ERROR", frFollower->last_error);
+	SmartDashboard::PutNumber("BL ERROR", blFollower->last_error);
+	SmartDashboard::PutNumber("BR ERROR", brFollower->last_error);
 
 	modules->at(0).Set(fl, Rotation2D::fromDegrees(desired_headingfl), false);
 	modules->at(1).Set(fr, Rotation2D::fromDegrees(desired_headingfr), false);
