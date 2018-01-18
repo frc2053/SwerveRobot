@@ -50,37 +50,7 @@ void Robot::TeleopInit() {
 	if(selectedMode != nullptr) {
 		selectedMode->Cancel();
 	}
-
-	//TODO: REMOVE FOR COMP
-	/*int FL_CAL = 817;
-	int BL_CAL = 911;
-	int FR_CAL = 2685;
-	int BR_CAL = 230;
-
-	int currentPWMFL = RobotMap::swerveSubsystemFrontLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition();
-	int currentPWMFR = RobotMap::swerveSubsystemFrontRightRotationTalon->GetSensorCollection().GetPulseWidthPosition();
-	int currentPWMBL = RobotMap::swerveSubsystemBackLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition();
-	int currentPWMBR = RobotMap::swerveSubsystemBackRightRotationTalon->GetSensorCollection().GetPulseWidthPosition();
-
-	std::cout << "currentPWMFL: " << currentPWMFL << std::endl;
-	std::cout << "currentPWMFR: " << currentPWMFR << std::endl;
-	std::cout << "currentPWMBL: " << currentPWMBL << std::endl;
-	std::cout << "currentPWMBR: " << currentPWMBR << std::endl;
-
-	int setpointFL = -(currentPWMFL - FL_CAL);
-	int setpointFR = -(currentPWMFR - FR_CAL);
-	int setpointBL = -(currentPWMBL - BL_CAL);
-	int setpointBR = -(currentPWMBR - BR_CAL);
-
-	std::cout << "setpointFL: " << setpointFL << std::endl;
-	std::cout << "setpointFR: " << setpointFR << std::endl;
-	std::cout << "setpointBL: " << setpointBL << std::endl;
-	std::cout << "setpointBR: " << setpointBR << std::endl;
-
-	RobotMap::swerveSubsystemFrontLeftRotationTalon->Set(setpointFL);
-	RobotMap::swerveSubsystemFrontRightRotationTalon->Set(setpointFR);
-	RobotMap::swerveSubsystemBackLeftRotationTalon->Set(setpointBL);
-	RobotMap::swerveSubsystemBackRightRotationTalon->Set(setpointBR);*/
+	Robot::swerveSubsystem->CalibrateWheels();
 }
 
 void Robot::TeleopPeriodic() {

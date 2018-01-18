@@ -91,11 +91,6 @@ void RobotMap::init() {
 	swerveSubsystemBackLeftRotationTalon->SetInverted(true);
 	swerveSubsystemBackRightRotationTalon->SetInverted(true);
 
-	swerveSubsystemFrontLeftRotationTalon->Set(ctre::phoenix::motorcontrol::ControlMode::Position, 0);
-	swerveSubsystemFrontRightRotationTalon->Set(ctre::phoenix::motorcontrol::ControlMode::Position, 0);
-	swerveSubsystemBackLeftRotationTalon->Set(ctre::phoenix::motorcontrol::ControlMode::Position, 0);
-	swerveSubsystemBackRightRotationTalon->Set(ctre::phoenix::motorcontrol::ControlMode::Position, 0);
-
 	swerveSubsystemFrontLeftRotationTalon->Config_kP(0, 2.5, 10);
 	swerveSubsystemFrontLeftRotationTalon->Config_kI(0, 0, 10);
 	swerveSubsystemFrontLeftRotationTalon->Config_kD(0, .2, 10);

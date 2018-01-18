@@ -18,6 +18,8 @@ public:
 	void SetTimesThroughLoop(int timeLoop);
 	bool GetIsRotDoneOverride();
 	void ZeroYaw();
+	void CalibrateWheels();
+	int AbsMod(int value, int ticks);
 	std::shared_ptr<TigerSwerve> GetSwerveStuff();
 private:
 	std::shared_ptr<WPI_TalonSRX> frontRightDriveTalon;
@@ -32,6 +34,11 @@ private:
 
 	std::shared_ptr<TigerDrive> tigerDrive;
 	std::shared_ptr<TigerSwerve> tigerSwerve;
+	int FL_CAL = 817;
+	int BL_CAL = 911;
+	int FR_CAL = 2685;
+	int BR_CAL = 230;
+	int TICKS_PER_REV = 4096;
 };
 
 #endif
