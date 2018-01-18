@@ -101,7 +101,7 @@ void RobotMap::init() {
 	swerveSubsystemFrontLeftRotationTalon->Config_kD(0, .2, 10);
 	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputForward(.416, 10);
 	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputReverse(-.416, 10);
-	swerveSubsystemFrontLeftRotationTalon->ConfigAllowableClosedloopError(0, 35, 10);
+	swerveSubsystemFrontLeftRotationTalon->ConfigAllowableClosedloopError(0, 10, 10);
 	swerveSubsystemFrontLeftRotationTalon->ConfigContinuousCurrentLimit(10, 10);
 	swerveSubsystemFrontLeftRotationTalon->ConfigPeakCurrentLimit(0, 10);
 
