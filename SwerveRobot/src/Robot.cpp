@@ -50,7 +50,7 @@ void Robot::TeleopInit() {
 	if(selectedMode != nullptr) {
 		selectedMode->Cancel();
 	}
-	//Robot::swerveSubsystem->CalibrateWheels();
+	Robot::swerveSubsystem->CalibrateWheels();
 }
 
 void Robot::TeleopPeriodic() {

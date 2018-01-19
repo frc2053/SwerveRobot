@@ -120,10 +120,20 @@ void SwerveSubsystem::CalibrateWheels() {
 	currentPWMbl = backLeftRotationTalon->GetSensorCollection().GetPulseWidthPosition();
 	currentPWMbr = backRightRotationTalon->GetSensorCollection().GetPulseWidthPosition();
 
+	currentQuadfl = frontLeftRotationTalon->GetSensorCollection().GetQuadraturePosition();
+	currentQuadfr = frontRightRotationTalon->GetSensorCollection().GetQuadraturePosition();
+	currentQuadbl = backLeftRotationTalon->GetSensorCollection().GetQuadraturePosition();
+	currentQuadbr = backRightRotationTalon->GetSensorCollection().GetQuadraturePosition();
+
 	std::cout << "currentPWMfl: " << currentPWMfl << std::endl;
 	std::cout << "currentPWMfr: " << currentPWMfr << std::endl;
 	std::cout << "currentPWMbl: " << currentPWMbl << std::endl;
 	std::cout << "currentPWMbr: " << currentPWMbr << std::endl;
+
+	std::cout << "currentQuadfl: " << currentQuadfl << std::endl;
+	std::cout << "currentQuadfr: " << currentQuadfr << std::endl;
+	std::cout << "currentQuadbl: " << currentQuadbl << std::endl;
+	std::cout << "currentQuadbr: " << currentQuadbr << std::endl;
 }
 
 int SwerveSubsystem::AbsMod(int value, int ticks) {
