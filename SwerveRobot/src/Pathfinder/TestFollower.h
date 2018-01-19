@@ -19,11 +19,11 @@ private:
 	const double MAX_JERK = 60;
 	const int TICKS_PER_REV = 26214;
 	const double WHEEL_CIRCUMFERENCE = 0.65449867893738;
-	const double K_P = 1.8;
+	const double K_P = 1;
 	const double K_I = 0.0;
 	const double K_D = 0;
 	const double K_V = .66;
-	const double K_A = 0.0856;
+	const double K_A = .4; //0.0856
 	const double K_T = 0;
 	double WHEELBASE_WIDTH;
 	double WHEELBASE_LENGTH;

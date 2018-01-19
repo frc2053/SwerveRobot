@@ -14,14 +14,14 @@
 OI::OI() {
 	driverJoystick.reset(new TigerJoystick(0));
 
-	SmartDashboard::PutData("Zero Yaw", new ZeroYaw());
-	SmartDashboard::PutData("CCWTest", new CCWTest());
-	SmartDashboard::PutData("CWTest", new CWTest());
-	SmartDashboard::PutData("FlipBoundsTest", new FlipBoundsCheck());
-	SmartDashboard::PutData("NinetyTwoSeventy", new NinetyTwoSeventy());
-	SmartDashboard::PutData("TwoSeventyDown", new TwoSeventyDown());
-	SmartDashboard::PutData("TwoSeventyUp", new TwoSeventyUp());
-	SmartDashboard::PutData("ZeroOneEighty", new ZeroOneEighty());
+	//SmartDashboard::PutData("Zero Yaw", new ZeroYaw());
+	//SmartDashboard::PutData("CCWTest", new CCWTest());
+	//SmartDashboard::PutData("CWTest", new CWTest());
+	//SmartDashboard::PutData("FlipBoundsTest", new FlipBoundsCheck());
+	//SmartDashboard::PutData("NinetyTwoSeventy", new NinetyTwoSeventy());
+	//SmartDashboard::PutData("TwoSeventyDown", new TwoSeventyDown());
+	//SmartDashboard::PutData("TwoSeventyUp", new TwoSeventyUp());
+	//SmartDashboard::PutData("ZeroOneEighty", new ZeroOneEighty());
 
 	//driverJoystick->aButton->WhileHeld(new GoToVelocity(15000));
 	//driverJoystick->aButton->WhenReleased(new GoToVelocity(0));

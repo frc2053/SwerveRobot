@@ -78,10 +78,10 @@ void TestFollower::FollowPath() {
 	double desired_headingbl = r2d(blFollower->heading);
 	double desired_headingbr = r2d(brFollower->heading);
 
-	SmartDashboard::PutNumber("FL ERROR", flFollower->last_error);
-	SmartDashboard::PutNumber("FR ERROR", frFollower->last_error);
-	SmartDashboard::PutNumber("BL ERROR", blFollower->last_error);
-	SmartDashboard::PutNumber("BR ERROR", brFollower->last_error);
+	//SmartDashboard::PutNumber("FL ERROR", flFollower->last_error);
+	//SmartDashboard::PutNumber("FR ERROR", frFollower->last_error);
+	//SmartDashboard::PutNumber("BL ERROR", blFollower->last_error);
+	//SmartDashboard::PutNumber("BR ERROR", brFollower->last_error);
 
 	modules->at(0).Set(fl, Rotation2D::fromDegrees(desired_headingfl), false);
 	modules->at(1).Set(fr, Rotation2D::fromDegrees(desired_headingfr), false);

@@ -1,3 +1,4 @@
+
 #include "RobotMap.h"
 
 std::shared_ptr<WPI_TalonSRX> RobotMap::swerveSubsystemFrontLeftDriveTalon;
@@ -23,7 +24,7 @@ void RobotMap::init() {
 	WHEELBASE_WIDTH = 21.875;
 
     pdp.reset(new frc::PowerDistributionPanel());
-    SmartDashboard::PutData(pdp.get());
+    //SmartDashboard::PutData(pdp.get());
 
 	swerveSubsystemFrontLeftDriveTalon.reset(new WPI_TalonSRX(2));
 	swerveSubsystemFrontRightDriveTalon.reset(new WPI_TalonSRX(3));
@@ -91,44 +92,50 @@ void RobotMap::init() {
 	swerveSubsystemBackLeftRotationTalon->SetInverted(true);
 	swerveSubsystemBackRightRotationTalon->SetInverted(true);
 
-	swerveSubsystemFrontLeftRotationTalon->Config_kP(0, 2.5, 10);
+	swerveSubsystemFrontLeftRotationTalon->Config_kP(0, 3.5, 10);
 	swerveSubsystemFrontLeftRotationTalon->Config_kI(0, 0, 10);
 	swerveSubsystemFrontLeftRotationTalon->Config_kD(0, .2, 10);
 	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputForward(.416, 10);
 	swerveSubsystemFrontLeftRotationTalon->ConfigPeakOutputReverse(-.416, 10);
-	swerveSubsystemFrontLeftRotationTalon->ConfigAllowableClosedloopError(0, 10, 10);
+	swerveSubsystemFrontLeftRotationTalon->ConfigAllowableClosedloopError(0, 5, 10);
 	swerveSubsystemFrontLeftRotationTalon->ConfigContinuousCurrentLimit(10, 10);
 	swerveSubsystemFrontLeftRotationTalon->ConfigPeakCurrentLimit(0, 10);
 
 
-	swerveSubsystemFrontRightRotationTalon->Config_kP(0, 2.5, 10);
+	swerveSubsystemFrontRightRotationTalon->Config_kP(0, 3.5, 10);
 	swerveSubsystemFrontRightRotationTalon->Config_kI(0, 0, 10);
 	swerveSubsystemFrontRightRotationTalon->Config_kD(0, .2, 10);
 	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputForward(.416, 10);
 	swerveSubsystemFrontRightRotationTalon->ConfigPeakOutputReverse(-.416, 10);
-	swerveSubsystemFrontRightRotationTalon->ConfigAllowableClosedloopError(0, 10, 10);
+	swerveSubsystemFrontRightRotationTalon->ConfigAllowableClosedloopError(0, 5, 10);
 	swerveSubsystemFrontRightRotationTalon->ConfigContinuousCurrentLimit(10, 10);
 	swerveSubsystemFrontRightRotationTalon->ConfigPeakCurrentLimit(0, 10);
 
 
-	swerveSubsystemBackLeftRotationTalon->Config_kP(0, 2.5, 10);
+	swerveSubsystemBackLeftRotationTalon->Config_kP(0, 3.5, 10);
 	swerveSubsystemBackLeftRotationTalon->Config_kI(0, 0, 10);
 	swerveSubsystemBackLeftRotationTalon->Config_kD(0, .2, 10);
 	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputForward(.416, 10);
 	swerveSubsystemBackLeftRotationTalon->ConfigPeakOutputReverse(-.416, 10);
-	swerveSubsystemBackLeftRotationTalon->ConfigAllowableClosedloopError(0, 10, 10);
+	swerveSubsystemBackLeftRotationTalon->ConfigAllowableClosedloopError(0, 5, 10);
 	swerveSubsystemBackLeftRotationTalon->ConfigContinuousCurrentLimit(10, 10);
 	swerveSubsystemBackLeftRotationTalon->ConfigPeakCurrentLimit(0, 10);
 
 
-	swerveSubsystemBackRightRotationTalon->Config_kP(0, 2.5, 10);
+	swerveSubsystemBackRightRotationTalon->Config_kP(0, 3.5, 10);
 	swerveSubsystemBackRightRotationTalon->Config_kI(0, 0, 10);
 	swerveSubsystemBackRightRotationTalon->Config_kD(0, .2, 10);
 	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputForward(.416, 10);
 	swerveSubsystemBackRightRotationTalon->ConfigPeakOutputReverse(-.416, 10);
-	swerveSubsystemBackRightRotationTalon->ConfigAllowableClosedloopError(0, 35, 10);
+	swerveSubsystemBackRightRotationTalon->ConfigAllowableClosedloopError(0, 5, 10);
 	swerveSubsystemBackRightRotationTalon->ConfigContinuousCurrentLimit(10, 10);
 	swerveSubsystemBackRightRotationTalon->ConfigPeakCurrentLimit(0, 10);
+
+	//swerveSubsystemFrontLeftDriveTalon->SetStatusFramePeriod(StatusFrameEnhanced::Status_3_Quadrature, 20, 10);
+	//swerveSubsystemFrontRightDriveTalon->SetStatusFramePeriod(StatusFrameEnhanced::Status_3_Quadrature, 20, 10);
+	//swerveSubsystemBackLeftDriveTalon->SetStatusFramePeriod(StatusFrameEnhanced::Status_3_Quadrature, 20, 10);
+	//swerveSubsystemBackRightDriveTalon->SetStatusFramePeriod(StatusFrameEnhanced::Status_3_Quadrature, 20, 10);
+
 
     std::vector<std::shared_ptr<WPI_TalonSRX>> talons;
     talons.push_back(swerveSubsystemFrontLeftDriveTalon);
